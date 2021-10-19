@@ -1,0 +1,38 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 0.1rem solid rgb(255, 255, 255);
+  border-radius: 0.3rem;
+  height: auto;
+  width: auto;
+  min-height: 2.5rem;
+  padding: 0.5rem;
+  font-size: 1.7rem;
+  color: #fff;
+  margin-top: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: white;
+    margin-right: 0.8rem;
+    width: 1.7rem;
+    height: auto;
+  }
+
+  & {
+    &--icon-only {
+      .logo {
+        margin: 0;
+      }
+    }
+  }
+}
