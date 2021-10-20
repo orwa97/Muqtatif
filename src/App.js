@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { ReactComponent as Settings } from "./images/SVG/cog.svg";
 import Button from "./components/button/Button";
 import Select from "./components/Select/Select";
+import Slider from "./components/slider/Slider";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Button icon={<Settings />} type="icon-text">
         button
       </Button>
+      <Slider />
     </Fragment>
   );
 }

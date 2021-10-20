@@ -10,7 +10,7 @@ const Button = (props) => {
         { "btn--textNicon": props.type === "icon-text" }
       )}
     >
-      {props.type != "text-only" && <div className="logo">{props.icon}</div>}
+      {props.type !== "text-only" && <div className="logo">{props.icon}</div>}
       {props.children}
     </button>
   );

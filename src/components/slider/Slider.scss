@@ -1,0 +1,14 @@
+input [type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  height: 3rem;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+
+  &::-ms-track {
+    background: transparent;
+  }
+}
