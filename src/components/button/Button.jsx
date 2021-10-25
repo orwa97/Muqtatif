@@ -7,7 +7,8 @@ const Button = (props) => {
         "btn",
         { "btn--icon-only": props.type === "icon-only" },
         { "btn--text-only": props.type === "text-only" },
-        { "btn--textNicon": props.type === "icon-text" }
+        { "btn--textNicon": props.type === "icon-text" },
+        props.className
       )}
     >
       {props.type !== "text-only" && <div className="logo">{props.icon}</div>}
