@@ -1,0 +1,36 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.checkboxContainer {
+  width: 100%;
+  height: auto;
+  border: 1px solid #fff;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  align-items: center;
+
+  input[type="checkbox"] {
+    // appearance: none;
+
+    // &::after {
+    //   content: "";
+    //   display: flex;
+    //   width: 1.5rem;
+    //   height: 1.5rem;
+    //   border-radius: 0.75rem;
+    //   background-color: #fff;
+    // }
+  }
+}
+
+.checkboxLabel {
+  font-size: 1.7rem;
+  width: 100%;
+}

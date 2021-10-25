@@ -1,0 +1,54 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.radioBtnBox {
+  &,
+  .radioBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  // background-color: transparent;
+  margin-top: 1rem;
+  // position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.radio-label {
+  font-size: 1.7rem;
+  color: rgb(15, 15, 15);
+  margin-right: 0.1rem;
+  height: 100%;
+  width: auto;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #fff;
+  // border-right: 1px solid rgb(15, 15, 15);
+
+  // &:hover {
+  //   background-color: rgba(255, 255, 255, 0.1);
+  //   color: #fff;
+  // }
+}
+
+.radioBtn:last-of-type .radio-label {
+  // border-right: 1px solid #fff;
+  margin-right: 0;
+}
+
+input[type="radio"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+input[type="radio"]:checked + .radio-label {
+  background-color: transparent;
+  color: #fff;
+}
