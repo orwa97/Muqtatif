@@ -5,10 +5,11 @@ import Button from "./components/button/Button";
 import Select from "./components/Select/Select";
 import QuoteArea from "./components/quoteArea/QuoteArea";
 import Layout from "./components/layout/Layout";
+import SearchBar from "./components/searchBar/SearchBar";
 
 function App() {
   return (
-      <MainPage
+    <SearchBar results={["a", "b", "c"]} />
 
     // <Fragment>
     //   <Select postfix="post" options={["a", "b", "c", "d"]} />
