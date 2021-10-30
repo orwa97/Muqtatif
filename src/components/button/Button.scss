@@ -3,13 +3,25 @@
 *:after {
   box-sizing: border-box;
 }
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
+
+.btn-container {
+  &,
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   border: 0.1rem solid rgb(255, 255, 255);
   border-radius: 0.3rem;
+  height: auto;
+  width: fit-content;
+  max-width: 10rem;
+}
+.btn {
+  background: transparent;
+  border: 0;
+  // border: 0.1rem solid rgb(255, 255, 255);
+  // border-radius: 0.3rem;
   height: auto;
   width: auto;
   min-height: 2.5rem;
@@ -18,21 +30,34 @@
   color: #fff;
   cursor: pointer;
 
-  .logo {
+  .btn__logo {
     display: flex;
     justify-content: center;
     align-items: center;
     fill: white;
     margin-right: 0.8rem;
-    width: 1.7rem;
+    width: 2rem;
     height: auto;
   }
 
   & {
     &--icon-only {
-      .logo {
+      .btn__logo {
         margin: 0;
       }
     }
+    &--w-postfix {
+      border-right: 1px solid #fff;
+    }
   }
+}
+
+.btn__postfix {
+  height: auto;
+  width: 1.7rem;
+  fill: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

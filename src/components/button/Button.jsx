@@ -2,18 +2,24 @@ import "./Button.scss";
 import classNames from "classnames";
 const Button = (props) => {
   return (
-    <button
-      className={classNames(
-        "btn",
-        { "btn--icon-only": props.type === "icon-only" },
-        { "btn--text-only": props.type === "text-only" },
-        { "btn--textNicon": props.type === "icon-text" },
-        props.className
-      )}
-    >
-      {props.type !== "text-only" && <div className="logo">{props.icon}</div>}
-      {props.children}
-    </button>
+    <div className="btn-container">
+      <button
+        className={classNames(
+          "btn",
+          { "btn--icon-only": props.type === "icon-only" },
+          { "btn--text-only": props.type === "text-only" },
+          { "btn--textNicon": props.type === "icon-text" },
+          { "btn--w-postfix": !!props.postfix },
+          props.className
+        )}
+      >
+        {props.type !== "text-only" && (
+          <div className="btn__logo">{props.icon} </div>
+        )}
+        {props.children}
+      </button>
+      {props.postfix && <div className="btn__postfix">{props.postfix}</div>}
+    </div>
   );
 };
 

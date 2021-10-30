@@ -1,0 +1,30 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  &,
+  .muq--intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.muq--intro {
+  width: 50%;
+  margin-top: 5rem;
+}
+
+.intro__muqtatifLogo {
+  font-size: 5rem;
+  margin-bottom: 1.8rem;
+}
+
+.intro__mainText {
+  font-size: 2rem;
+  text-align: center;
+}

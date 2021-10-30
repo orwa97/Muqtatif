@@ -1,0 +1,46 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.muqtatifContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5rem;
+  border: 0.3rem solid #fff;
+  border-radius: 0.8rem;
+  padding: 1.7rem;
+  height: auto;
+  width: fit-content;
+  //   max-width: 100rem;
+}
+
+.muq--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.7rem;
+}
+
+.headerPart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > * {
+    margin-right: 0.8rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &:first-of-type {
+    margin-right: 1rem;
+  }
+}

@@ -18,7 +18,7 @@ const Select = (props) => {
       >
         {options}
       </select>
-      {props.postfix && <div className="postfix">postfix</div>}
+      {props.postfix && <div className="postfix">{props.postfix}</div>}
     </div>
   );
 };

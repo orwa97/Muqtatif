@@ -3,27 +3,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  height: auto;
 }
 
 .header__signInBtn {
-  align-self: flex-end;
-}
-
-.header__intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  margin-top: 5rem;
-}
-
-.intro__muqtatifLogo {
-  font-size: 5rem;
-  margin-bottom: 1.8rem;
-}
-
-.intro__mainText {
-  font-size: 2rem;
-  text-align: center;
+  align-self: flex-start;
 }
