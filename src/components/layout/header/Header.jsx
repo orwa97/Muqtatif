@@ -4,9 +4,11 @@ import classes from "./Header.module.scss";
 const Header = (props) => {
   return (
     <header className={classes.layout__header}>
-      <Button className={classes.header__signInBtn} type="text-only">
-        Sign In
-      </Button>
+      <div className={classes.header__btn}>
+        <Button className={classes.signInBtn} type="text-only">
+          Sign In
+        </Button>
+      </div>
     </header>
   );
 };

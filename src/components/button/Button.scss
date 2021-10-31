@@ -24,7 +24,8 @@
   // border-radius: 0.3rem;
   height: auto;
   width: auto;
-  min-height: 2.5rem;
+  min-height: 4.2rem;
+  min-width: 4.2rem;
   padding: 0.5rem;
   font-size: 1.7rem;
   color: #fff;
@@ -48,13 +49,18 @@
     }
     &--w-postfix {
       border-right: 1px solid #fff;
+      padding: 0.5rem 0.8rem;
+    }
+
+    &--text-only {
+      padding: 0.5rem 0.8rem;
     }
   }
 }
 
 .btn__postfix {
   height: auto;
-  width: 1.7rem;
+  width: 2rem;
   fill: #fff;
   display: flex;
   justify-content: center;

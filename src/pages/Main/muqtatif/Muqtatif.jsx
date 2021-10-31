@@ -5,15 +5,30 @@ import { ReactComponent as Settings } from "../../../images/SVG/cog.svg";
 import { ReactComponent as ColorLens } from "../../../images/SVG/color_lens.svg";
 import { ReactComponent as Copy } from "../../../images/SVG/copy.svg";
 import { ReactComponent as ArrowDown } from "../../../images/SVG/arrow_down.svg";
-import QuoteArea from "../../../components/quoteArea/QuoteArea";
+import QuoteArea from "./quoteArea/QuoteArea";
+import QuoteBackground from "./quoteBackground/QuoteBackground";
 
 const Muqtatif = () => {
   return (
     <div className={classes.muqtatifContainer}>
       <div className={classes["muq--header"]}>
         <div className={classes.headerPart}>
-          <Select prefix="logo" options={["a", "b", "c"]} />
-          <Select prefix="logo" options={["a", "b", "c"]} />
+          <Select
+            prefix="logo"
+            options={[
+              { value: "chocolate", label: "Chocolate" },
+              { value: "strawberry", label: "Strawberry" },
+              { value: "vanilla", label: "Vanilla" },
+            ]}
+          />
+          <Select
+            prefix="logo"
+            options={[
+              { value: "chocolate", label: "Chocolate" },
+              { value: "strawberry", label: "Strawberry" },
+              { value: "vanilla", label: "Vanilla" },
+            ]}
+          />
           <Button type="icon-only" icon={<ColorLens />} />
           <Button type="icon-only" icon={<Settings />} />
         </div>
@@ -28,7 +43,9 @@ const Muqtatif = () => {
         </div>
       </div>
       <div className={classes["muq--body"]}>
-        <QuoteArea />
+        <QuoteBackground>
+          <QuoteArea />
+        </QuoteBackground>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { ReactComponent as Settings } from "./images/SVG/cog.svg";
 
 import Button from "./components/button/Button";
 import Select from "./components/Select/Select";
-import QuoteArea from "./components/quoteArea/QuoteArea";
+import QuoteArea from "./pages/Main/muqtatif/quoteArea/QuoteArea";
 import Layout from "./components/layout/Layout";
 import { Fragment } from "react";
 import Main from "./pages/Main/Main";
@@ -10,8 +10,7 @@ import ColorPicker from "./components/colorPicker/ColorPicker";
 import ReactSelect from "./components/reactSelect/ReactSelect";
 
 function App() {
-  return <ReactSelect />;
-  // <Main />;
+  return <Main />;
 
   // <Fragment>
   //   <Select postfix="post" options={["a", "b", "c", "d"]} />
