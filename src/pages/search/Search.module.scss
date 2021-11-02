@@ -1,0 +1,26 @@
+.searchContainer {
+  &,
+  .searchIntro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  width: auto;
+  height: 100vh;
+}
+
+.searchIntro {
+  //   width: 50%;
+}
+.intro {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  //   text-align: center;
+  margin-bottom: 3rem;
+}
+
+.muqLogo {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}

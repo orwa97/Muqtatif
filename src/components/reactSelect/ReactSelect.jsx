@@ -33,6 +33,7 @@ const ReactSelect = (props) => {
       fontSize: "1.7rem",
       color: "#fff",
       margin: "0",
+      cursor: "text",
     }),
     menu: (provided, state) => ({
       ...provided,
@@ -61,6 +62,10 @@ const ReactSelect = (props) => {
       color: state.isSelected ? "#000" : undefined,
       fontSize: "1.7rem",
       margin: "0",
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      cursor: "pointer",
     }),
   };
 

@@ -8,9 +8,11 @@ import { Fragment } from "react";
 import Main from "./pages/Main/Main";
 import ColorPicker from "./components/colorPicker/ColorPicker";
 import ReactSelect from "./components/reactSelect/ReactSelect";
+import Search from "./pages/search/Search";
 
 function App() {
-  return <Main />;
+  return <Search />;
+  // <Main />;
 
   // <Fragment>
   //   <Select postfix="post" options={["a", "b", "c", "d"]} />
