@@ -1,6 +1,7 @@
 import classes from "./SearchBar.module.scss";
 import AsyncSelect from "react-select/async";
 import { ReactComponent as SearchIcon } from "../../../images/SVG/search.svg";
+import { useState } from "react";
 const SearchBar = (props) => {
   const customStyles = {
     container: (provided, state) => ({
@@ -11,8 +12,10 @@ const SearchBar = (props) => {
     control: (provided, state) => ({
       ...provided,
       backgroundColor: "transparent",
-      padding: "1.5rem",
-      width: "65rem",
+      padding: "2rem 2.5rem",
+      width: "auto",
+      minWidth: "65rem",
+      maxWidth: "108rem",
       border: "none",
       boxShadow: "none",
     }),
@@ -31,7 +34,7 @@ const SearchBar = (props) => {
 
     valueContainer: (provided, state) => ({
       ...provided,
-      padding: "0 1.5rem",
+      padding: "0",
     }),
 
     input: (provided, state) => ({
@@ -78,18 +81,33 @@ const SearchBar = (props) => {
     indicatorSeparator: (provided, state) => ({
       ...provided,
       marginRight: "1.5rem",
+      margin: ".5rem 1.5rem .5rem .8rem",
     }),
   };
   const DropdownIndicator = () => {
     return <SearchIcon className={classes.searchIcon} />;
   };
-
+  const promiseOptions = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(props.options);
+    }, 1000);
+  });
   return (
     <div>
       <AsyncSelect
         styles={customStyles}
         components={{ DropdownIndicator }}
-        placeholder={"Search..."}
+        placeholder={props.placeholder}
+        onMenuClose={props.onMenuClose}
+        onInputChange={props.onChange}
+        inputValue={props.inputValue}
+        onFocus={props.onFocus}
+        // value=""
+        cacheOptions
+        // defaultOptions
+        loadOptions={promiseOptions}
+        // isClearable={true}
+        // isSearchable={true}
       />
     </div>
   );
