@@ -9,15 +9,12 @@ const Search = (props) => {
     setSearchValue(userInput);
     // console.log(searchValue);
   };
-  //   const optionsChangeHandler = () => {
-  //       setOptions()
-  //   }
 
   //   getting Quran data regarding to user's input.
   useEffect(async () => {
     if (searchValue.trim().length === 0) return;
     const quranURL =
-      new URL(`https://api.quran.com/api/v4/search?q=${searchValue}&size=10&page=0&language=en
+      new URL(`https://api.quran.com/api/v4/search?q=${searchValue}&size=20&page=0&language=en
 `);
     const respose = await fetch(quranURL);
     const data = await respose.json();
@@ -29,7 +26,7 @@ const Search = (props) => {
     console.log(ayat);
     setOptions(ayat);
   }, [searchValue]);
-
+  // console.log(options);
   return (
     <div className={classes.searchContainer}>
       <div className={classes.searchIntro}>

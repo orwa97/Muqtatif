@@ -1,5 +1,5 @@
 import classes from "./SearchBar.module.scss";
-import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import { ReactComponent as SearchIcon } from "../../../images/SVG/search.svg";
 import { useState } from "react";
 const SearchBar = (props) => {
@@ -87,14 +87,14 @@ const SearchBar = (props) => {
   const DropdownIndicator = () => {
     return <SearchIcon className={classes.searchIcon} />;
   };
-  const promiseOptions = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(props.options);
-    }, 1000);
-  });
+  // const promiseOptions = new Promise((resolve) => {
+  //   setTimeout(() => {
+  //     resolve(props.options);
+  //   }, 1000);
+  // });
   return (
     <div>
-      <AsyncSelect
+      <Select
         styles={customStyles}
         components={{ DropdownIndicator }}
         placeholder={props.placeholder}
@@ -102,12 +102,10 @@ const SearchBar = (props) => {
         onInputChange={props.onChange}
         inputValue={props.inputValue}
         onFocus={props.onFocus}
+        options={props.options || [{ value: 0, label: "Loading..." }]}
         // value=""
-        cacheOptions
-        // defaultOptions
-        loadOptions={promiseOptions}
-        // isClearable={true}
-        // isSearchable={true}
+        isClearable={true}
+        isSearchable={true}
       />
     </div>
   );
