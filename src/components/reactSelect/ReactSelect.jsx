@@ -70,7 +70,12 @@ const ReactSelect = (props) => {
   };
 
   return (
-    <Select styles={customStyles} isSearchable={true} options={props.options} />
+    <Select
+      styles={customStyles}
+      isSearchable={true}
+      options={props.options}
+      value={props.selected}
+    />
   );
 };
 

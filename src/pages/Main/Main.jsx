@@ -1,8 +1,12 @@
+import { useParams } from "react-router";
 import Layout from "../../components/layout/Layout";
 import classes from "./Main.module.scss";
 import Muqtatif from "./muqtatif/Muqtatif";
 
 const Main = () => {
+  const { verseKey } = useParams();
+  console.log(verseKey);
+
   return (
     <Layout>
       <div className={classes.container}>
@@ -14,7 +18,7 @@ const Main = () => {
             netus et malesuada fames ac turpis egestas.
           </p>
         </div>
-        <Muqtatif />
+        <Muqtatif verseKey={verseKey} />
       </div>
     </Layout>
   );

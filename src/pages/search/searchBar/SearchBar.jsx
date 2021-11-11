@@ -99,13 +99,14 @@ const SearchBar = (props) => {
         components={{ DropdownIndicator }}
         placeholder={props.placeholder}
         onMenuClose={props.onMenuClose}
-        onInputChange={props.onChange}
+        onInputChange={props.onInputChange}
         inputValue={props.inputValue}
         onFocus={props.onFocus}
         options={props.options || [{ value: 0, label: "Loading..." }]}
-        // value=""
-        isClearable={true}
+        value={props.value}
+        // isClearable={true}
         isSearchable={true}
+        onChange={props.onChange}
       />
     </div>
   );

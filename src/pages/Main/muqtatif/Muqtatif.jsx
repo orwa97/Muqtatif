@@ -7,8 +7,42 @@ import { ReactComponent as Copy } from "../../../images/SVG/copy.svg";
 import { ReactComponent as ArrowDown } from "../../../images/SVG/arrow_down.svg";
 import QuoteArea from "./quoteArea/QuoteArea";
 import QuoteBackground from "./quoteBackground/QuoteBackground";
+import { useEffect, useState } from "react";
 
-const Muqtatif = () => {
+const Muqtatif = (props) => {
+  const [verses, setVerses] = useState([]);
+  // Get Verses by chapter's ID
+  useEffect(async () => {
+    const response = await fetch(
+      `https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${
+        props.verseKey.split(":")[0]
+      }`
+    );
+    const data = await response.json();
+    // mapping the data we got to react-select's options [{value:  , label:  }, ...]
+    const options = data.verses.map((item) => {
+      return { value: item.id, label: item.text_uthmani };
+    });
+
+    setVerses(options);
+  }, []);
+
+  // get verses options
+  // let verses = [];
+  // getOptions(
+  // `https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${
+  //   props.verseKey.split(":")[0]
+  // }`
+  // ).then((res) => {
+  //   verses = res.verses.map((item) => {
+  //     return { value: item.id, label: item.text_uthmani };
+  //   });
+  // });
+  // console.log(verses);
+  // const versesOptions = verses.map((item) => {
+  //   return { value: item.id, label: item.text_uthmani };
+  // });
+
   return (
     <div className={classes.muqtatifContainer}>
       <div className={classes["muq--header"]}>
@@ -23,11 +57,8 @@ const Muqtatif = () => {
           />
           <Select
             prefix="logo"
-            options={[
-              { value: "chocolate", label: "Chocolate" },
-              { value: "strawberry", label: "Strawberry" },
-              { value: "vanilla", label: "Vanilla" },
-            ]}
+            options={verses}
+            // selected={props.verseKey.split(":")[1]}
           />
           <Button type="icon-only" icon={<ColorLens />} />
           <Button type="icon-only" icon={<Settings />} />

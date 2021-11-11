@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import classes from "./Search.module.scss";
 import SearchBar from "./searchBar/SearchBar";
+
 const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
   const [inputSave, setSave] = useState("");
   const [options, setOptions] = useState([]);
-  const searchInputHandler = (userInput) => {
-    setSearchValue(userInput);
-    // console.log(searchValue);
+  const history = useHistory();
+  const searchInputHandler = (e) => {
+    setSearchValue(e);
+    // console.log(e);
+  };
+
+  const selectHandeler = (e) => {
+    setSelectedValue(e.value);
+    history.push(`/quran/${e.value}`);
+    // console.log(e);
   };
 
   //   getting Quran data regarding to user's input.
@@ -21,12 +31,12 @@ const Search = (props) => {
 
     // mapping the quran data we got to react-select's options [{value:  , label:  }, ...]
     const ayat = data.search.results.map((item) => {
-      return { value: item.text, label: item.text };
+      return { value: item.verse_key, label: item.text };
     });
     console.log(ayat);
     setOptions(ayat);
+    // console.log(data.search.results);
   }, [searchValue]);
-  // console.log(options);
   return (
     <div className={classes.searchContainer}>
       <div className={classes.searchIntro}>
@@ -38,7 +48,8 @@ const Search = (props) => {
 
       <SearchBar
         className={classes.searchBar}
-        onChange={searchInputHandler}
+        onInputChange={searchInputHandler}
+        onChange={selectHandeler}
         inputValue={searchValue}
         placeholder={inputSave || "Search..."}
         onMenuClose={() => setSave(searchValue)}
@@ -47,6 +58,7 @@ const Search = (props) => {
           setSave("");
         }}
         options={options}
+        value={options.find((obj) => obj.value === selectedValue)}
       />
     </div>
   );
