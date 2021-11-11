@@ -74,7 +74,7 @@ const ReactSelect = (props) => {
       styles={customStyles}
       isSearchable={true}
       options={props.options}
-      value={props.selected}
+      defaultValue={props.defaultValue}
     />
   );
 };

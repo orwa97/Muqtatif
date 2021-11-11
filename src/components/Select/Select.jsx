@@ -10,7 +10,7 @@ const Select = (props) => {
   return (
     <div className="container">
       {/* {props.prefix && <div className="prefix">{props.prefix}</div>} */}
-      <ReactSelect options={props.options} selected={props.selected} />
+      <ReactSelect options={props.options} defaultValue={props.defaultValue} />
       {/* <select
         className={classNames(
           "select",

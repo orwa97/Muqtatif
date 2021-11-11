@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
+  const [defaultSelected, setDefaultSelected] = useState({});
   // Get Verses by chapter's ID
   useEffect(async () => {
     const response = await fetch(
@@ -25,23 +26,9 @@ const Muqtatif = (props) => {
     });
 
     setVerses(options);
+    console.log(options);
+    // setDefaultSelected({ value: "vanilla", label: "Vanilla" });
   }, []);
-
-  // get verses options
-  // let verses = [];
-  // getOptions(
-  // `https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${
-  //   props.verseKey.split(":")[0]
-  // }`
-  // ).then((res) => {
-  //   verses = res.verses.map((item) => {
-  //     return { value: item.id, label: item.text_uthmani };
-  //   });
-  // });
-  // console.log(verses);
-  // const versesOptions = verses.map((item) => {
-  //   return { value: item.id, label: item.text_uthmani };
-  // });
 
   return (
     <div className={classes.muqtatifContainer}>
@@ -58,7 +45,7 @@ const Muqtatif = (props) => {
           <Select
             prefix="logo"
             options={verses}
-            // selected={props.verseKey.split(":")[1]}
+            // defaultValue={}
           />
           <Button type="icon-only" icon={<ColorLens />} />
           <Button type="icon-only" icon={<Settings />} />
