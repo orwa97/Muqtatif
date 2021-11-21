@@ -1,6 +1,7 @@
 import "./Select.scss";
 import classNames from "classnames";
 import ReactSelect from "../reactSelect/ReactSelect";
+import { useState } from "react";
 
 const Select = (props) => {
   // const options = props.options.map((item, i) => {
@@ -10,7 +11,11 @@ const Select = (props) => {
   return (
     <div className="container">
       {/* {props.prefix && <div className="prefix">{props.prefix}</div>} */}
-      <ReactSelect options={props.options} defaultValue={props.defaultValue} />
+      <ReactSelect
+        options={props.options}
+        defaultValue={props.defaultValue}
+        onSelect={props.onSelect}
+      />
       {/* <select
         className={classNames(
           "select",

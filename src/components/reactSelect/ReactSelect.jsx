@@ -12,7 +12,7 @@ const ReactSelect = (props) => {
       ...provided,
       backgroundColor: "transparent",
       padding: ".3rem",
-      width: "25rem",
+      width: "35rem",
       border: "none",
       boxShadow: "none",
     }),
@@ -75,6 +75,7 @@ const ReactSelect = (props) => {
       isSearchable={true}
       options={props.options}
       defaultValue={props.defaultValue}
+      onChange={props.onSelect}
     />
   );
 };

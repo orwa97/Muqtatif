@@ -1,11 +1,8 @@
 import classes from "./QuoteArea.module.scss";
-const QuoteArea = () => {
+const QuoteArea = (props) => {
   return (
     <spam className={classes.quoteArea}>
-      <p className={classes.quote}>
-        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-        consectetur, adipisci velit...
-      </p>
+      <p className={classes.quote}>{props.quote}</p>
     </spam>
   );
 };
