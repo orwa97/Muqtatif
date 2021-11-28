@@ -1,0 +1,27 @@
+.settingsContainer {
+  display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // min-width: 10rem;
+  // max-width: 20rem;
+  width: auto;
+  height: auto;
+  background-color: rgb(15, 15, 15);
+  border: 1px solid #fff;
+}
+
+.btnsSide {
+  width: auto;
+  height: inherit;
+  border-right: 1px solid #fff;
+}
+.radioBtns {
+  border: none;
+  label {
+    border: none;
+  }
+}
+
+// .featuresSide {
+//   padding: 0.5rem;
+// }

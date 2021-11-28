@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  div:not(:last-of-type) {
+    border-bottom: 1px solid #fff;
+    margin-top: 0.5rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+.presetImgSize {
+  overflow-x: scroll;
+}
+.radioBtns {
+  display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   flex-wrap: wrap;
+  label {
+    margin-right: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    border: none;
+    white-space: nowrap;
+    background-color: transparent;
+    color: #fff;
+  }
+
+  input[type="radio"]:checked + label {
+    background-color: transparent;
+    color: #fff;
+  }
+}

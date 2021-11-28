@@ -1,18 +1,23 @@
+import { useState } from "react";
+import classNames from "classnames";
 import "./RadioButtonsGroup.scss";
 const RadioButtonsGroup = (props) => {
+  // const [isSelected, setIsSelected] = useState(props.selectedByDefault);
+  // const radioBtnHandler = (e) => {
+  //   setIsSelected(e.target.id);
+  //   // console.log(e);
+  // };
   const labels = props.label.map((item, i) => {
     return (
-      <div className="radioBtn">
-        {item.checkedByDefault ? (
-          <input
-            type="radio"
-            id={`btn-${item.id}`}
-            name="btn"
-            checked="checked"
-          ></input>
-        ) : (
-          <input type="radio" id={`btn-${item.id}`} name="btn"></input>
-        )}
+      <div className={`radioBtn ${props.className}`}>
+        <input
+          type="radio"
+          id={`btn-${item.id}`}
+          value={item.value}
+          name={props.name}
+          onChange={props.onChange}
+          checked={props.isSelected === `btn-${item.id}`}
+        ></input>
 
         <label className="radio-label" for={`btn-${item.id}`}>
           {item.option}
@@ -20,7 +25,17 @@ const RadioButtonsGroup = (props) => {
       </div>
     );
   });
-  return <div className="radioBtnBox">{labels}</div>;
+  return (
+    <div
+      className={classNames(
+        "radioBtnBox",
+        { vertically: props.flexDirection === "column" },
+        { horizontally: props.flexDirection === "row" }
+      )}
+    >
+      {labels}
+    </div>
+  );
 };
 
 export default RadioButtonsGroup;

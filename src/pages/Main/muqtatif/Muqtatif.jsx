@@ -2,7 +2,7 @@ import Button from "../../../components/button/Button";
 import Select from "../../../components/Select/Select";
 import ColorPicker from "../../../components/colorPicker/ColorPicker";
 import classes from "./Muqtatif.module.scss";
-import { ReactComponent as Settings } from "../../../images/SVG/cog.svg";
+import { ReactComponent as SettingsIcon } from "../../../images/SVG/cog.svg";
 import { ReactComponent as ColorLens } from "../../../images/SVG/color_lens.svg";
 import { ReactComponent as Copy } from "../../../images/SVG/copy.svg";
 import { ReactComponent as ArrowDown } from "../../../images/SVG/arrow_down.svg";
@@ -10,6 +10,7 @@ import QuoteArea from "./quoteArea/QuoteArea";
 import QuoteBackground from "./quoteBackground/QuoteBackground";
 import { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
+import Settings from "./settings/Settings";
 
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
@@ -54,7 +55,11 @@ const Muqtatif = (props) => {
             tippyContent={<ColorPicker />}
           />
 
-          <Button type="icon-only" icon={<Settings />} />
+          <Button
+            type="icon-only"
+            icon={<SettingsIcon />}
+            tippyContent={<Settings />}
+          />
         </div>
         <div className={classes.headerPart}>
           <Button type="icon-only" icon={<Copy />} />
