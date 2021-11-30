@@ -30,6 +30,11 @@
   font-size: 1.7rem;
   color: #fff;
   cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #393939;
+  }
 
   .btn__logo {
     display: flex;

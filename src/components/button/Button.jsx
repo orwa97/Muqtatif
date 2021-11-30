@@ -3,12 +3,14 @@ import classNames from "classnames";
 import Tippy from "@tippyjs/react";
 const Button = (props) => {
   return (
-    <div className="btn-container">
+    <div className={`btn-container ${props.className}`}>
       <Tippy
         content={props.tippyContent}
-        placement="bottom"
+        placement={props.tippyPlacement}
         trigger="click"
         interactive="true"
+        delay={0}
+        duration={100}
       >
         <button
           className={classNames(
@@ -16,9 +18,9 @@ const Button = (props) => {
             { "btn--icon-only": props.type === "icon-only" },
             { "btn--text-only": props.type === "text-only" },
             { "btn--textNicon": props.type === "icon-text" },
-            { "btn--w-postfix": !!props.postfix },
-            props.className
+            { "btn--w-postfix": !!props.postfix }
           )}
+          onClick={props.onClick}
         >
           {props.type !== "text-only" && (
             <div className="btn__logo">{props.icon} </div>

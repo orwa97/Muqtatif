@@ -1,18 +1,24 @@
 import classes from "./Window.module.scss";
 import Slider from "../../../../../components/slider/Slider";
 import RadioButtonsGroup from "../../../../../components/radioButtonsGroup/RadioButtonsGroup";
-import { CompactPicker } from "react-color";
+import { SwatchesPicker } from "react-color";
 import { useState } from "react";
+import Button from "../../../../../components/button/Button";
+import { ReactComponent as ArrowDown } from "../../../../../images/SVG/arrow_down.svg";
+
 const Window = (props) => {
-  const [isSelected, setIsSelected] = useState("btn-a");
+  const [isSelected, setIsSelected] = useState("btn-b");
   const selectedRadioHandler = (e) => {
     setIsSelected(e.target.id);
     // console.log(e);
   };
+
   return (
     <div className={classes.container}>
-      <div className={classes.presetImgSize}>
-        <p>Preset sizes</p>
+      <div className={`${classes.presetImgSize} ${classes.section}`}>
+        <div className={classes.headline}>
+          <h1>Preset size</h1>
+        </div>
         <RadioButtonsGroup
           className={classes.radioBtns}
           label={[
@@ -28,15 +34,35 @@ const Window = (props) => {
           isSelected={isSelected}
         />
       </div>
-      <div className={classes.textBackgroundSize}>
-        <p>Width</p>
-        <Slider />
-        <p>Hight</p>
-        <Slider />
-      </div>
-      <div className={classes.textBackgroundColor}>
-        <p>Color</p>
-        <CompactPicker />
+      <div className={classes.textBackground}>
+        <div className={classes.headline}>
+          <h1>Text background</h1>
+        </div>
+        <div className={`${classes.textBackgroundSize} ${classes.section}`}>
+          <div className={classes.sliderContainer}>
+            <h2>Width</h2>
+            <Slider className={classes.sizeSlider} />
+          </div>
+          <div className={classes.sliderContainer}>
+            <h2>Height</h2>
+            <Slider className={classes.sizeSlider} />
+          </div>
+        </div>
+        <div className={`${classes.textBackgroundColor} ${classes.section}`}>
+          <Button
+            type="icon-text"
+            className={classes.colorBtn}
+            icon={<ArrowDown />}
+            tippyContent={<SwatchesPicker width="245px" height="150px" />}
+            tippyPlacement="bottom"
+          >
+            <h2>Color</h2>
+          </Button>
+        </div>
+        <div className={classes.opacityContainer}>
+          <h2>Opacity</h2>
+          <Slider className={classes.opacitySlider} />
+        </div>
       </div>
     </div>
   );

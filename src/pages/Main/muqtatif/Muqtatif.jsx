@@ -53,12 +53,14 @@ const Muqtatif = (props) => {
             type="icon-only"
             icon={<ColorLens />}
             tippyContent={<ColorPicker />}
+            tippyPlacement="bottom"
           />
 
           <Button
             type="icon-only"
             icon={<SettingsIcon />}
             tippyContent={<Settings />}
+            tippyPlacement="bottom"
           />
         </div>
         <div className={classes.headerPart}>
