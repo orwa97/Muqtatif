@@ -3,11 +3,16 @@ import classNames from "classnames";
 import Tippy from "@tippyjs/react";
 const Button = (props) => {
   return (
-    <div className={`btn-container ${props.className}`}>
+    <div
+      className={`btn-container ${props.className}`}
+      style={{
+        backgroundColor: props.backgroundColor,
+      }}
+    >
       <Tippy
         content={props.tippyContent}
         placement={props.tippyPlacement}
-        trigger="click"
+        trigger={props.tippyTrigger}
         interactive="true"
         delay={0}
         duration={100}
@@ -21,6 +26,7 @@ const Button = (props) => {
             { "btn--w-postfix": !!props.postfix }
           )}
           onClick={props.onClick}
+          style={{ color: props.selectedColor }}
         >
           {props.type !== "text-only" && (
             <div className="btn__logo">{props.icon} </div>

@@ -9,6 +9,9 @@ const Slider = (props) => {
         min={props.min}
         max={props.max}
         step={props.step}
+        onChange={props.onChange}
+        // defaultValue={props.defaultValue}
+        value={props.value}
       ></input>
     </div>
   );

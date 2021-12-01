@@ -5,9 +5,16 @@ const ColorPicker = (props) => {
   const [color, setColor] = useState("#fff");
   const colorChangeHandler = (color) => {
     setColor(color.hex);
-    console.log(color);
+    props.onColorChange(color.hex);
+    // console.log(color);
   };
-  return <SketchPicker color={color} onChange={colorChangeHandler} />;
+  return (
+    <SketchPicker
+      color={props.color}
+      onChange={colorChangeHandler}
+      disableAlpha={true}
+    />
+  );
 };
 
 export default ColorPicker;

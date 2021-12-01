@@ -1,5 +1,16 @@
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-size: 62.5%;
+}
+html {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
+  height: 100%;
+  width: 100%;
 }
 body {
   padding: 2.5rem;
@@ -13,7 +24,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100%; */
+  /* width: 100%; */
 }
 
 code {

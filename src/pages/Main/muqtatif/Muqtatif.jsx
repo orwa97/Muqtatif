@@ -29,7 +29,7 @@ const Muqtatif = (props) => {
     });
 
     setVerses(options);
-    console.log(options);
+    // console.log(options);
     // setDefaultSelected({ value: "vanilla", label: "Vanilla" });
   }, []);
 
@@ -39,6 +39,35 @@ const Muqtatif = (props) => {
     // console.log(e);
   };
 
+  const [selectedPresetSize, setSelectedPresetSize] = useState("16:9");
+  const presetSizeHandler = (e) => {
+    // console.log(e.target.value);
+    setSelectedPresetSize(e.target.value);
+  };
+  const [selectedQouteBGcolor, setSelectedQouteBGcolor] = useState("#393939");
+  const qouteBGColorHandler = (color) => {
+    setSelectedQouteBGcolor(color);
+  };
+  const [textBgWidth, setTextBgWidth] = useState("45");
+  const textBgWidthHandler = (e) => {
+    setTextBgWidth(e.target.value);
+  };
+  const [textBgHeight, setTextBgHeight] = useState("45");
+  const textBgHeightHandler = (e) => {
+    console.log(e);
+    setTextBgHeight(e.target.value);
+  };
+  const [textBgOpacity, setTextBgOpacity] = useState("1");
+  const textBgOpacityHandler = (e) => {
+    setTextBgOpacity(e.target.value);
+    console.log(e.target.value);
+  };
+  const [textBgColor, setTextBgColor] = useState("rgba(255, 255, 255, 1)");
+  const textBgColorHandler = (e) => {
+    const rgba = `rgba(${e.rgb.r}, ${e.rgb.g}, ${e.rgb.b})`;
+    setTextBgColor(rgba);
+    // console.log(e);
+  };
   return (
     <div className={classes.muqtatifContainer}>
       <div className={classes["muq--header"]}>
@@ -52,15 +81,36 @@ const Muqtatif = (props) => {
           <Button
             type="icon-only"
             icon={<ColorLens />}
-            tippyContent={<ColorPicker />}
+            tippyContent={
+              <ColorPicker
+                onColorChange={qouteBGColorHandler}
+                color={selectedQouteBGcolor}
+              />
+            }
             tippyPlacement="bottom"
+            tippyTrigger="click"
+            backgroundColor={selectedQouteBGcolor}
+            // style={{ fill: selectedQouteBGcolor }}
           />
 
           <Button
             type="icon-only"
             icon={<SettingsIcon />}
-            tippyContent={<Settings />}
+            tippyContent={
+              <Settings
+                onChangePresetSize={presetSizeHandler}
+                onChangeTextBgWidth={textBgWidthHandler}
+                widthValue={textBgWidth}
+                heightValue={textBgHeight}
+                onChangeTextBgHeight={textBgHeightHandler}
+                onChangeTextBgColor={textBgColorHandler}
+                textBgColor={textBgColor}
+                onChangeTextBgOpacity={textBgOpacityHandler}
+                opacityValue={textBgOpacity}
+              />
+            }
             tippyPlacement="bottom"
+            tippyTrigger="click"
           />
         </div>
         <div className={classes.headerPart}>
@@ -74,8 +124,17 @@ const Muqtatif = (props) => {
         </div>
       </div>
       <div className={classes["muq--body"]}>
-        <QuoteBackground>
-          <QuoteArea quote={selectedVerse} />
+        <QuoteBackground
+          aspectRatio={selectedPresetSize}
+          backgroundColor={selectedQouteBGcolor}
+        >
+          <QuoteArea
+            quote={selectedVerse}
+            width={textBgWidth}
+            height={textBgHeight}
+            backgroundColor={textBgColor}
+            opacity={textBgOpacity}
+          />
         </QuoteBackground>
       </div>
     </div>
