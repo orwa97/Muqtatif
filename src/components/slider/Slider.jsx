@@ -12,6 +12,7 @@ const Slider = (props) => {
         onChange={props.onChange}
         // defaultValue={props.defaultValue}
         value={props.value}
+        disabled={props.isDisabled}
       ></input>
     </div>
   );
