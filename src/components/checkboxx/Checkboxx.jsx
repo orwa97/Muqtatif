@@ -2,12 +2,17 @@ import classes from "./Checkboxx.module.scss";
 import Checkbox from "react-checkbox-component";
 import { Fragment } from "react";
 const Checkboxx = (props) => {
+  const chBxClickHandler = (e) => {
+    // console.log(e);
+    props.onChBxClick(e);
+  };
   return (
     <Fragment>
       <label
         for={props.id}
         className={`${classes.checkboxBtn} ${props.className}`}
         onClick={props.onClick}
+        style={{ borderBottom: props.borderBottom }}
       >
         <input
           type="checkbox"
@@ -25,6 +30,9 @@ const Checkboxx = (props) => {
             color={props.color}
             shape={props.shape}
             isChecked={props.isChecked}
+            // onChange={props.onChBxChange}
+            // onChange={props.onChBxClick}
+            onChange={chBxClickHandler}
           />
         </div>
         {/* <label className={classes.checkboxLabel} for={props.checkbox.id}>

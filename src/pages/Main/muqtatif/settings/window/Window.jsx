@@ -1,4 +1,5 @@
 import classes from "./Window.module.scss";
+import classNames from "classnames";
 import Slider from "../../../../../components/slider/Slider";
 import RadioButtonsGroup from "../../../../../components/radioButtonsGroup/RadioButtonsGroup";
 import { SwatchesPicker } from "react-color";
@@ -18,8 +19,9 @@ const Window = (props) => {
   const [textBgIsChecked, setTextBgIsChecked] = useState(true);
   const textBgChBxHandler = (e) => {
     setTextBgIsChecked(e.target.checked);
-    // console.log(e);
+    // setIsDisabled(!e.target.checked);
   };
+  // const [isDisabled, setIsDisabled] = useState(false);
   const [isSelected, setIsSelected] = useState("btn-b");
   const selectedRadioHandler = (e) => {
     setIsSelected(e.target.id);
@@ -51,13 +53,21 @@ const Window = (props) => {
           className={classes.textBgCheckbox}
           label={<h1>Text background</h1>}
           id="textBg"
-          size="medium"
+          size="small"
           color="white"
           shape="circle"
           isChecked={textBgIsChecked}
           onChange={textBgChBxHandler}
+          onChBxClick={setTextBgIsChecked}
         />
-        <div className={classes.textBgSettings}>
+        <div
+          className={classes.textBgSettings}
+          style={
+            !textBgIsChecked
+              ? { backgroundColor: "rgba(206, 206, 206, 0.65)" }
+              : { backgroundColor: "transparent" }
+          }
+        >
           <div className={`${classes.textBackgroundSize} ${classes.section}`}>
             <div className={classes.sliderContainer}>
               <h2>Width</h2>
@@ -112,16 +122,22 @@ const Window = (props) => {
               value={settingsCtx.opacityValue}
             />
           </div>
-          <div className={classes.dropShadowCointainer}>
+          <div
+            className={classNames(classes.dropShadowCointainer, {
+              checked: dropShadowIsChecked,
+            })}
+          >
             <Checkboxx
-              className={classes.dropShadowCheckbox}
+              className={classNames(classes.dropShadowCheckbox)}
               label={<h2>Drop shadow</h2>}
               id="dropShadow"
               size="small"
               color="white"
               shape="circle"
+              borderBottom={dropShadowIsChecked && "1px solid #fff"}
               isChecked={dropShadowIsChecked}
               onChange={dropShadowChBxHandler}
+              onChBxClick={setDropShadowIsChecked}
             />
             {dropShadowIsChecked && (
               <div
