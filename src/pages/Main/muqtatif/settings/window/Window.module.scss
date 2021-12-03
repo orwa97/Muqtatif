@@ -8,7 +8,7 @@
   }
 
   h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
   .section {
@@ -62,14 +62,38 @@
         background-color: #fff;
         // border-left: 1px solid #fff;
       }
+
+      &.sliderDisabled {
+        input[type="range"]:hover {
+          background-color: transparent;
+          &::-webkit-slider-runnable-track,
+          &::-webkit-slider-thumb {
+            cursor: default;
+          }
+        }
+      }
     }
+
     .textBackgroundColor {
       margin-top: 0;
-      padding-top: 0.5rem;
+      padding: 0.5rem;
+      padding-bottom: 0;
       transition: all 0.2s;
       border-bottom: 1px solid #fff;
       &:hover {
         background-color: #393939;
+      }
+      &.colorBtnDisabled {
+        &:hover {
+          background-color: transparent;
+          cursor: default;
+        }
+        .colorBtn {
+          button:hover {
+            background-color: transparent;
+            cursor: default;
+          }
+        }
       }
       .colorBtn {
         border: none;
@@ -83,7 +107,7 @@
           align-items: center;
           font-size: 1.2rem;
           padding: 0;
-          padding-left: 0.5rem;
+          // padding-left: 0.5rem;
           min-width: auto;
           min-height: auto;
 
@@ -107,16 +131,23 @@
           }
         }
       }
+
+      &.opacityDisabled {
+        input[type="range"] {
+          &:hover {
+            background-color: transparent;
+          }
+          &::-webkit-slider-runnable-track,
+          &::-webkit-slider-thumb {
+            cursor: default;
+          }
+        }
+      }
     }
 
     .dropShadowCointainer {
-      // .checked {
-      //   border-bottom: 1px solid #fff;
-      //   background-color: #1877f2;
-      // }
       .dropShadowCheckbox {
         padding: 0.5rem;
-        // border-bottom: 1px solid #fff;
 
         h2 {
           margin: 0;
@@ -125,9 +156,17 @@
         button {
           width: 1.6rem !important;
           height: 1.6rem !important;
+          margin: 0.2rem;
           div {
             width: 1rem !important;
             height: 1rem !important;
+          }
+        }
+
+        &.dropShDisabled {
+          &:hover,
+          button:hover {
+            cursor: default;
           }
         }
       }

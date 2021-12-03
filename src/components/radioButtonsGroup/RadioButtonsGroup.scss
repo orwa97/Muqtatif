@@ -27,6 +27,10 @@
 }
 
 .radio-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // position: relative;
   font-size: 1.4rem;
   color: #fff;
   // margin-right: 0.1rem;
@@ -42,6 +46,15 @@
   //   background-color: rgba(255, 255, 255, 0.1);
   //   color: #fff;
   // }
+
+  .radioIcon {
+    display: flex;
+    svg {
+      width: 2rem;
+      height: 2rem;
+      fill: #fff;
+    }
+  }
 }
 
 // .radioBtn:last-of-type .radio-label {

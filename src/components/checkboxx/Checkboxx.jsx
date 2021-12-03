@@ -4,7 +4,7 @@ import { Fragment } from "react";
 const Checkboxx = (props) => {
   const chBxClickHandler = (e) => {
     // console.log(e);
-    props.onChBxClick(e);
+    props.onChBxClick(!props.isDisabled ? e : false);
   };
   return (
     <Fragment>

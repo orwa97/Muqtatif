@@ -14,12 +14,13 @@ const Window = (props) => {
   const [dropShadowIsChecked, setDropShadowIsChecked] = useState(false);
   const dropShadowChBxHandler = (e) => {
     setDropShadowIsChecked(e.target.checked);
+    settingsCtx.onChangeDropShadow(!e.target.checked);
     // console.log(e);
   };
   const [textBgIsChecked, setTextBgIsChecked] = useState(true);
   const textBgChBxHandler = (e) => {
     setTextBgIsChecked(e.target.checked);
-    // setIsDisabled(!e.target.checked);
+    settingsCtx.textBgIsDisabled(!e.target.checked);
   };
   // const [isDisabled, setIsDisabled] = useState(false);
   const [isSelected, setIsSelected] = useState("btn-b");
@@ -69,7 +70,10 @@ const Window = (props) => {
           }
         >
           <div className={`${classes.textBackgroundSize} ${classes.section}`}>
-            <div className={classes.sliderContainer}>
+            <div
+              className={`${classes.sliderContainer}
+                ${!textBgIsChecked ? classes.sliderDisabled : ""}`}
+            >
               <h2>Width</h2>
               <Slider
                 className={classes.sizeSlider}
@@ -78,9 +82,13 @@ const Window = (props) => {
                 max="85"
                 step="1"
                 value={settingsCtx.widthValue}
+                isDisabled={!textBgIsChecked}
               />
             </div>
-            <div className={classes.sliderContainer}>
+            <div
+              className={`${classes.sliderContainer}
+                ${!textBgIsChecked ? classes.sliderDisabled : ""}`}
+            >
               <h2>Height</h2>
               <Slider
                 className={classes.sizeSlider}
@@ -89,10 +97,15 @@ const Window = (props) => {
                 max="85"
                 step="1"
                 value={settingsCtx.heightValue}
+                isDisabled={!textBgIsChecked}
               />
             </div>
           </div>
-          <div className={`${classes.textBackgroundColor} ${classes.section}`}>
+          <div
+            className={`${classes.textBackgroundColor} ${classes.section} ${
+              !textBgIsChecked ? classes.colorBtnDisabled : ""
+            }`}
+          >
             <Button
               type="icon-text"
               className={classes.colorBtn}
@@ -107,11 +120,16 @@ const Window = (props) => {
               }
               tippyPlacement="bottom"
               tippyTrigger="click"
+              isDisabled={!textBgIsChecked}
             >
               <h2>Color</h2>
             </Button>
           </div>
-          <div className={classes.opacityContainer}>
+          <div
+            className={`${classes.opacityContainer} ${
+              !textBgIsChecked ? classes.opacityDisabled : ""
+            }`}
+          >
             <h2>Opacity</h2>
             <Slider
               className={classes.opacitySlider}
@@ -120,15 +138,14 @@ const Window = (props) => {
               max="1"
               step="0.01"
               value={settingsCtx.opacityValue}
+              isDisabled={!textBgIsChecked}
             />
           </div>
-          <div
-            className={classNames(classes.dropShadowCointainer, {
-              checked: dropShadowIsChecked,
-            })}
-          >
+          <div className={classes.dropShadowCointainer}>
             <Checkboxx
-              className={classNames(classes.dropShadowCheckbox)}
+              className={`${classes.dropShadowCheckbox} ${
+                !textBgIsChecked ? classes.dropShDisabled : ""
+              }`}
               label={<h2>Drop shadow</h2>}
               id="dropShadow"
               size="small"
@@ -138,6 +155,7 @@ const Window = (props) => {
               isChecked={dropShadowIsChecked}
               onChange={dropShadowChBxHandler}
               onChBxClick={setDropShadowIsChecked}
+              isDisabled={!textBgIsChecked}
             />
             {dropShadowIsChecked && (
               <div
@@ -147,22 +165,22 @@ const Window = (props) => {
                   <h2>Offset-Y</h2>
                   <Slider
                     className={classes.dropShadowSlider}
-                    onChange
-                    min="-10"
-                    max="10"
+                    onChange={settingsCtx.onChangeOffsetY}
+                    min="-20"
+                    max="20"
                     step="1"
-                    value
+                    value={settingsCtx.offsetYValue}
                   />
                 </div>
                 <div className={classes.sliderContainer}>
                   <h2>Blur-radius</h2>
                   <Slider
                     className={classes.dropShadowSlider}
-                    onChange
+                    onChange={settingsCtx.onChangeBlur}
                     min="0"
-                    max="10"
+                    max="20"
                     step="1"
-                    value
+                    value={settingsCtx.blurValue}
                   />
                 </div>
               </div>

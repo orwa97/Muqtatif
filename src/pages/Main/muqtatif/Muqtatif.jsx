@@ -38,7 +38,7 @@ const Muqtatif = (props) => {
     setSelectedVerse(e.label);
     // console.log(e);
   };
-
+  // const [textBgWnHDefualts, setTextBgWnHDefaults] = useState()
   const [selectedPresetSize, setSelectedPresetSize] = useState("16:9");
   const presetSizeHandler = (e) => {
     // console.log(e.target.value);
@@ -48,19 +48,24 @@ const Muqtatif = (props) => {
   const qouteBGColorHandler = (color) => {
     setSelectedQouteBGcolor(color);
   };
+  const [isTextBgDisabled, setIsTextBgDisabled] = useState(false);
+  const textBgHandler = (e) => {
+    setIsTextBgDisabled(e);
+    // console.log(e);
+  };
   const [textBgWidth, setTextBgWidth] = useState("45");
   const textBgWidthHandler = (e) => {
     setTextBgWidth(e.target.value);
   };
   const [textBgHeight, setTextBgHeight] = useState("45");
   const textBgHeightHandler = (e) => {
-    console.log(e);
+    // console.log(e);
     setTextBgHeight(e.target.value);
   };
   const [textBgOpacity, setTextBgOpacity] = useState("1");
   const textBgOpacityHandler = (e) => {
     setTextBgOpacity(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const [textBgColor, setTextBgColor] = useState("rgba(255, 255, 255, 1)");
   const textBgColorHandler = (e) => {
@@ -68,6 +73,23 @@ const Muqtatif = (props) => {
     setTextBgColor(rgba);
     // console.log(e);
   };
+  const [isTextBgDropShadowDisabled, setIsTextBgDropShadowDisabled] =
+    useState(true);
+  const textBgDropShadowHandler = (e) => {
+    setIsTextBgDropShadowDisabled(e);
+    // console.log(e);
+  };
+  const [textBgDropShadowOffset, setTextBgDropShadowOffset] = useState("3");
+  const textBgDropShadowOffsetHandler = (e) => {
+    setTextBgDropShadowOffset(e.target.value);
+    // console.log(e.target.value);
+  };
+  const [textBgDropShadowBlur, setTextBgDropShadowBlur] = useState("10");
+  const textBgDropShadowBlurHandler = (e) => {
+    setTextBgDropShadowBlur(e.target.value);
+    // console.log(e.target.value);
+  };
+
   return (
     <div className={classes.muqtatifContainer}>
       <div className={classes["muq--header"]}>
@@ -99,6 +121,7 @@ const Muqtatif = (props) => {
             tippyContent={
               <Settings
                 onChangePresetSize={presetSizeHandler}
+                onChangeTextBg={textBgHandler}
                 onChangeTextBgWidth={textBgWidthHandler}
                 widthValue={textBgWidth}
                 heightValue={textBgHeight}
@@ -107,6 +130,11 @@ const Muqtatif = (props) => {
                 textBgColor={textBgColor}
                 onChangeTextBgOpacity={textBgOpacityHandler}
                 opacityValue={textBgOpacity}
+                onChangeDropShadow={textBgDropShadowHandler}
+                onChangeDropShadowOffset={textBgDropShadowOffsetHandler}
+                offsetYValue={textBgDropShadowOffset}
+                onChangeDropShadowBlur={textBgDropShadowBlurHandler}
+                blurValue={textBgDropShadowBlur}
               />
             }
             tippyPlacement="bottom"
@@ -134,6 +162,12 @@ const Muqtatif = (props) => {
             height={textBgHeight}
             backgroundColor={textBgColor}
             opacity={textBgOpacity}
+            backgroundIsDisabled={isTextBgDisabled}
+            dropShadow={
+              !isTextBgDropShadowDisabled
+                ? `drop-Shadow(3px ${textBgDropShadowOffset}px ${textBgDropShadowBlur}px rgba(0, 0, 0, 0.45))`
+                : "none"
+            }
           />
         </QuoteBackground>
       </div>

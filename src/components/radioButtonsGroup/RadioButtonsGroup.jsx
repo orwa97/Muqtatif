@@ -21,6 +21,7 @@ const RadioButtonsGroup = (props) => {
 
         <label className="radio-label" for={`btn-${item.id}`}>
           {item.option}
+          <div className="radioIcon">{props.icon}</div>
         </label>
       </div>
     );

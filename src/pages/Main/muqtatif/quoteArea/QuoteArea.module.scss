@@ -1,4 +1,10 @@
-.quoteArea {
+// .quoteArea {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: auto;
+//   height: auto;
+.quoteAreaBackground {
   &,
   p {
     display: flex;
@@ -17,6 +23,8 @@
 }
 
 .quote {
+  // text-align: center;
   font-size: 2rem;
   color: rgb(15, 15, 15);
+  // color: rgba(0, 0, 0, 0.75);
 }
