@@ -14,7 +14,12 @@ const QuoteArea = (props) => {
           filter: props.dropShadow,
         }}
       >
-        <p className={classes.quote}>{props.quote}</p>
+        <p
+          className={classes.quote}
+          style={{ fontSize: `${props.fontSize}rem` }}
+        >
+          {props.quote}
+        </p>
       </spam>
     ) : (
       <p className={classes.quote}>{props.quote}</p>

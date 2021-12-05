@@ -89,7 +89,11 @@ const Muqtatif = (props) => {
     setTextBgDropShadowBlur(e.target.value);
     // console.log(e.target.value);
   };
-
+  const [textFontSize, setTextFontSize] = useState("2");
+  const textFontSizeHandler = (e) => {
+    setTextFontSize(e.target.value);
+    console.log(e.target.value);
+  };
   return (
     <div className={classes.muqtatifContainer}>
       <div className={classes["muq--header"]}>
@@ -135,6 +139,8 @@ const Muqtatif = (props) => {
                 offsetYValue={textBgDropShadowOffset}
                 onChangeDropShadowBlur={textBgDropShadowBlurHandler}
                 blurValue={textBgDropShadowBlur}
+                onChangeFontSize={textFontSizeHandler}
+                fontSizeValue={textFontSize}
               />
             }
             tippyPlacement="bottom"
@@ -168,6 +174,7 @@ const Muqtatif = (props) => {
                 ? `drop-Shadow(3px ${textBgDropShadowOffset}px ${textBgDropShadowBlur}px rgba(0, 0, 0, 0.45))`
                 : "none"
             }
+            fontSize={textFontSize}
           />
         </QuoteBackground>
       </div>

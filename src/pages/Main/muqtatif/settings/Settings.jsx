@@ -30,6 +30,8 @@ const Settings = (props) => {
         onChangeBlur: props.onChangeDropShadowBlur,
         blurValue: props.blurValue,
         onChangeDropShadow: props.onChangeDropShadow,
+        onChangeFontSize: props.onChangeFontSize,
+        fontSizeValue: props.fontSizeValue,
       }}
     >
       <div className={classes.settingsContainer}>

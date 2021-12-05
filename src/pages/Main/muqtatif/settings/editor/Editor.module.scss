@@ -21,6 +21,7 @@
     width: 100%;
     max-width: none;
     //   margin-bottom: 0.5rem;
+
     button {
       width: 100%;
       flex-direction: row-reverse;
@@ -32,6 +33,9 @@
       min-width: auto;
       min-height: auto;
 
+      &:hover {
+        background-color: transparent;
+      }
       h2 {
         margin: 0;
       }
@@ -44,6 +48,10 @@
     align-items: center;
     padding: 0.5rem;
     // padding-bottom: 0;
+
+    &:hover {
+      background-color: #393939;
+    }
   }
 
   .fontSize {
@@ -66,5 +74,8 @@
 
   .fontColor {
     padding: 0.5rem;
+    &:hover {
+      background-color: #393939;
+    }
   }
 }
