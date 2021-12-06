@@ -4,6 +4,8 @@ import { ReactComponent as ArrowDown } from "../../../../../images/SVG/arrow_dow
 import Slider from "../../../../../components/slider/Slider";
 import { useContext, useState } from "react";
 import SettingsContext from "../../../../../context/settings-context";
+import ColorButton from "../colorButton/ColorButton";
+import { CompactPicker } from "react-color";
 const Editor = (props) => {
   const settingCtx = useContext(SettingsContext);
   // const [fontSize, setFontSize] = useState("2");
@@ -23,9 +25,9 @@ const Editor = (props) => {
         </Button>
       </div>
       <div className={`${classes.fontSize} ${classes.section}`}>
-        <h2>Size</h2>
+        <h2>Font-size</h2>
         <Slider
-          className={classes.fontSizeSlider}
+          className={`${classes.fontSizeSlider} ${classes.slider}`}
           onChange={settingCtx.onChangeFontSize}
           min="1.4"
           max="5"
@@ -33,14 +35,31 @@ const Editor = (props) => {
           value={settingCtx.fontSizeValue}
         />
       </div>
+      <div className={`${classes.fontWeight} ${classes.section}`}>
+        <h2>Font-weight</h2>
+        <Slider
+          className={`${classes.fontWeightSlider} ${classes.slider}`}
+          onChange={settingCtx.onChangeFontWeight}
+          min="100"
+          max="900"
+          step="100"
+          value={settingCtx.fontWeightValue}
+        />
+      </div>
       <div className={`${classes.fontColor} ${classes.section}`}>
-        <Button
+        <ColorButton
+          className={classes.fontBtn}
+          colorPicker={
+            <CompactPicker onChange={settingCtx.onChangeTextColor} />
+          }
+        />
+        {/* <Button
           className={classes.fontBtn}
           type="icon-text"
           icon={<ArrowDown />}
         >
           <h2>Color</h2>
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

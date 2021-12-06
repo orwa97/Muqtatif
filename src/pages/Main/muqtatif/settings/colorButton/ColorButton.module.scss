@@ -1,0 +1,23 @@
+.colorPickerBtn {
+  border: none;
+  width: 100%;
+  max-width: none;
+  button {
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between !important;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    min-width: auto;
+    min-height: auto;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+}

@@ -92,7 +92,17 @@ const Muqtatif = (props) => {
   const [textFontSize, setTextFontSize] = useState("2");
   const textFontSizeHandler = (e) => {
     setTextFontSize(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
+  };
+  const [textFontWeight, setTextFontWeight] = useState("400");
+  const textFontWeightHandler = (e) => {
+    setTextFontWeight(e.target.value);
+    // console.log(e.target.value);
+  };
+  const [textColor, setTextColor] = useState("#000");
+  const textColorHandler = (e) => {
+    setTextColor(e.hex);
+    // console.log(e.hex);
   };
   return (
     <div className={classes.muqtatifContainer}>
@@ -141,6 +151,10 @@ const Muqtatif = (props) => {
                 blurValue={textBgDropShadowBlur}
                 onChangeFontSize={textFontSizeHandler}
                 fontSizeValue={textFontSize}
+                onChangeFontWeight={textFontWeightHandler}
+                fontWeightValue={textFontWeight}
+                onChangeTextColor={textColorHandler}
+                textColorValue={textColor}
               />
             }
             tippyPlacement="bottom"
@@ -175,6 +189,8 @@ const Muqtatif = (props) => {
                 : "none"
             }
             fontSize={textFontSize}
+            textColor={textColor}
+            fontWeight={textFontWeight}
           />
         </QuoteBackground>
       </div>

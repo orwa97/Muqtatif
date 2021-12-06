@@ -16,7 +16,11 @@ const QuoteArea = (props) => {
       >
         <p
           className={classes.quote}
-          style={{ fontSize: `${props.fontSize}rem` }}
+          style={{
+            fontSize: `${props.fontSize}rem`,
+            color: props.textColor,
+            fontWeight: props.fontWeight,
+          }}
         >
           {props.quote}
         </p>

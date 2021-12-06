@@ -32,6 +32,10 @@ const Settings = (props) => {
         onChangeDropShadow: props.onChangeDropShadow,
         onChangeFontSize: props.onChangeFontSize,
         fontSizeValue: props.fontSizeValue,
+        onChangeFontWeight: props.onChangeFontWeight,
+        fontWeightValue: props.fontWeightValue,
+        onChangeTextColor: props.onChangeTextColor,
+        textColor: props.textColorValue,
       }}
     >
       <div className={classes.settingsContainer}>

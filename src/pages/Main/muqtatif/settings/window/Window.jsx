@@ -8,6 +8,7 @@ import Button from "../../../../../components/button/Button";
 import { ReactComponent as ArrowDown } from "../../../../../images/SVG/arrow_down.svg";
 import SettingsContext from "../../../../../context/settings-context";
 import Checkboxx from "../../../../../components/checkboxx/Checkboxx";
+import ColorButton from "../colorButton/ColorButton";
 
 const Window = (props) => {
   const settingsCtx = useContext(SettingsContext);
@@ -106,7 +107,19 @@ const Window = (props) => {
               !textBgIsChecked ? classes.colorBtnDisabled : ""
             }`}
           >
-            <Button
+            <ColorButton
+              className={classes.colorBtn}
+              selectedColor={settingsCtx.textBgColor}
+              colorPicker={
+                <SwatchesPicker
+                  width="245px"
+                  height="150px"
+                  onChange={settingsCtx.onChangeTextBgColor}
+                />
+              }
+              isDisabled={!textBgIsChecked}
+            />
+            {/* <Button
               type="icon-text"
               className={classes.colorBtn}
               icon={<ArrowDown style={{ fill: settingsCtx.textBgColor }} />}
@@ -123,7 +136,7 @@ const Window = (props) => {
               isDisabled={!textBgIsChecked}
             >
               <h2>Color</h2>
-            </Button>
+            </Button> */}
           </div>
           <div
             className={`${classes.opacityContainer} ${
