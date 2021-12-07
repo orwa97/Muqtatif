@@ -18,14 +18,14 @@ const Muqtatif = (props) => {
   // Get Verses by chapter's ID
   useEffect(async () => {
     const response = await fetch(
-      `https://api.quran.com/api/v4/quran/verses/uthmani_simple?chapter_number=${
+      `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${
         props.verseKey.split(":")[0]
       }`
     );
     const data = await response.json();
     // mapping the data we got to react-select's options [{value:  , label:  }, ...]
     const options = data.verses.map((item) => {
-      return { value: item.id, label: item.text_uthmani_simple };
+      return { value: item.id, label: item.text_indopak };
     });
 
     setVerses(options);
