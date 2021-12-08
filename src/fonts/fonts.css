@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "Al-Qalam";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/al-qalam-quran-majeed.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Almarai";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/almarai-regular-full.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Almarai-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/almarai-bold.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Almarai-Light";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/almarai-light.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Almushaf";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/almushaf.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Amiri";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/amiri-regular-full.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Amiri-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/amiri-bold.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Othmani";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/ar-othmani-org.ttf")
+    format("ttf");
+}
+
+@font-face {
+  font-family: "Droid-Kufi";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/droid-kufi-regular-full.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Droid-Naskh";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/droid-naskh-regular-full.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Hafs-Uthmanic";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/hafs-uthmanic-v14-full.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Lateef";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/lateef-regular-full.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Mada";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/mada-regular-full.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Mada-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/mada-bold.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Mada-Light";
+  src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/mada-light.woff2")
+    format("woff2");
+}

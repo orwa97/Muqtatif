@@ -6,13 +6,13 @@ import { useContext, useState } from "react";
 import SettingsContext from "../../../../../context/settings-context";
 import ColorButton from "../colorButton/ColorButton";
 import { CompactPicker } from "react-color";
+import FontsDropdown from "./fontsDropdown/FontsDropdown";
 const Editor = (props) => {
   const settingCtx = useContext(SettingsContext);
-  // const [fontSize, setFontSize] = useState("2");
-  // const fontSizeHandler = (e) => {
-  //   setFontSize(e.target.value);
-  //   console.log(e.target.value);
-  // };
+  const [fontBtnIsClicked, setFontBtnIsClicked] = useState(false);
+  const fontBtnHandler = (e) => {
+    setFontBtnIsClicked(true);
+  };
   return (
     <div className={classes.container}>
       <div className={`${classes.quoteFont} ${classes.section}`}>
@@ -20,10 +20,16 @@ const Editor = (props) => {
           className={classes.fontBtn}
           type="icon-text"
           icon={<ArrowDown />}
+          onClick={fontBtnHandler}
         >
           <h2>Font</h2>
         </Button>
       </div>
+      {fontBtnIsClicked && (
+        <div className={classes.fontFamilies}>
+          <FontsDropdown />
+        </div>
+      )}
       <div className={`${classes.fontSize} ${classes.section}`}>
         <h2>Font-size</h2>
         <Slider
