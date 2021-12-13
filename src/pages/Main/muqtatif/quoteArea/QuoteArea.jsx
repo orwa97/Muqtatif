@@ -1,15 +1,17 @@
 import { Fragment } from "react";
 import classes from "./QuoteArea.module.scss";
 const QuoteArea = (props) => {
+  const backgroundColor = `rgba(${props.backgroundColor.r}, ${props.backgroundColor.g}, ${props.backgroundColor.b})`;
+
   return (
     // <div className={classes.quoteArea}>
     !props.backgroundIsDisabled ? (
-      <spam
+      <span
         className={classes.quoteAreaBackground}
         style={{
           width: `${props.width}%`,
           height: `${props.height}%`,
-          backgroundColor: props.backgroundColor,
+          backgroundColor: backgroundColor,
           opacity: props.opacity,
           filter: props.dropShadow,
         }}
@@ -20,11 +22,12 @@ const QuoteArea = (props) => {
             fontSize: `${props.fontSize}rem`,
             color: props.textColor,
             fontWeight: props.fontWeight,
+            fontFamily: props.fontFamily,
           }}
         >
           {props.quote}
         </p>
-      </spam>
+      </span>
     ) : (
       <p className={classes.quote}>{props.quote}</p>
     )

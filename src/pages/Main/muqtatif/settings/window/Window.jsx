@@ -12,6 +12,7 @@ import ColorButton from "../colorButton/ColorButton";
 
 const Window = (props) => {
   const settingsCtx = useContext(SettingsContext);
+
   const [dropShadowIsChecked, setDropShadowIsChecked] = useState(false);
   const dropShadowChBxHandler = (e) => {
     setDropShadowIsChecked(e.target.checked);
@@ -75,7 +76,10 @@ const Window = (props) => {
               className={`${classes.sliderContainer}
                 ${!textBgIsChecked ? classes.sliderDisabled : ""}`}
             >
-              <h2>Width</h2>
+              <h2>
+                {`Width: `}
+                {<span>{`${settingsCtx.widthValue}%`}</span>}
+              </h2>
               <Slider
                 className={classes.sizeSlider}
                 onChange={settingsCtx.onChangeTextBgWidth}
@@ -90,7 +94,10 @@ const Window = (props) => {
               className={`${classes.sliderContainer}
                 ${!textBgIsChecked ? classes.sliderDisabled : ""}`}
             >
-              <h2>Height</h2>
+              <h2>
+                {`Height: `}
+                {<span>{`${settingsCtx.heightValue}%`}</span>}
+              </h2>
               <Slider
                 className={classes.sizeSlider}
                 onChange={settingsCtx.onChangeTextBgHeight}
@@ -115,35 +122,21 @@ const Window = (props) => {
                   width="245px"
                   height="150px"
                   onChange={settingsCtx.onChangeTextBgColor}
+                  color={settingsCtx.textBgColor}
                 />
               }
               isDisabled={!textBgIsChecked}
             />
-            {/* <Button
-              type="icon-text"
-              className={classes.colorBtn}
-              icon={<ArrowDown style={{ fill: settingsCtx.textBgColor }} />}
-              selectedColor={settingsCtx.textBgColor}
-              tippyContent={
-                <SwatchesPicker
-                  width="245px"
-                  height="150px"
-                  onChange={settingsCtx.onChangeTextBgColor}
-                />
-              }
-              tippyPlacement="bottom"
-              tippyTrigger="click"
-              isDisabled={!textBgIsChecked}
-            >
-              <h2>Color</h2>
-            </Button> */}
           </div>
           <div
             className={`${classes.opacityContainer} ${
               !textBgIsChecked ? classes.opacityDisabled : ""
             }`}
           >
-            <h2>Opacity</h2>
+            <h2>
+              {`Opacity: `}
+              {<span>{`${Math.floor(settingsCtx.opacityValue * 100)}%`}</span>}
+            </h2>
             <Slider
               className={classes.opacitySlider}
               onChange={settingsCtx.onChangeTextBgOpacity}
@@ -175,7 +168,10 @@ const Window = (props) => {
                 className={`${classes.dropShadowSettings} ${classes.section}`}
               >
                 <div className={classes.sliderContainer}>
-                  <h2>Offset-Y</h2>
+                  <h2>
+                    {`Offset-Y: `}
+                    {<span>{`${settingsCtx.offsetYValue}px`}</span>}
+                  </h2>
                   <Slider
                     className={classes.dropShadowSlider}
                     onChange={settingsCtx.onChangeOffsetY}
@@ -186,7 +182,10 @@ const Window = (props) => {
                   />
                 </div>
                 <div className={classes.sliderContainer}>
-                  <h2>Blur-radius</h2>
+                  <h2>
+                    {`Blur-radius: `}
+                    {<span>{`${settingsCtx.blurValue}px`}</span>}
+                  </h2>
                   <Slider
                     className={classes.dropShadowSlider}
                     onChange={settingsCtx.onChangeBlur}

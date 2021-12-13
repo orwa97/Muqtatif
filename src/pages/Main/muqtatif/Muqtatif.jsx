@@ -67,10 +67,13 @@ const Muqtatif = (props) => {
     setTextBgOpacity(e.target.value);
     // console.log(e.target.value);
   };
-  const [textBgColor, setTextBgColor] = useState("rgba(255, 255, 255, 1)");
+  const [textBgColor, setTextBgColor] = useState({
+    r: 255,
+    g: 255,
+    b: 255,
+  });
   const textBgColorHandler = (e) => {
-    const rgba = `rgba(${e.rgb.r}, ${e.rgb.g}, ${e.rgb.b})`;
-    setTextBgColor(rgba);
+    setTextBgColor(e.rgb);
     // console.log(e);
   };
   const [isTextBgDropShadowDisabled, setIsTextBgDropShadowDisabled] =
@@ -99,10 +102,19 @@ const Muqtatif = (props) => {
     setTextFontWeight(e.target.value);
     // console.log(e.target.value);
   };
-  const [textColor, setTextColor] = useState("#000");
+  const [textColor, setTextColor] = useState("#393939");
   const textColorHandler = (e) => {
     setTextColor(e.hex);
     // console.log(e.hex);
+  };
+  const [fontFamily, setFontFamily] = useState("Al-Qalam");
+  const fontFamilyHandler = (e) => {
+    setFontFamily(e);
+  };
+  const [textAlign, setTextAlign] = useState("right");
+  const textAlignHandler = (e) => {
+    // setTextAlign(e);
+    console.log(e);
   };
   return (
     <div className={classes.muqtatifContainer}>
@@ -155,6 +167,10 @@ const Muqtatif = (props) => {
                 fontWeightValue={textFontWeight}
                 onChangeTextColor={textColorHandler}
                 textColorValue={textColor}
+                onChangeFontFamily={fontFamilyHandler}
+                fontFamilyValue={fontFamily}
+                onChangeTextAlign={textAlignHandler}
+                textAlignValue={textAlign}
               />
             }
             tippyPlacement="bottom"
@@ -191,6 +207,7 @@ const Muqtatif = (props) => {
             fontSize={textFontSize}
             textColor={textColor}
             fontWeight={textFontWeight}
+            fontFamily={fontFamily}
           />
         </QuoteBackground>
       </div>

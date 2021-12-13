@@ -35,7 +35,11 @@ const Settings = (props) => {
         onChangeFontWeight: props.onChangeFontWeight,
         fontWeightValue: props.fontWeightValue,
         onChangeTextColor: props.onChangeTextColor,
-        textColor: props.textColorValue,
+        textColorValue: props.textColorValue,
+        onChangeFontFamily: props.onChangeFontFamily,
+        fontFamilyValue: props.fontFamilyValue,
+        onChangeTextAlign: props.onChangeTextAlign,
+        textAlignValue: props.textAlignValue,
       }}
     >
       <div className={classes.settingsContainer}>

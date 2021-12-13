@@ -16,7 +16,7 @@ const ColorButton = (props) => {
         tippyTrigger="click"
         isDisabled={props.isDisabled}
       >
-        <h2>Color</h2>
+        <h2 style={{ color: props.selectedColor }}>Color</h2>
       </Button>
     </Fragment>
   );

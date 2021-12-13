@@ -26,7 +26,6 @@ const Button = (props) => {
             { "btn--w-postfix": !!props.postfix }
           )}
           onClick={props.onClick}
-          style={{ color: props.selectedColor }}
           disabled={props.isDisabled}
         >
           {props.type !== "text-only" && (

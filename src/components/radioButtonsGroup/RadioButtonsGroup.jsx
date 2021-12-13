@@ -9,7 +9,7 @@ const RadioButtonsGroup = (props) => {
   // };
   const labels = props.label.map((item, i) => {
     return (
-      <div className={`radioBtn ${props.className}`}>
+      <div className={`radioBtn`}>
         <input
           type="radio"
           id={`btn-${item.id}`}
@@ -21,7 +21,7 @@ const RadioButtonsGroup = (props) => {
 
         <label className="radio-label" for={`btn-${item.id}`}>
           {item.option}
-          <div className="radioIcon">{props.icon}</div>
+          {!!props.icon && <div className="radioIcon">{props.icon}</div>}
         </label>
       </div>
     );
@@ -31,7 +31,8 @@ const RadioButtonsGroup = (props) => {
       className={classNames(
         "radioBtnBox",
         { vertically: props.flexDirection === "column" },
-        { horizontally: props.flexDirection === "row" }
+        { horizontally: props.flexDirection === "row" },
+        props.className
       )}
     >
       {labels}
