@@ -1,6 +1,6 @@
 import React from "react";
 
-const SettingsContext = React.createContext({
+let SettingsContext = React.createContext({
   selectedPresetSize: "16:9",
 });
 
