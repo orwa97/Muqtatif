@@ -11,13 +11,11 @@ const Search = (props) => {
   const history = useHistory();
   const searchInputHandler = (e) => {
     setSearchValue(e);
-    // console.log(e);
   };
 
   const selectHandeler = (e) => {
     setSelectedValue(e.value);
     history.push(`/quran/${e.value}`);
-    // console.log(e);
   };
 
   //   getting Quran data regarding to user's input.
@@ -35,7 +33,6 @@ const Search = (props) => {
     });
     console.log(ayat);
     setOptions(ayat);
-    // console.log(data.search.results);
   }, [searchValue]);
   return (
     <div className={classes.searchContainer}>

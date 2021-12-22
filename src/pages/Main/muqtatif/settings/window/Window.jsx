@@ -1,11 +1,8 @@
 import classes from "./Window.module.scss";
-import classNames from "classnames";
 import Slider from "../../../../../components/slider/Slider";
 import RadioButtonsGroup from "../../../../../components/radioButtonsGroup/RadioButtonsGroup";
 import { SwatchesPicker } from "react-color";
 import { useContext, useState } from "react";
-import Button from "../../../../../components/button/Button";
-import { ReactComponent as ArrowDown } from "../../../../../images/SVG/arrow_down.svg";
 import SettingsContext from "../../../../../context/settings-context";
 import Checkboxx from "../../../../../components/checkboxx/Checkboxx";
 import ColorButton from "../colorButton/ColorButton";
@@ -17,18 +14,15 @@ const Window = (props) => {
   const dropShadowChBxHandler = (e) => {
     setDropShadowIsChecked(e.target.checked);
     settingsCtx.onChangeDropShadow(!e.target.checked);
-    // console.log(e);
   };
   const [textBgIsChecked, setTextBgIsChecked] = useState(true);
   const textBgChBxHandler = (e) => {
     setTextBgIsChecked(e.target.checked);
     settingsCtx.textBgIsDisabled(!e.target.checked);
   };
-  // const [isDisabled, setIsDisabled] = useState(false);
   const [isSelected, setIsSelected] = useState("btn-b");
   const selectedRadioHandler = (e) => {
     setIsSelected(e.target.id);
-    // console.log(e);
     settingsCtx.onChangePresetSize(e);
   };
 

@@ -1,7 +1,6 @@
 import classes from "./SearchBar.module.scss";
 import Select from "react-select";
 import { ReactComponent as SearchIcon } from "../../../images/SVG/search.svg";
-import { useState } from "react";
 const SearchBar = (props) => {
   const customStyles = {
     container: (provided, state) => ({
@@ -87,11 +86,7 @@ const SearchBar = (props) => {
   const DropdownIndicator = () => {
     return <SearchIcon className={classes.searchIcon} />;
   };
-  // const promiseOptions = new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve(props.options);
-  //   }, 1000);
-  // });
+
   return (
     <div>
       <Select
@@ -104,7 +99,6 @@ const SearchBar = (props) => {
         onFocus={props.onFocus}
         options={props.options || [{ value: 0, label: "Loading..." }]}
         value={props.value}
-        // isClearable={true}
         isSearchable={true}
         onChange={props.onChange}
       />

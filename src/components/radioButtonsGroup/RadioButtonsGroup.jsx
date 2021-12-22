@@ -1,15 +1,9 @@
-import { useState } from "react";
 import classNames from "classnames";
 import "./RadioButtonsGroup.scss";
 const RadioButtonsGroup = (props) => {
-  // const [isSelected, setIsSelected] = useState(props.selectedByDefault);
-  // const radioBtnHandler = (e) => {
-  //   setIsSelected(e.target.id);
-  //   // console.log(e);
-  // };
   const labels = props.label.map((item, i) => {
     return (
-      <div className={`radioBtn`}>
+      <div className={`radioBtn`} key={item.id}>
         <input
           type="radio"
           id={`btn-${item.id}`}

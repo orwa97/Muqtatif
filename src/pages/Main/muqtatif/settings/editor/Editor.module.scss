@@ -27,10 +27,8 @@
   .quoteFont {
     display: flex;
     justify-content: center;
-    // align-items: center;
     flex-direction: column;
     padding: 0;
-    // border-bottom: none;
 
     .fontsBtn {
       width: 100%;
@@ -39,7 +37,6 @@
         background-color: #393939;
       }
       input[type="checkbox"] {
-        // remove default style
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;

@@ -21,7 +21,6 @@ const Editor = (props) => {
   const fontFamilyHandler = (e) => {
     setSelectedFontFamily(e.target.id);
     settingsCtx.onChangeFontFamily(e.target.value);
-    // console.log(e);
   };
   return (
     <div className={classes.container}>
