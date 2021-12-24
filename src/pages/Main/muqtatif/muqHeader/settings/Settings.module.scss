@@ -1,0 +1,29 @@
+.settingsContainer {
+  display: flex;
+
+  width: auto;
+  height: auto;
+  background-color: rgb(15, 15, 15);
+  border: 1px solid #fff;
+}
+
+.btnsSide {
+  width: auto;
+  height: inherit;
+  border-right: 1px solid #fff;
+}
+.radioBtns {
+  border: none;
+  label {
+    border: none;
+    border-bottom: 1px solid #fff;
+    transition: all 0.2s;
+    font-size: 1.2rem;
+    &:hover {
+      background-color: #393939;
+    }
+  }
+  input[type="radio"]:checked + label {
+    background-color: #393939;
+  }
+}

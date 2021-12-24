@@ -1,0 +1,144 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 24.5rem;
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+
+    span {
+      color: gray;
+      font-size: 1rem;
+    }
+  }
+
+  .section {
+    padding: 0.5rem;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #fff;
+    }
+  }
+
+  .quoteFont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+
+    .fontsBtn {
+      width: 100%;
+      transition: all 0.2s;
+      &:hover {
+        background-color: #393939;
+      }
+      input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        display: none;
+        // ---------------------------------
+      }
+      .label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        .icon {
+          width: 2rem;
+          height: auto;
+          fill: #fff;
+        }
+        h2 {
+          margin: 0;
+        }
+      }
+    }
+
+    .fontFamilies {
+      border-top: 1px solid #fff;
+      overflow-y: scroll;
+      height: 12rem;
+      .fontRadioBtn {
+        transition: all 0.2s;
+
+        div {
+          width: 22.75rem;
+          label {
+            border: none;
+            width: 100%;
+            height: 3rem;
+            span {
+              font-size: 1.2rem;
+            }
+          }
+          &:hover {
+            background-color: #393939;
+          }
+
+          input[type="radio"]:checked + label {
+            background-color: #fff;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+
+  .slider {
+    input[type="range"] {
+      width: 100%;
+      height: 2rem;
+      transition: all 0.2s;
+
+      &::-webkit-slider-thumb {
+        height: 16px;
+      }
+      &:hover {
+        background-color: #393939;
+      }
+    }
+  }
+
+  .fontColor {
+    transition: all 0.2s;
+    padding: 0;
+    &:hover {
+      background-color: #393939;
+    }
+  }
+
+  .textAlign {
+    .textAlignRadioBtns {
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      div {
+        width: auto;
+        label {
+          width: auto;
+          height: auto;
+          padding: 0;
+          border: none;
+          transition: all 0.2s;
+          .alignIcon {
+            width: 2rem;
+            height: auto;
+          }
+          &:hover {
+            color: #393939;
+          }
+        }
+        input[type="radio"]:checked {
+          label {
+            color: #393939;
+          }
+        }
+      }
+    }
+  }
+}
