@@ -3,7 +3,6 @@ import Checkbox from "react-checkbox-component";
 import { Fragment } from "react";
 const Checkboxx = (props) => {
   const chBxClickHandler = (e) => {
-    // console.log(e);
     props.onChBxClick(() => {
       return !props.isDisabled ? e : false;
     });
@@ -32,19 +31,9 @@ const Checkboxx = (props) => {
             color={props.color}
             shape={props.shape}
             isChecked={props.isChecked}
-            // onChange={props.onChBxChange}
-            // onChange={props.onChBxClick}
             onChange={chBxClickHandler}
           />
         </div>
-        {/* <label className={classes.checkboxLabel} for={props.checkbox.id}>
-        {props.checkbox.label}
-      </label>
-      <input
-        type="checkbox"
-        id={props.checkbox.id}
-        name={props.checkbox.name}
-      /> */}
       </label>
     </Fragment>
   );

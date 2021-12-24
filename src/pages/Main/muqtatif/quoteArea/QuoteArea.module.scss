@@ -1,58 +1,3 @@
-/* ----------------------------------
---------------- Fonts ---------------
------------------------------------*/
-// @font-face {
-//   font-family: "Al-Qalam";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/al-qalam-quran-majeed.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Almarai";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/almarai-regular-full.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Almushaf";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/almushaf.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Amiri";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/amiri-regular-full.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Othmani";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/ar-othmani-org.ttf")
-//     format("ttf");
-// }
-
-// @font-face {
-//   font-family: "Droid-Kufi";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/droid-kufi-regular-full.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Droid-Naskh";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/droid-naskh-regular-full.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Hafs-Uthmanic";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/hafs-uthmanic-v14-full.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Lateef";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/lateef-regular-full.woff2")
-//     format("woff2");
-// }
-// @font-face {
-//   font-family: "Mada";
-//   src: url("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/mada-regular-full.woff2")
-//     format("woff2");
-// }
-// ------------------------------
 @import url("../../../../fonts/fonts.css");
 .quoteAreaBackground {
   &,
@@ -61,23 +6,16 @@
     justify-content: center;
     align-items: center;
   }
-  // width: 100%;
-  // height: auto;
   min-width: 25%;
   min-height: 25%;
   max-width: 85%;
   max-height: 85%;
-  // background-color: rgb(255, 255, 255);
-  // opacity: 0.5;
   padding: 1.5rem;
 }
 
 .quote {
-  // text-align: center;
   font-size: 2rem;
   color: rgb(15, 15, 15);
-  // color: rgba(0, 0, 0, 0.75);
-  // filter: ;
   font-family: "Amiri-Bold";
   font-display: swap;
 }

@@ -5,10 +5,6 @@
   font-size: 62.5%;
 }
 html {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-
   height: 100%;
   width: 100%;
 }
@@ -24,8 +20,6 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* height: 100%; */
-  /* width: 100%; */
 }
 
 code {

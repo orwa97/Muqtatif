@@ -10,7 +10,6 @@ const Settings = (props) => {
   const [isSelected, setIsSelected] = useState("btn-window");
   const selectedRadioHandler = (e) => {
     setIsSelected(e.target.id);
-    // console.log(e);
   };
   return (
     <SettingsContext.Provider

@@ -1,7 +1,7 @@
-import classes from "./FontsDropdown.module.scss";
 import "../../../../../../fonts/fonts.css";
 import RadioButtonsGroup from "../../../../../../components/radioButtonsGroup/RadioButtonsGroup";
 import { Fragment } from "react";
+import classes from "./FontsDropdown.module.scss";
 const FontsDropdown = (props) => {
   const fonts = [
     "Al-Qalam",
@@ -28,10 +28,10 @@ const FontsDropdown = (props) => {
       id: item,
       value: item,
       option: (
-        <Fragment>
+        <div className={classes.fontContainer} key={`font-${item}`}>
           <span>{item}</span>
           <span style={{ fontFamily: item }}>القُرآنُ الكَرِيمُ</span>
-        </Fragment>
+        </div>
       ),
     };
   });
