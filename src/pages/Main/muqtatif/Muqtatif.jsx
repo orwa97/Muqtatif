@@ -10,7 +10,8 @@ import QuoteBackground from "./quoteBackground/QuoteBackground";
 import { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
 import { SketchPicker } from "react-color";
-import Settings from "./settings/Settings";
+import Settings from "./muqHeader/settings/Settings";
+import MuqHeader from "./muqHeader/MuqHeader";
 
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
@@ -101,7 +102,38 @@ const Muqtatif = (props) => {
 
   return (
     <div className={classes.muqtatifContainer}>
-      <div className={classes["muq--header"]}>
+      <MuqHeader
+        onSelectVerse={selectedVerseHandler}
+        verses={verses}
+        onChangeQouteBgColor={qouteBGColorHandler}
+        qouteBgColorValue={selectedQouteBGcolor}
+        onChangePresetSize={presetSizeHandler}
+        onChangeTextBg={textBgHandler}
+        onChangeTextBgWidth={textBgWidthHandler}
+        widthValue={textBgWidth}
+        heightValue={textBgHeight}
+        onChangeTextBgHeight={textBgHeightHandler}
+        onChangeTextBgColor={textBgColorHandler}
+        textBgColor={textBgColor}
+        onChangeTextBgOpacity={textBgOpacityHandler}
+        opacityValue={textBgOpacity}
+        onChangeDropShadow={textBgDropShadowHandler}
+        onChangeDropShadowOffset={textBgDropShadowOffsetHandler}
+        offsetYValue={textBgDropShadowOffset}
+        onChangeDropShadowBlur={textBgDropShadowBlurHandler}
+        blurValue={textBgDropShadowBlur}
+        onChangeFontSize={textFontSizeHandler}
+        fontSizeValue={textFontSize}
+        onChangeFontWeight={textFontWeightHandler}
+        fontWeightValue={textFontWeight}
+        onChangeTextColor={textColorHandler}
+        textColorValue={textColor}
+        onChangeFontFamily={fontFamilyHandler}
+        fontFamilyValue={fontFamily}
+        onChangeTextAlign={textAlignHandler}
+        textAlignValue={textAlign}
+      />
+      {/* <div className={classes["muq--header"]}>
         <div className={classes.headerPart}>
           <Select
             prefix="logo"
@@ -176,7 +208,7 @@ const Muqtatif = (props) => {
             Export
           </Button>
         </div>
-      </div>
+      </div> */}
       <div className={classes["muq--body"]}>
         <QuoteBackground
           aspectRatio={selectedPresetSize}
