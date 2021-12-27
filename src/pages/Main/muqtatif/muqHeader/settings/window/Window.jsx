@@ -8,22 +8,67 @@ import Checkboxx from "../../../../../../components/checkboxx/Checkboxx";
 import ColorButton from "../colorButton/ColorButton";
 
 const Window = (props) => {
-  const settingsCtx = useContext(SettingsContext);
+  // const settingsCtx = useContext(SettingsContext);
+  const [isTextBgDisabled, setIsTextBgDisabled] = useState(false);
+  // const textBgHandler = (e) => {
+  //   setIsTextBgDisabled(e);
+  // };
+  const [isSelected, setIsSelected] = useState("btn-b");
+  // const selectedRadioHandler = (e) => {
+  //   setIsSelected(e.target.id);
+  //   settingsCtx.onChangePresetSize(e);
+  // };
+  const [selectedPresetSize, setSelectedPresetSize] = useState("16:9");
+  const presetSizeHandler = (e) => {
+    setIsSelected(e.target.id);
+    setSelectedPresetSize(e.target.value);
+  };
+
+  const [textBgWidth, setTextBgWidth] = useState("45");
+  const textBgWidthHandler = (e) => {
+    setTextBgWidth(e.target.value);
+  };
+
+  const [textBgHeight, setTextBgHeight] = useState("45");
+  const textBgHeightHandler = (e) => {
+    setTextBgHeight(e.target.value);
+  };
+
+  const [textBgOpacity, setTextBgOpacity] = useState("1");
+  const textBgOpacityHandler = (e) => {
+    setTextBgOpacity(e.target.value);
+  };
+
+  const [textBgColor, setTextBgColor] = useState({
+    r: 255,
+    g: 255,
+    b: 255,
+  });
+  const textBgColorHandler = (e) => {
+    setTextBgColor(e.rgb);
+    // console.log(e.rgb);
+  };
 
   const [dropShadowIsChecked, setDropShadowIsChecked] = useState(false);
   const dropShadowChBxHandler = (e) => {
     setDropShadowIsChecked(e.target.checked);
-    settingsCtx.onChangeDropShadow(!e.target.checked);
+    // settingsCtx.onChangeDropShadow(!e.target.checked);
   };
+
+  const [dropShadowOffset, setDropShadowOffset] = useState("3");
+  const DropShadowOffsetHandler = (e) => {
+    setDropShadowOffset(e.target.value);
+  };
+
+  const [dropShadowBlur, setdropShadowBlur] = useState("10");
+  const dropShadowBlurHandler = (e) => {
+    setdropShadowBlur(e.target.value);
+  };
+
   const [textBgIsChecked, setTextBgIsChecked] = useState(true);
   const textBgChBxHandler = (e) => {
     setTextBgIsChecked(e.target.checked);
-    settingsCtx.textBgIsDisabled(!e.target.checked);
-  };
-  const [isSelected, setIsSelected] = useState("btn-b");
-  const selectedRadioHandler = (e) => {
-    setIsSelected(e.target.id);
-    settingsCtx.onChangePresetSize(e);
+    setIsTextBgDisabled(!e.target.checked);
   };
 
   return (
@@ -41,7 +86,7 @@ const Window = (props) => {
           ]}
           name="windowRadio"
           flexDirection="row"
-          onChange={selectedRadioHandler}
+          onChange={presetSizeHandler}
           isSelected={isSelected}
         />
       </div>
@@ -72,15 +117,15 @@ const Window = (props) => {
             >
               <h2>
                 {`Width: `}
-                {<span>{`${settingsCtx.widthValue}%`}</span>}
+                {<span>{`${textBgWidth}%`}</span>}
               </h2>
               <Slider
                 className={classes.sizeSlider}
-                onChange={settingsCtx.onChangeTextBgWidth}
+                onChange={textBgWidthHandler}
                 min="25"
                 max="85"
                 step="1"
-                value={settingsCtx.widthValue}
+                value={textBgWidth}
                 isDisabled={!textBgIsChecked}
               />
             </div>
@@ -90,15 +135,15 @@ const Window = (props) => {
             >
               <h2>
                 {`Height: `}
-                {<span>{`${settingsCtx.heightValue}%`}</span>}
+                {<span>{`${textBgHeight}%`}</span>}
               </h2>
               <Slider
                 className={classes.sizeSlider}
-                onChange={settingsCtx.onChangeTextBgHeight}
+                onChange={textBgHeightHandler}
                 min="25"
                 max="85"
                 step="1"
-                value={settingsCtx.heightValue}
+                value={textBgHeight}
                 isDisabled={!textBgIsChecked}
               />
             </div>
@@ -110,13 +155,13 @@ const Window = (props) => {
           >
             <ColorButton
               className={classes.colorBtn}
-              selectedColor={settingsCtx.textBgColor}
+              selectedColor={textBgColor}
               colorPicker={
                 <SwatchesPicker
                   width="245px"
                   height="150px"
-                  onChange={settingsCtx.onChangeTextBgColor}
-                  color={settingsCtx.textBgColor}
+                  onChange={textBgColorHandler}
+                  color={textBgColor}
                 />
               }
               isDisabled={!textBgIsChecked}
@@ -129,15 +174,15 @@ const Window = (props) => {
           >
             <h2>
               {`Opacity: `}
-              {<span>{`${Math.floor(settingsCtx.opacityValue * 100)}%`}</span>}
+              {<span>{`${Math.floor(textBgOpacity * 100)}%`}</span>}
             </h2>
             <Slider
               className={classes.opacitySlider}
-              onChange={settingsCtx.onChangeTextBgOpacity}
+              onChange={textBgOpacityHandler}
               min="0"
               max="1"
               step="0.01"
-              value={settingsCtx.opacityValue}
+              value={textBgOpacity}
               isDisabled={!textBgIsChecked}
             />
           </div>
@@ -164,29 +209,29 @@ const Window = (props) => {
                 <div className={classes.sliderContainer}>
                   <h2>
                     {`Offset-Y: `}
-                    {<span>{`${settingsCtx.offsetYValue}px`}</span>}
+                    {<span>{`${dropShadowOffset}px`}</span>}
                   </h2>
                   <Slider
                     className={classes.dropShadowSlider}
-                    onChange={settingsCtx.onChangeOffsetY}
+                    onChange={DropShadowOffsetHandler}
                     min="-20"
                     max="20"
                     step="1"
-                    value={settingsCtx.offsetYValue}
+                    value={dropShadowOffset}
                   />
                 </div>
                 <div className={classes.sliderContainer}>
                   <h2>
                     {`Blur-radius: `}
-                    {<span>{`${settingsCtx.blurValue}px`}</span>}
+                    {<span>{`${dropShadowBlur}px`}</span>}
                   </h2>
                   <Slider
                     className={classes.dropShadowSlider}
-                    onChange={settingsCtx.onChangeBlur}
+                    onChange={dropShadowBlurHandler}
                     min="0"
                     max="20"
                     step="1"
-                    value={settingsCtx.blurValue}
+                    value={dropShadowBlur}
                   />
                 </div>
               </div>
