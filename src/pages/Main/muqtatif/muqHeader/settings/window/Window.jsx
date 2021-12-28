@@ -6,61 +6,64 @@ import { useContext, useState } from "react";
 import SettingsContext from "../../../../../../context/settings-context";
 import Checkboxx from "../../../../../../components/checkboxx/Checkboxx";
 import ColorButton from "../colorButton/ColorButton";
+import { atom, useAtom } from "jotai";
+import { atomWithHash } from "jotai/utils";
+import {
+  aspectRatioAtom,
+  textBgHeightAtom,
+  textBgWidthAtom,
+  textBgOpacityAtom,
+  dropShadowAtom,
+  textBgColorAtom,
+  dropShadowOffsetYAtom,
+  dropShadowBlurAtom,
+} from "./WindowAtoms";
 
 const Window = (props) => {
-  // const settingsCtx = useContext(SettingsContext);
   const [isTextBgDisabled, setIsTextBgDisabled] = useState(false);
-  // const textBgHandler = (e) => {
-  //   setIsTextBgDisabled(e);
-  // };
+
   const [isSelected, setIsSelected] = useState("btn-b");
-  // const selectedRadioHandler = (e) => {
-  //   setIsSelected(e.target.id);
-  //   settingsCtx.onChangePresetSize(e);
-  // };
-  const [selectedPresetSize, setSelectedPresetSize] = useState("16:9");
+  const [selectedPresetSize, setSelectedPresetSize] = useAtom(aspectRatioAtom);
   const presetSizeHandler = (e) => {
     setIsSelected(e.target.id);
     setSelectedPresetSize(e.target.value);
+    // console.log(e);
   };
 
-  const [textBgWidth, setTextBgWidth] = useState("45");
+  const [textBgWidth, setTextBgWidth] = useAtom(textBgWidthAtom);
   const textBgWidthHandler = (e) => {
     setTextBgWidth(e.target.value);
   };
 
-  const [textBgHeight, setTextBgHeight] = useState("45");
+  const [textBgHeight, setTextBgHeight] = useAtom(textBgHeightAtom);
   const textBgHeightHandler = (e) => {
     setTextBgHeight(e.target.value);
   };
 
-  const [textBgOpacity, setTextBgOpacity] = useState("1");
+  const [textBgOpacity, setTextBgOpacity] = useAtom(textBgOpacityAtom);
   const textBgOpacityHandler = (e) => {
     setTextBgOpacity(e.target.value);
   };
 
-  const [textBgColor, setTextBgColor] = useState({
-    r: 255,
-    g: 255,
-    b: 255,
-  });
+  const [textBgColor, setTextBgColor] = useAtom(textBgColorAtom);
   const textBgColorHandler = (e) => {
-    setTextBgColor(e.rgb);
-    // console.log(e.rgb);
+    setTextBgColor(e.hex);
+    // console.log(e);
   };
 
-  const [dropShadowIsChecked, setDropShadowIsChecked] = useState(false);
+  const [dropShadowIsChecked, setDropShadowIsChecked] = useAtom(dropShadowAtom);
   const dropShadowChBxHandler = (e) => {
     setDropShadowIsChecked(e.target.checked);
-    // settingsCtx.onChangeDropShadow(!e.target.checked);
   };
 
-  const [dropShadowOffset, setDropShadowOffset] = useState("3");
+  const [dropShadowOffset, setDropShadowOffset] = useAtom(
+    dropShadowOffsetYAtom
+  );
   const DropShadowOffsetHandler = (e) => {
     setDropShadowOffset(e.target.value);
   };
 
-  const [dropShadowBlur, setdropShadowBlur] = useState("10");
+  const [dropShadowBlur, setdropShadowBlur] = useAtom(dropShadowBlurAtom);
   const dropShadowBlurHandler = (e) => {
     setdropShadowBlur(e.target.value);
   };

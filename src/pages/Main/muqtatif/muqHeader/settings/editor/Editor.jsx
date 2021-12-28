@@ -11,6 +11,13 @@ import ColorButton from "../colorButton/ColorButton";
 import { CompactPicker } from "react-color";
 import FontsDropdown from "./fontsDropdown/FontsDropdown";
 import RadioButtonsGroup from "../../../../../../components/radioButtonsGroup/RadioButtonsGroup";
+import {
+  fontColorAtom,
+  fontFamilyAtom,
+  fontSizeAtom,
+  textAlignAtom,
+} from "./EditorAtoms";
+import { useAtom } from "jotai";
 const Editor = (props) => {
   // const settingsCtx = useContext(SettingsContext);
   const [fontBtnIsChecked, setFontBtnIsChecked] = useState(false);
@@ -19,23 +26,23 @@ const Editor = (props) => {
   };
 
   const [selectedFontFamily, setSelectedFontFamily] = useState("btn-Al-Qalam");
-  const [fontFamily, setFontFamily] = useState("Al-Qalam");
+  const [fontFamily, setFontFamily] = useAtom(fontFamilyAtom);
   const fontFamilyHandler = (e) => {
     setSelectedFontFamily(e.target.id);
     setFontFamily(e.target.value);
   };
 
-  const [textFontSize, setTextFontSize] = useState("2");
+  const [textFontSize, setTextFontSize] = useAtom(fontSizeAtom);
   const textFontSizeHandler = (e) => {
     setTextFontSize(e.target.value);
   };
 
-  const [textColor, setTextColor] = useState("#393939");
+  const [textColor, setTextColor] = useAtom(fontColorAtom);
   const textColorHandler = (e) => {
     setTextColor(e.hex);
   };
 
-  const [textAlign, setTextAlign] = useState("right");
+  const [textAlign, setTextAlign] = useAtom(textAlignAtom);
   const [selectedTextAlign, setSelectedTextAlign] = useState("AR");
   const textAlignHandler = (e) => {
     setTextAlign(e.target.value);
