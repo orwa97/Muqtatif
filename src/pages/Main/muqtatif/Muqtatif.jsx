@@ -3,8 +3,23 @@ import QuoteArea from "./quoteArea/QuoteArea";
 import QuoteBackground from "./quoteBackground/QuoteBackground";
 import { useEffect, useState } from "react";
 import MuqHeader from "./muqHeader/MuqHeader";
-
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
+import { defaultValues } from "./muqHeader/settings/defaultValues";
 const Muqtatif = (props) => {
+  const location = useLocation();
+  const params = queryString.parse(location.hash);
+  const settingsValues = Object.fromEntries(
+    Object.entries(params).map(([k, v], i) => [k, v.replace(/['"]+/g, "")])
+  );
+
+  console.log(settingsValues.fontSize);
+  const [fontSize, setFontSize] = useState(defaultValues.fontSize);
+  useEffect(() => {
+    setFontSize(settingsValues.fontSize || defaultValues.fontSize);
+    console.log(fontSize);
+  }, [params]);
+
   const [verses, setVerses] = useState([]);
   const [defaultSelected, setDefaultSelected] = useState({});
   useEffect(async () => {
@@ -25,68 +40,16 @@ const Muqtatif = (props) => {
   const selectedVerseHandler = (e) => {
     setSelectedVerse(e.label);
   };
-  // const [selectedPresetSize, setSelectedPresetSize] = useState("16:9");
-  // const presetSizeHandler = (e) => {
-  //   setSelectedPresetSize(e.target.value);
-  // };
+
   const [selectedQouteBGcolor, setSelectedQouteBGcolor] = useState("#393939");
   const qouteBGColorHandler = (color) => {
     setSelectedQouteBGcolor(color.hex);
   };
-  // const [isTextBgDisabled, setIsTextBgDisabled] = useState(false);
-  // const textBgHandler = (e) => {
-  //   setIsTextBgDisabled(e);
-  // };
-  // const [textBgWidth, setTextBgWidth] = useState("45");
-  // const textBgWidthHandler = (e) => {
-  //   setTextBgWidth(e.target.value);
-  // };
-  // const [textBgHeight, setTextBgHeight] = useState("45");
-  // const textBgHeightHandler = (e) => {
-  //   setTextBgHeight(e.target.value);
-  // };
-  // const [textBgOpacity, setTextBgOpacity] = useState("1");
-  // const textBgOpacityHandler = (e) => {
-  //   setTextBgOpacity(e.target.value);
-  // };
-  // const [textBgColor, setTextBgColor] = useState({
-  //   r: 255,
-  //   g: 255,
-  //   b: 255,
-  // });
-  // const textBgColorHandler = (e) => {
-  //   setTextBgColor(e.rgb);
-  //   console.log(e.rgb);
-  // };
   const [isTextBgDropShadowDisabled, setIsTextBgDropShadowDisabled] =
     useState(true);
   const textBgDropShadowHandler = (e) => {
     setIsTextBgDropShadowDisabled(e);
   };
-  // const [textBgDropShadowOffset, setTextBgDropShadowOffset] = useState("3");
-  // const textBgDropShadowOffsetHandler = (e) => {
-  //   setTextBgDropShadowOffset(e.target.value);
-  // };
-  // const [textBgDropShadowBlur, setTextBgDropShadowBlur] = useState("10");
-  // const textBgDropShadowBlurHandler = (e) => {
-  //   setTextBgDropShadowBlur(e.target.value);
-  // };
-  // const [textFontSize, setTextFontSize] = useState("2");
-  // const textFontSizeHandler = (e) => {
-  //   setTextFontSize(e.target.value);
-  // };
-  // const [textFontWeight, setTextFontWeight] = useState("400");
-  // const textFontWeightHandler = (e) => {
-  //   setTextFontWeight(e.target.value);
-  // };
-  // const [textColor, setTextColor] = useState("#393939");
-  // const textColorHandler = (e) => {
-  //   setTextColor(e.hex);
-  // };
-  // const [fontFamily, setFontFamily] = useState("Al-Qalam");
-  // const fontFamilyHandler = (e) => {
-  //   setFontFamily(e);
-  // };
 
   return (
     <div className={classes.muqtatifContainer}>
@@ -95,113 +58,12 @@ const Muqtatif = (props) => {
         verses={verses}
         onChangeQouteBgColor={qouteBGColorHandler}
         qouteBgColorValue={selectedQouteBGcolor}
-        // onChangePresetSize={presetSizeHandler}
-        // onChangeTextBg={textBgHandler}
-        // onChangeTextBgWidth={textBgWidthHandler}
-        // widthValue={textBgWidth}
-        // heightValue={textBgHeight}
-        // onChangeTextBgHeight={textBgHeightHandler}
-        // onChangeTextBgColor={textBgColorHandler}
-        // textBgColor={textBgColor}
-        // onChangeTextBgOpacity={textBgOpacityHandler}
-        // opacityValue={textBgOpacity}
-        // onChangeDropShadow={textBgDropShadowHandler}
-        // onChangeDropShadowOffset={textBgDropShadowOffsetHandler}
-        // offsetYValue={textBgDropShadowOffset}
-        // onChangeDropShadowBlur={textBgDropShadowBlurHandler}
-        // blurValue={textBgDropShadowBlur}
-        // onChangeFontSize={textFontSizeHandler}
-        // fontSizeValue={textFontSize}
-        // onChangeFontWeight={textFontWeightHandler}
-        // fontWeightValue={textFontWeight}
-        // onChangeTextColor={textColorHandler}
-        // textColorValue={textColor}
-        // onChangeFontFamily={fontFamilyHandler}
-        // fontFamilyValue={fontFamily}
-        // onChangeTextAlign={textAlignHandler}
-        // textAlignValue={textAlign}
       />
-      {/* <div className={classes["muq--header"]}>
-        <div className={classes.headerPart}>
-          <Select
-            prefix="logo"
-            options={verses}
-            onSelect={selectedVerseHandler}
-          />
-          <Tippy
-            content={
-              <SketchPicker
-                onChange={qouteBGColorHandler}
-                color={selectedQouteBGcolor}
-                disableAlpha={true}
-              />
-            }
-            placement="bottom"
-            trigger="click"
-            interactive="true"
-            delay={0}
-            duration={100}
-          >
-            <Button
-              type="icon-only"
-              icon={<ColorLens />}
-              backgroundColor={selectedQouteBGcolor}
-            />
-          </Tippy>
-          <Tippy
-            content={
-              <Settings
-                onChangePresetSize={presetSizeHandler}
-                onChangeTextBg={textBgHandler}
-                onChangeTextBgWidth={textBgWidthHandler}
-                widthValue={textBgWidth}
-                heightValue={textBgHeight}
-                onChangeTextBgHeight={textBgHeightHandler}
-                onChangeTextBgColor={textBgColorHandler}
-                textBgColor={textBgColor}
-                onChangeTextBgOpacity={textBgOpacityHandler}
-                opacityValue={textBgOpacity}
-                onChangeDropShadow={textBgDropShadowHandler}
-                onChangeDropShadowOffset={textBgDropShadowOffsetHandler}
-                offsetYValue={textBgDropShadowOffset}
-                onChangeDropShadowBlur={textBgDropShadowBlurHandler}
-                blurValue={textBgDropShadowBlur}
-                onChangeFontSize={textFontSizeHandler}
-                fontSizeValue={textFontSize}
-                onChangeFontWeight={textFontWeightHandler}
-                fontWeightValue={textFontWeight}
-                onChangeTextColor={textColorHandler}
-                textColorValue={textColor}
-                onChangeFontFamily={fontFamilyHandler}
-                fontFamilyValue={fontFamily}
-                onChangeTextAlign={textAlignHandler}
-                textAlignValue={textAlign}
-              />
-            }
-            placement="bottom"
-            trigger="click"
-            interactive="true"
-            delay={0}
-            duration={100}
-          >
-            <Button type="icon-only" icon={<SettingsIcon />} />
-          </Tippy>
-        </div>
-        <div className={classes.headerPart}>
-          <Button type="icon-only" icon={<Copy />} />
-          <Button type="text-only" postfix={<ArrowDown />}>
-            Share
-          </Button>
-          <Button type="text-only" postfix={<ArrowDown />}>
-            Export
-          </Button>
-        </div>
-      </div> */}
       <div className={classes["muq--body"]}>
         <QuoteBackground aspectRatio backgroundColor={selectedQouteBGcolor}>
           <QuoteArea
             quote={selectedVerse}
-            width
+            width={params.TBGWidth}
             height
             backgroundColor
             opacity
@@ -211,7 +73,7 @@ const Muqtatif = (props) => {
                 ? `drop-Shadow(3px ${0}px ${0}px rgba(0, 0, 0, 0.45))`
                 : "none"
             }
-            fontSize
+            fontSize={fontSize}
             textColor
             fontWeight
             fontFamily

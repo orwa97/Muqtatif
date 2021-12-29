@@ -1,6 +1,24 @@
 import { atomWithHash } from "jotai/utils";
-
-export const fontFamilyAtom = atomWithHash("fontFamily", "Al-Qalam");
-export const fontSizeAtom = atomWithHash("fontSize", "2");
-export const fontColorAtom = atomWithHash("fontColor", "#393939");
-export const textAlignAtom = atomWithHash("textAlign", "right");
+import { defaultValues } from "../defaultValues";
+export const fontFamilyAtom = atomWithHash(
+  "fontFamily",
+  defaultValues.fontFamily,
+  {
+    replaceState: true,
+  }
+);
+export const fontSizeAtom = atomWithHash("fontSize", defaultValues.fontSize);
+export const fontColorAtom = atomWithHash(
+  "fontColor",
+  defaultValues.fontColor,
+  {
+    replaceState: true,
+  }
+);
+export const textAlignAtom = atomWithHash(
+  "textAlign",
+  defaultValues.textAlign,
+  {
+    replaceState: true,
+  }
+);

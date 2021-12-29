@@ -1,13 +1,11 @@
 import classes from "./Window.module.scss";
 import Slider from "../../../../../../components/slider/Slider";
+import { useState } from "react";
 import RadioButtonsGroup from "../../../../../../components/radioButtonsGroup/RadioButtonsGroup";
 import { SwatchesPicker } from "react-color";
-import { useContext, useState } from "react";
-import SettingsContext from "../../../../../../context/settings-context";
 import Checkboxx from "../../../../../../components/checkboxx/Checkboxx";
 import ColorButton from "../colorButton/ColorButton";
-import { atom, useAtom } from "jotai";
-import { atomWithHash } from "jotai/utils";
+import { useAtom } from "jotai";
 import {
   aspectRatioAtom,
   textBgHeightAtom,
@@ -23,10 +21,10 @@ const Window = (props) => {
   const [isTextBgDisabled, setIsTextBgDisabled] = useState(false);
 
   const [isSelected, setIsSelected] = useState("btn-b");
-  const [selectedPresetSize, setSelectedPresetSize] = useAtom(aspectRatioAtom);
+  const [PresetSize, setPresetSize] = useAtom(aspectRatioAtom);
   const presetSizeHandler = (e) => {
     setIsSelected(e.target.id);
-    setSelectedPresetSize(e.target.value);
+    setPresetSize(e.target.value);
     // console.log(e);
   };
 

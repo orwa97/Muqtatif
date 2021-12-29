@@ -86,9 +86,9 @@ const Editor = (props) => {
         <Slider
           className={`${classes.fontSizeSlider} ${classes.slider}`}
           onChange={textFontSizeHandler}
-          min="1.4"
-          max="5"
-          step="0.05"
+          min={1.4}
+          max={5}
+          step={0.05}
           value={textFontSize}
         />
       </div>

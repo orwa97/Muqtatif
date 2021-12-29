@@ -1,7 +1,6 @@
 import classes from "./QuoteArea.module.scss";
 const QuoteArea = (props) => {
   const backgroundColor = `rgba(${props.backgroundColor.r}, ${props.backgroundColor.g}, ${props.backgroundColor.b})`;
-
   return !props.backgroundIsDisabled ? (
     <span
       className={classes.quoteAreaBackground}
