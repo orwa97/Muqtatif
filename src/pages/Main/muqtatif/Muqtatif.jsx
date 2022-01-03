@@ -7,19 +7,6 @@ import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { defaultValues } from "./muqHeader/settings/defaultValues";
 const Muqtatif = (props) => {
-  const location = useLocation();
-  const params = queryString.parse(location.hash);
-  const settingsValues = Object.fromEntries(
-    Object.entries(params).map(([k, v], i) => [k, v.replace(/['"]+/g, "")])
-  );
-
-  console.log(settingsValues.fontSize);
-  const [fontSize, setFontSize] = useState(defaultValues.fontSize);
-  useEffect(() => {
-    setFontSize(settingsValues.fontSize || defaultValues.fontSize);
-    console.log(fontSize);
-  }, [params]);
-
   const [verses, setVerses] = useState([]);
   const [defaultSelected, setDefaultSelected] = useState({});
   useEffect(async () => {
@@ -63,7 +50,7 @@ const Muqtatif = (props) => {
         <QuoteBackground aspectRatio backgroundColor={selectedQouteBGcolor}>
           <QuoteArea
             quote={selectedVerse}
-            width={params.TBGWidth}
+            width
             height
             backgroundColor
             opacity
@@ -73,7 +60,7 @@ const Muqtatif = (props) => {
                 ? `drop-Shadow(3px ${0}px ${0}px rgba(0, 0, 0, 0.45))`
                 : "none"
             }
-            fontSize={fontSize}
+            fontSize
             textColor
             fontWeight
             fontFamily
