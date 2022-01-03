@@ -3,11 +3,11 @@ import classes from "./QuoteBackground.module.scss";
 const QuoteBackground = (props) => {
   const size = { width: "", height: "" };
 
-  // const aspectRatio = props.aspectRatio.split(":").join("/");
+  const aspectRatio = props.aspectRatio.split(":").join("/");
   return (
     <spam
       style={{
-        // aspectRatio: aspectRatio,
+        aspectRatio: aspectRatio,
         backgroundColor: props.backgroundColor,
       }}
       className={classes.background}

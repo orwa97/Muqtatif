@@ -16,6 +16,7 @@ import {
   fontFamilyAtom,
   fontSizeAtom,
   textAlignAtom,
+  lineHeightAtom,
 } from "./EditorAtoms";
 import { useAtom } from "jotai";
 const Editor = (props) => {
@@ -35,6 +36,11 @@ const Editor = (props) => {
   const [textFontSize, setTextFontSize] = useAtom(fontSizeAtom);
   const textFontSizeHandler = (e) => {
     setTextFontSize(e.target.value);
+  };
+
+  const [lineHeight, setLineHeight] = useAtom(lineHeightAtom);
+  const lineHeightHandler = (e) => {
+    setLineHeight(e.target.value);
   };
 
   const [textColor, setTextColor] = useAtom(fontColorAtom);
@@ -90,6 +96,20 @@ const Editor = (props) => {
           max={5}
           step={0.05}
           value={textFontSize}
+        />
+      </div>
+      <div className={`${classes.LineHeight} ${classes.section}`}>
+        <h2>
+          {`line-height: `}
+          {<span>{lineHeight}</span>}
+        </h2>
+        <Slider
+          className={`${classes.LineHeightSlider} ${classes.slider}`}
+          onChange={lineHeightHandler}
+          min={1}
+          max={3}
+          step={0.05}
+          value={lineHeight}
         />
       </div>
       <div className={`${classes.textAlign} ${classes.section}`}>

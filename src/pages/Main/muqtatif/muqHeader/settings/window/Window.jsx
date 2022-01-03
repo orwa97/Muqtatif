@@ -6,6 +6,7 @@ import { SwatchesPicker } from "react-color";
 import Checkboxx from "../../../../../../components/checkboxx/Checkboxx";
 import ColorButton from "../colorButton/ColorButton";
 import { useAtom } from "jotai";
+import queryString from "query-string";
 import {
   aspectRatioAtom,
   textBgHeightAtom,
@@ -15,17 +16,22 @@ import {
   textBgColorAtom,
   dropShadowOffsetYAtom,
   dropShadowBlurAtom,
+  textBgAtom,
 } from "./WindowAtoms";
+import { useLocation } from "react-router-dom";
 
 const Window = (props) => {
-  const [isTextBgDisabled, setIsTextBgDisabled] = useState(false);
+  const location = useLocation();
+  const params = queryString.parse(location.hash);
+  const settingsValues = Object.fromEntries(
+    Object.entries(params).map(([k, v], i) => [k, v.replace(/['"]+/g, "")])
+  );
 
   const [isSelected, setIsSelected] = useState("btn-b");
   const [PresetSize, setPresetSize] = useAtom(aspectRatioAtom);
   const presetSizeHandler = (e) => {
     setIsSelected(e.target.id);
     setPresetSize(e.target.value);
-    // console.log(e);
   };
 
   const [textBgWidth, setTextBgWidth] = useAtom(textBgWidthAtom);
@@ -46,7 +52,6 @@ const Window = (props) => {
   const [textBgColor, setTextBgColor] = useAtom(textBgColorAtom);
   const textBgColorHandler = (e) => {
     setTextBgColor(e.hex);
-    // console.log(e);
   };
 
   const [dropShadowIsChecked, setDropShadowIsChecked] = useAtom(dropShadowAtom);
@@ -66,10 +71,9 @@ const Window = (props) => {
     setdropShadowBlur(e.target.value);
   };
 
-  const [textBgIsChecked, setTextBgIsChecked] = useState(true);
+  const [textBgIsChecked, setTextBgIsChecked] = useAtom(textBgAtom);
   const textBgChBxHandler = (e) => {
     setTextBgIsChecked(e.target.checked);
-    setIsTextBgDisabled(!e.target.checked);
   };
 
   return (
