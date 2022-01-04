@@ -28,7 +28,7 @@ const Window = (props) => {
   );
 
   const [isSelected, setIsSelected] = useState("btn-b");
-  const [PresetSize, setPresetSize] = useAtom(aspectRatioAtom);
+  const [presetSize, setPresetSize] = useAtom(aspectRatioAtom);
   const presetSizeHandler = (e) => {
     setIsSelected(e.target.id);
     setPresetSize(e.target.value);

@@ -25,7 +25,6 @@ import {
   textAlignAtom,
 } from "./muqHeader/settings/editor/EditorAtoms";
 const Muqtatif = (props) => {
-  console.log(useAtomValue(dropShadowAtom));
   const [verses, setVerses] = useState([]);
   const [defaultSelected, setDefaultSelected] = useState({});
   useEffect(async () => {
