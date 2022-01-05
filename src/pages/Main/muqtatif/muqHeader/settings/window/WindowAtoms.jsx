@@ -56,3 +56,11 @@ export const dropShadowBlurAtom = atomWithHash(
     replaceState: true,
   }
 );
+
+export const textBgAtom = atomWithHash(
+  "textBg",
+  defaultValues.textBgIsChecked,
+  {
+    replaceState: true,
+  }
+);

@@ -6,6 +6,24 @@ import MuqHeader from "./muqHeader/MuqHeader";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { defaultValues } from "./muqHeader/settings/defaultValues";
+import { useAtom } from "jotai";
+import { useAtomValue } from "jotai/utils";
+import {
+  aspectRatioAtom,
+  dropShadowAtom,
+  textBgAtom,
+  textBgColorAtom,
+  textBgHeightAtom,
+  textBgOpacityAtom,
+  textBgWidthAtom,
+} from "./muqHeader/settings/window/WindowAtoms";
+import {
+  fontColorAtom,
+  fontFamilyAtom,
+  fontSizeAtom,
+  lineHeightAtom,
+  textAlignAtom,
+} from "./muqHeader/settings/editor/EditorAtoms";
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
   const [defaultSelected, setDefaultSelected] = useState({});
@@ -32,11 +50,6 @@ const Muqtatif = (props) => {
   const qouteBGColorHandler = (color) => {
     setSelectedQouteBGcolor(color.hex);
   };
-  const [isTextBgDropShadowDisabled, setIsTextBgDropShadowDisabled] =
-    useState(true);
-  const textBgDropShadowHandler = (e) => {
-    setIsTextBgDropShadowDisabled(e);
-  };
 
   return (
     <div className={classes.muqtatifContainer}>
@@ -47,24 +60,11 @@ const Muqtatif = (props) => {
         qouteBgColorValue={selectedQouteBGcolor}
       />
       <div className={classes["muq--body"]}>
-        <QuoteBackground aspectRatio backgroundColor={selectedQouteBGcolor}>
-          <QuoteArea
-            quote={selectedVerse}
-            width
-            height
-            backgroundColor
-            opacity
-            backgroundIsDisabled
-            dropShadow={
-              !isTextBgDropShadowDisabled
-                ? `drop-Shadow(3px ${0}px ${0}px rgba(0, 0, 0, 0.45))`
-                : "none"
-            }
-            fontSize
-            textColor
-            fontWeight
-            fontFamily
-          />
+        <QuoteBackground
+          aspectRatio={useAtomValue(aspectRatioAtom)}
+          backgroundColor={selectedQouteBGcolor}
+        >
+          <QuoteArea quote={selectedVerse} />
         </QuoteBackground>
       </div>
     </div>

@@ -1,4 +1,5 @@
 export const defaultValues = {
+  textBgIsChecked: true,
   aspectRatio: "16:9",
   textBgWidth: "45",
   textBgHeight: "45",
@@ -11,4 +12,5 @@ export const defaultValues = {
   fontSize: 2,
   fontColor: "#393939",
   textAlign: "right",
+  lineHeight: "normal",
 };

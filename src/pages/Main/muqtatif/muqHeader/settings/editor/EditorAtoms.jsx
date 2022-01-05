@@ -7,7 +7,9 @@ export const fontFamilyAtom = atomWithHash(
     replaceState: true,
   }
 );
-export const fontSizeAtom = atomWithHash("fontSize", defaultValues.fontSize);
+export const fontSizeAtom = atomWithHash("fontSize", defaultValues.fontSize, {
+  replaceState: true,
+});
 export const fontColorAtom = atomWithHash(
   "fontColor",
   defaultValues.fontColor,
@@ -18,6 +20,13 @@ export const fontColorAtom = atomWithHash(
 export const textAlignAtom = atomWithHash(
   "textAlign",
   defaultValues.textAlign,
+  {
+    replaceState: true,
+  }
+);
+export const lineHeightAtom = atomWithHash(
+  "lineHeight",
+  defaultValues.lineHeight,
   {
     replaceState: true,
   }
