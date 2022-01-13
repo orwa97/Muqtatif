@@ -16,10 +16,10 @@ const Settings = (props) => {
       <div className={classes.btnsSide}>
         <RadioButtonsGroup
           className={classes.radioBtns}
-          label={useMemo([
+          label={[
             { id: "window", option: "Window", value: "window" },
             { id: "editor", option: "Editor", value: "editor" },
-          ])}
+          ]}
           name="SettingsRadio"
           flexDirection="column"
           onChange={selectedRadioHandler}

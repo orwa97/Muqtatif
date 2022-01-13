@@ -20,40 +20,36 @@ import {
 } from "./EditorAtoms";
 import { useAtom } from "jotai";
 const Editor = (props) => {
-  // const settingsCtx = useContext(SettingsContext);
   const [fontBtnIsChecked, setFontBtnIsChecked] = useState(false);
+  const [selectedFontFamily, setSelectedFontFamily] = useState("btn-Al-Qalam");
+  const [fontFamily, setFontFamily] = useAtom(fontFamilyAtom);
+  const [textFontSize, setTextFontSize] = useAtom(fontSizeAtom);
+  const [lineHeight, setLineHeight] = useAtom(lineHeightAtom);
+  const [textColor, setTextColor] = useAtom(fontColorAtom);
+  const [textAlign, setTextAlign] = useAtom(textAlignAtom);
+  const [selectedTextAlign, setSelectedTextAlign] = useState("AR");
+
   const fontBtnHandler = (e) => {
     setFontBtnIsChecked(e.target.checked);
   };
-
-  const [selectedFontFamily, setSelectedFontFamily] = useState("btn-Al-Qalam");
-  const [fontFamily, setFontFamily] = useAtom(fontFamilyAtom);
   const fontFamilyHandler = (e) => {
     setSelectedFontFamily(e.target.id);
     setFontFamily(e.target.value);
   };
-
-  const [textFontSize, setTextFontSize] = useAtom(fontSizeAtom);
   const textFontSizeHandler = (e) => {
     setTextFontSize(e.target.value);
   };
-
-  const [lineHeight, setLineHeight] = useAtom(lineHeightAtom);
   const lineHeightHandler = (e) => {
     setLineHeight(e.target.value);
   };
-
-  const [textColor, setTextColor] = useAtom(fontColorAtom);
   const textColorHandler = (e) => {
     setTextColor(e.hex);
   };
-
-  const [textAlign, setTextAlign] = useAtom(textAlignAtom);
-  const [selectedTextAlign, setSelectedTextAlign] = useState("AR");
   const textAlignHandler = (e) => {
     setTextAlign(e.target.value);
     setSelectedTextAlign(e.target.id);
   };
+
   return (
     <div className={classes.container}>
       <div className={`${classes.quoteFont} ${classes.section}`}>

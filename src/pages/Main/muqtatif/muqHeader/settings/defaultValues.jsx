@@ -1,4 +1,4 @@
-export const defaultValues = {
+export const DEFAULT_VALUES = {
   textBgIsChecked: true,
   aspectRatio: "16:9",
   textBgWidth: "45",

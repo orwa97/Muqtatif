@@ -1,32 +1,32 @@
 import { atomWithHash } from "jotai/utils";
-import { defaultValues } from "../defaultValues";
+import { DEFAULT_VALUES } from "../defaultValues";
 export const fontFamilyAtom = atomWithHash(
   "fontFamily",
-  defaultValues.fontFamily,
+  DEFAULT_VALUES.fontFamily,
   {
     replaceState: true,
   }
 );
-export const fontSizeAtom = atomWithHash("fontSize", defaultValues.fontSize, {
+export const fontSizeAtom = atomWithHash("fontSize", DEFAULT_VALUES.fontSize, {
   replaceState: true,
 });
 export const fontColorAtom = atomWithHash(
   "fontColor",
-  defaultValues.fontColor,
+  DEFAULT_VALUES.fontColor,
   {
     replaceState: true,
   }
 );
 export const textAlignAtom = atomWithHash(
   "textAlign",
-  defaultValues.textAlign,
+  DEFAULT_VALUES.textAlign,
   {
     replaceState: true,
   }
 );
 export const lineHeightAtom = atomWithHash(
   "lineHeight",
-  defaultValues.lineHeight,
+  DEFAULT_VALUES.lineHeight,
   {
     replaceState: true,
   }

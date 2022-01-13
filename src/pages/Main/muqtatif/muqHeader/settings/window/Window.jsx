@@ -19,6 +19,7 @@ import {
   textBgAtom,
 } from "./WindowAtoms";
 import { useLocation } from "react-router-dom";
+import { useCallback } from "react";
 
 const Window = (props) => {
   const location = useLocation();
@@ -29,49 +30,45 @@ const Window = (props) => {
 
   const [isSelected, setIsSelected] = useState("btn-b");
   const [presetSize, setPresetSize] = useAtom(aspectRatioAtom);
-  const presetSizeHandler = (e) => {
-    setIsSelected(e.target.id);
-    setPresetSize(e.target.value);
-  };
-
   const [textBgWidth, setTextBgWidth] = useAtom(textBgWidthAtom);
-  const textBgWidthHandler = (e) => {
-    setTextBgWidth(e.target.value);
-  };
-
   const [textBgHeight, setTextBgHeight] = useAtom(textBgHeightAtom);
-  const textBgHeightHandler = (e) => {
-    setTextBgHeight(e.target.value);
-  };
-
   const [textBgOpacity, setTextBgOpacity] = useAtom(textBgOpacityAtom);
-  const textBgOpacityHandler = (e) => {
-    setTextBgOpacity(e.target.value);
-  };
-
   const [textBgColor, setTextBgColor] = useAtom(textBgColorAtom);
-  const textBgColorHandler = (e) => {
-    setTextBgColor(e.hex);
-  };
-
   const [dropShadowIsChecked, setDropShadowIsChecked] = useAtom(dropShadowAtom);
-  const dropShadowChBxHandler = (e) => {
-    setDropShadowIsChecked(e.target.checked);
-  };
-
   const [dropShadowOffset, setDropShadowOffset] = useAtom(
     dropShadowOffsetYAtom
   );
+  const [dropShadowBlur, setdropShadowBlur] = useAtom(dropShadowBlurAtom);
+  const [textBgIsChecked, setTextBgIsChecked] = useAtom(textBgAtom);
+
+  const presetSizeHandler = useCallback(
+    (e) => {
+      setIsSelected(e.target.id);
+      setPresetSize(e.target.value);
+    },
+    [isSelected, presetSize]
+  );
+  const textBgWidthHandler = (e) => {
+    setTextBgWidth(e.target.value);
+  };
+  const textBgHeightHandler = (e) => {
+    setTextBgHeight(e.target.value);
+  };
+  const textBgOpacityHandler = (e) => {
+    setTextBgOpacity(e.target.value);
+  };
+  const textBgColorHandler = (e) => {
+    setTextBgColor(e.hex);
+  };
+  const dropShadowChBxHandler = (e) => {
+    setDropShadowIsChecked(e.target.checked);
+  };
   const DropShadowOffsetHandler = (e) => {
     setDropShadowOffset(e.target.value);
   };
-
-  const [dropShadowBlur, setdropShadowBlur] = useAtom(dropShadowBlurAtom);
   const dropShadowBlurHandler = (e) => {
     setdropShadowBlur(e.target.value);
   };
-
-  const [textBgIsChecked, setTextBgIsChecked] = useAtom(textBgAtom);
   const textBgChBxHandler = (e) => {
     setTextBgIsChecked(e.target.checked);
   };
@@ -85,9 +82,9 @@ const Window = (props) => {
           label={[
             { id: "a", value: "1:1", option: "Squar" },
             { id: "b", value: "16:9", option: "Facebook Cover" },
-            { id: "c", value: "9:16", option: "Snapchat" },
             { id: "d", value: "9:16", option: "Instagram story" },
             { id: "e", value: "2:1", option: "Twitter" },
+            { id: "c", value: "9:16", option: "Snapchat" },
           ]}
           name="windowRadio"
           flexDirection="row"
