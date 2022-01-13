@@ -1,33 +1,25 @@
-import Button from "../../../components/button/Button";
-import Select from "../../../components/Select/Select";
 import classes from "./Muqtatif.module.scss";
-import { ReactComponent as SettingsIcon } from "../../../images/SVG/cog.svg";
-import { ReactComponent as ColorLens } from "../../../images/SVG/color_lens.svg";
-import { ReactComponent as Copy } from "../../../images/SVG/copy.svg";
-import { ReactComponent as ArrowDown } from "../../../images/SVG/arrow_down.svg";
 import QuoteArea from "./quoteArea/QuoteArea";
 import QuoteBackground from "./quoteBackground/QuoteBackground";
 import { useEffect, useState } from "react";
-import Tippy from "@tippyjs/react";
-import { SketchPicker } from "react-color";
-import Settings from "./muqHeader/settings/Settings";
 import MuqHeader from "./muqHeader/MuqHeader";
 
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
-  const [defaultSelected, setDefaultSelected] = useState({});
-  useEffect(async () => {
-    const response = await fetch(
+  useEffect(() => {
+    const response = fetch(
       `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${
         props.verseKey.split(":")[0]
       }`
     );
-    const data = await response.json();
-    const options = data.verses.map((item) => {
-      return { value: item.id, label: item.text_indopak };
-    });
-
-    setVerses(options);
+    const data = response
+      .then((res) => res.json())
+      .then((res) => {
+        const options = res.verses.map((item) => {
+          return { value: item.id, label: item.text_indopak };
+        });
+        setVerses(options);
+      });
   }, []);
 
   const [selectedVerse, setSelectedVerse] = useState("");

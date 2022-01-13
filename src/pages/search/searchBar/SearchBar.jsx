@@ -1,5 +1,5 @@
 import classes from "./SearchBar.module.scss";
-import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import { ReactComponent as SearchIcon } from "../../../images/SVG/search.svg";
 const SearchBar = (props) => {
   const customStyles = {
@@ -89,7 +89,7 @@ const SearchBar = (props) => {
 
   return (
     <div>
-      <Select
+      <AsyncSelect
         styles={customStyles}
         components={{ DropdownIndicator }}
         placeholder={props.placeholder}
@@ -97,7 +97,9 @@ const SearchBar = (props) => {
         onInputChange={props.onInputChange}
         inputValue={props.inputValue}
         onFocus={props.onFocus}
-        options={props.options || [{ value: 0, label: "Loading..." }]}
+        cacheOptions
+        defaultOptions
+        loadOptions={props.options}
         value={props.value}
         isSearchable={true}
         onChange={props.onChange}
