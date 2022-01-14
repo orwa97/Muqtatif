@@ -26,19 +26,20 @@ import {
 } from "./muqHeader/settings/editor/EditorAtoms";
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
-  const [defaultSelected, setDefaultSelected] = useState({});
-  useEffect(async () => {
-    const response = await fetch(
+  useEffect(() => {
+    const response = fetch(
       `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${
         props.verseKey.split(":")[0]
       }`
     );
-    const data = await response.json();
-    const options = data.verses.map((item) => {
-      return { value: item.id, label: item.text_indopak };
-    });
-
-    setVerses(options);
+    const data = response
+      .then((res) => res.json())
+      .then((res) => {
+        const options = res.verses.map((item) => {
+          return { value: item.id, label: item.text_indopak };
+        });
+        setVerses(options);
+      });
   }, []);
 
   const [selectedVerse, setSelectedVerse] = useState("");

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import classes from "./Search.module.scss";
 import SearchBar from "./searchBar/SearchBar";
@@ -7,6 +7,7 @@ const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
   const [inputSave, setSave] = useState("");
+  const [quranData, setQuranData] = useState([]);
   const [options, setOptions] = useState([]);
   const history = useHistory();
   const searchInputHandler = (e) => {
@@ -19,21 +20,28 @@ const Search = (props) => {
   };
 
   //   getting Quran data regarding to user's input.
-  useEffect(async () => {
+  useEffect(() => {
     if (searchValue.trim().length === 0) return;
     const quranURL =
       new URL(`https://api.quran.com/api/v4/search?q=${searchValue}&size=20&page=0&language=en
 `);
-    const respose = await fetch(quranURL);
-    const data = await respose.json();
-
-    // mapping the quran data we got to react-select's options [{value:  , label:  }, ...]
-    const ayat = data.search.results.map((item) => {
-      return { value: item.verse_key, label: item.text };
-    });
-    console.log(ayat);
-    setOptions(ayat);
+    const data = fetch(quranURL)
+      .then((res) => res.json())
+      .then((res) => {
+        setQuranData(res.search.results);
+      });
   }, [searchValue]);
+  const loadOptions = useCallback(
+    async (inputValue, callback) => {
+      callback(
+        quranData.map((item) => {
+          return { value: item.verse_key, label: item.text };
+        })
+      );
+    },
+    [quranData]
+  );
+
   return (
     <div className={classes.searchContainer}>
       <div className={classes.searchIntro}>
@@ -54,7 +62,7 @@ const Search = (props) => {
           setSearchValue(inputSave);
           setSave("");
         }}
-        options={options}
+        options={loadOptions}
         value={options.find((obj) => obj.value === selectedValue)}
       />
     </div>
