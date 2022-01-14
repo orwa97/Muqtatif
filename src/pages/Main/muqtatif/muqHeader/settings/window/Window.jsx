@@ -20,6 +20,7 @@ import {
 } from "./WindowAtoms";
 import { useLocation } from "react-router-dom";
 import { useCallback } from "react";
+import { useMemo } from "react";
 
 const Window = (props) => {
   const location = useLocation();
@@ -73,19 +74,24 @@ const Window = (props) => {
     setTextBgIsChecked(e.target.checked);
   };
 
+  const presetSizeOptions = useMemo(
+    () => [
+      { id: "a", value: "1:1", option: "Squar" },
+      { id: "b", value: "16:9", option: "Facebook Cover" },
+      { id: "d", value: "9:16", option: "Instagram story" },
+      { id: "e", value: "2:1", option: "Twitter" },
+      { id: "c", value: "9:16", option: "Snapchat" },
+    ],
+    []
+  );
+
   return (
     <div className={classes.container}>
       <div className={`${classes.presetImgSize} ${classes.section}`}>
         <h1>Preset size</h1>
         <RadioButtonsGroup
           className={classes.radioBtns}
-          label={[
-            { id: "a", value: "1:1", option: "Squar" },
-            { id: "b", value: "16:9", option: "Facebook Cover" },
-            { id: "d", value: "9:16", option: "Instagram story" },
-            { id: "e", value: "2:1", option: "Twitter" },
-            { id: "c", value: "9:16", option: "Snapchat" },
-          ]}
+          label={presetSizeOptions}
           name="windowRadio"
           flexDirection="row"
           onChange={presetSizeHandler}
