@@ -1,30 +1,89 @@
 import classes from "./Window.module.scss";
 import Slider from "../../../../../../components/slider/Slider";
+import { useState } from "react";
 import RadioButtonsGroup from "../../../../../../components/radioButtonsGroup/RadioButtonsGroup";
 import { SwatchesPicker } from "react-color";
-import { useContext, useState } from "react";
-import SettingsContext from "../../../../../../context/settings-context";
 import Checkboxx from "../../../../../../components/checkboxx/Checkboxx";
 import ColorButton from "../colorButton/ColorButton";
+import { useAtom } from "jotai";
+import queryString from "query-string";
+import {
+  aspectRatioAtom,
+  textBgHeightAtom,
+  textBgWidthAtom,
+  textBgOpacityAtom,
+  dropShadowAtom,
+  textBgColorAtom,
+  dropShadowOffsetYAtom,
+  dropShadowBlurAtom,
+  textBgAtom,
+} from "./WindowAtoms";
+import { useLocation } from "react-router-dom";
+import { useCallback } from "react";
+import { useMemo } from "react";
 
 const Window = (props) => {
-  const settingsCtx = useContext(SettingsContext);
+  const location = useLocation();
+  const params = queryString.parse(location.hash);
+  const settingsValues = Object.fromEntries(
+    Object.entries(params).map(([k, v], i) => [k, v.replace(/['"]+/g, "")])
+  );
 
-  const [dropShadowIsChecked, setDropShadowIsChecked] = useState(false);
+  const [isSelected, setIsSelected] = useState("btn-b");
+  const [presetSize, setPresetSize] = useAtom(aspectRatioAtom);
+  const [textBgWidth, setTextBgWidth] = useAtom(textBgWidthAtom);
+  const [textBgHeight, setTextBgHeight] = useAtom(textBgHeightAtom);
+  const [textBgOpacity, setTextBgOpacity] = useAtom(textBgOpacityAtom);
+  const [textBgColor, setTextBgColor] = useAtom(textBgColorAtom);
+  const [dropShadowIsChecked, setDropShadowIsChecked] = useAtom(dropShadowAtom);
+  const [dropShadowOffset, setDropShadowOffset] = useAtom(
+    dropShadowOffsetYAtom
+  );
+  const [dropShadowBlur, setdropShadowBlur] = useAtom(dropShadowBlurAtom);
+  const [textBgIsChecked, setTextBgIsChecked] = useAtom(textBgAtom);
+
+  const presetSizeHandler = useCallback(
+    (e) => {
+      setIsSelected(e.target.id);
+      setPresetSize(e.target.value);
+    },
+    [isSelected, presetSize]
+  );
+  const textBgWidthHandler = (e) => {
+    setTextBgWidth(e.target.value);
+  };
+  const textBgHeightHandler = (e) => {
+    setTextBgHeight(e.target.value);
+  };
+  const textBgOpacityHandler = (e) => {
+    setTextBgOpacity(e.target.value);
+  };
+  const textBgColorHandler = (e) => {
+    setTextBgColor(e.hex);
+  };
   const dropShadowChBxHandler = (e) => {
     setDropShadowIsChecked(e.target.checked);
-    settingsCtx.onChangeDropShadow(!e.target.checked);
   };
-  const [textBgIsChecked, setTextBgIsChecked] = useState(true);
+  const DropShadowOffsetHandler = (e) => {
+    setDropShadowOffset(e.target.value);
+  };
+  const dropShadowBlurHandler = (e) => {
+    setdropShadowBlur(e.target.value);
+  };
   const textBgChBxHandler = (e) => {
     setTextBgIsChecked(e.target.checked);
-    settingsCtx.textBgIsDisabled(!e.target.checked);
   };
-  const [isSelected, setIsSelected] = useState("btn-b");
-  const selectedRadioHandler = (e) => {
-    setIsSelected(e.target.id);
-    settingsCtx.onChangePresetSize(e);
-  };
+
+  const presetSizeOptions = useMemo(
+    () => [
+      { id: "a", value: "1:1", option: "Squar" },
+      { id: "b", value: "16:9", option: "Facebook Cover" },
+      { id: "d", value: "9:16", option: "Instagram story" },
+      { id: "e", value: "2:1", option: "Twitter" },
+      { id: "c", value: "9:16", option: "Snapchat" },
+    ],
+    []
+  );
 
   return (
     <div className={classes.container}>
@@ -32,16 +91,10 @@ const Window = (props) => {
         <h1>Preset size</h1>
         <RadioButtonsGroup
           className={classes.radioBtns}
-          label={[
-            { id: "a", value: "1:1", option: "Squar" },
-            { id: "b", value: "16:9", option: "Facebook Cover" },
-            { id: "c", value: "9:16", option: "Snapchat" },
-            { id: "d", value: "9:16", option: "Instagram story" },
-            { id: "e", value: "2:1", option: "Twitter" },
-          ]}
+          label={presetSizeOptions}
           name="windowRadio"
           flexDirection="row"
-          onChange={selectedRadioHandler}
+          onChange={presetSizeHandler}
           isSelected={isSelected}
         />
       </div>
@@ -72,15 +125,15 @@ const Window = (props) => {
             >
               <h2>
                 {`Width: `}
-                {<span>{`${settingsCtx.widthValue}%`}</span>}
+                {<span>{`${textBgWidth}%`}</span>}
               </h2>
               <Slider
                 className={classes.sizeSlider}
-                onChange={settingsCtx.onChangeTextBgWidth}
+                onChange={textBgWidthHandler}
                 min="25"
                 max="85"
                 step="1"
-                value={settingsCtx.widthValue}
+                value={textBgWidth}
                 isDisabled={!textBgIsChecked}
               />
             </div>
@@ -90,15 +143,15 @@ const Window = (props) => {
             >
               <h2>
                 {`Height: `}
-                {<span>{`${settingsCtx.heightValue}%`}</span>}
+                {<span>{`${textBgHeight}%`}</span>}
               </h2>
               <Slider
                 className={classes.sizeSlider}
-                onChange={settingsCtx.onChangeTextBgHeight}
+                onChange={textBgHeightHandler}
                 min="25"
                 max="85"
                 step="1"
-                value={settingsCtx.heightValue}
+                value={textBgHeight}
                 isDisabled={!textBgIsChecked}
               />
             </div>
@@ -110,13 +163,13 @@ const Window = (props) => {
           >
             <ColorButton
               className={classes.colorBtn}
-              selectedColor={settingsCtx.textBgColor}
+              selectedColor={textBgColor}
               colorPicker={
                 <SwatchesPicker
                   width="245px"
                   height="150px"
-                  onChange={settingsCtx.onChangeTextBgColor}
-                  color={settingsCtx.textBgColor}
+                  onChange={textBgColorHandler}
+                  color={textBgColor}
                 />
               }
               isDisabled={!textBgIsChecked}
@@ -129,15 +182,15 @@ const Window = (props) => {
           >
             <h2>
               {`Opacity: `}
-              {<span>{`${Math.floor(settingsCtx.opacityValue * 100)}%`}</span>}
+              {<span>{`${Math.floor(textBgOpacity * 100)}%`}</span>}
             </h2>
             <Slider
               className={classes.opacitySlider}
-              onChange={settingsCtx.onChangeTextBgOpacity}
+              onChange={textBgOpacityHandler}
               min="0"
               max="1"
               step="0.01"
-              value={settingsCtx.opacityValue}
+              value={textBgOpacity}
               isDisabled={!textBgIsChecked}
             />
           </div>
@@ -164,29 +217,29 @@ const Window = (props) => {
                 <div className={classes.sliderContainer}>
                   <h2>
                     {`Offset-Y: `}
-                    {<span>{`${settingsCtx.offsetYValue}px`}</span>}
+                    {<span>{`${dropShadowOffset}px`}</span>}
                   </h2>
                   <Slider
                     className={classes.dropShadowSlider}
-                    onChange={settingsCtx.onChangeOffsetY}
+                    onChange={DropShadowOffsetHandler}
                     min="-20"
                     max="20"
                     step="1"
-                    value={settingsCtx.offsetYValue}
+                    value={dropShadowOffset}
                   />
                 </div>
                 <div className={classes.sliderContainer}>
                   <h2>
                     {`Blur-radius: `}
-                    {<span>{`${settingsCtx.blurValue}px`}</span>}
+                    {<span>{`${dropShadowBlur}px`}</span>}
                   </h2>
                   <Slider
                     className={classes.dropShadowSlider}
-                    onChange={settingsCtx.onChangeBlur}
+                    onChange={dropShadowBlurHandler}
                     min="0"
                     max="20"
                     step="1"
-                    value={settingsCtx.blurValue}
+                    value={dropShadowBlur}
                   />
                 </div>
               </div>
