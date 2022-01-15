@@ -9,6 +9,8 @@ const Search = (props) => {
   const [inputSave, setSave] = useState("");
   const [quranData, setQuranData] = useState([]);
   const [options, setOptions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [noOptMessage, setNoOptMessage] = useState(null);
   const history = useHistory();
   const searchInputHandler = (e) => {
     setSearchValue(e);
@@ -21,12 +23,24 @@ const Search = (props) => {
 
   //   getting Quran data regarding to user's input.
   useEffect(() => {
-    if (searchValue.trim().length === 0) return;
+    if (searchValue.trim().length === 0) {
+      setNoOptMessage(null);
+      return;
+    }
+    setIsLoading(true);
+    setNoOptMessage("No results");
     const quranURL =
       new URL(`https://api.quran.com/api/v4/search?q=${searchValue}&size=20&page=0&language=en
 `);
     const data = fetch(quranURL)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok === true) {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500);
+        }
+        return res.json();
+      })
       .then((res) => {
         setQuranData(res.search.results);
       });
@@ -41,7 +55,7 @@ const Search = (props) => {
     },
     [quranData]
   );
-
+  useEffect(() => {}, []);
   return (
     <div className={classes.searchContainer}>
       <div className={classes.searchIntro}>
@@ -64,6 +78,8 @@ const Search = (props) => {
         }}
         options={loadOptions}
         value={options.find((obj) => obj.value === selectedValue)}
+        isLoading={isLoading}
+        noOptionsMessage={noOptMessage}
       />
     </div>
   );
