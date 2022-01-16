@@ -3,27 +3,10 @@ import QuoteArea from "./quoteArea/QuoteArea";
 import QuoteBackground from "./quoteBackground/QuoteBackground";
 import { useEffect, useState } from "react";
 import MuqHeader from "./muqHeader/MuqHeader";
-import { useLocation } from "react-router-dom";
-import queryString from "query-string";
-import { defaultValues } from "./muqHeader/settings/defaultValues";
-import { useAtom } from "jotai";
 import { useAtomValue } from "jotai/utils";
-import {
-  aspectRatioAtom,
-  dropShadowAtom,
-  textBgAtom,
-  textBgColorAtom,
-  textBgHeightAtom,
-  textBgOpacityAtom,
-  textBgWidthAtom,
-} from "./muqHeader/settings/window/WindowAtoms";
-import {
-  fontColorAtom,
-  fontFamilyAtom,
-  fontSizeAtom,
-  lineHeightAtom,
-  textAlignAtom,
-} from "./muqHeader/settings/editor/EditorAtoms";
+import { aspectRatioAtom } from "./muqHeader/settings/window/WindowAtoms";
+import { useMemo } from "react";
+
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
   useEffect(() => {
@@ -35,13 +18,14 @@ const Muqtatif = (props) => {
     const data = response
       .then((res) => res.json())
       .then((res) => {
+        // console.log(res);
         const options = res.verses.map((item) => {
-          return { value: item.id, label: item.text_indopak };
+          return { value: item.verse_key, label: item.text_indopak };
         });
         setVerses(options);
       });
   }, []);
-
+  // const incomingVerse = useMemo(() => {}, [verses]);
   const [selectedVerse, setSelectedVerse] = useState("");
   const selectedVerseHandler = (e) => {
     setSelectedVerse(e.label);

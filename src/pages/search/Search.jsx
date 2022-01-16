@@ -55,7 +55,6 @@ const Search = (props) => {
     },
     [quranData]
   );
-  useEffect(() => {}, []);
   return (
     <div className={classes.searchContainer}>
       <div className={classes.searchIntro}>
