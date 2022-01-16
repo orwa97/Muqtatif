@@ -5,7 +5,6 @@ import Muqtatif from "./muqtatif/Muqtatif";
 
 const Main = () => {
   const { verseKey } = useParams();
-
   return (
     <Layout>
       <div className={classes.container}>

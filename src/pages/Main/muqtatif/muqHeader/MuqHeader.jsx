@@ -17,6 +17,7 @@ const MuqHeader = (props) => {
           prefix="logo"
           options={props.verses}
           onSelect={props.onSelectVerse}
+          defaultValue={props.value}
         />
         <Tippy
           content={

@@ -17,7 +17,7 @@ const Search = (props) => {
   };
 
   const selectHandeler = (e) => {
-    setSelectedValue(e.value);
+    setSelectedValue(e);
     history.push(`/quran/${e.value}`);
   };
 

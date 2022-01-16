@@ -1,5 +1,5 @@
 import { atomWithHash } from "jotai/utils";
-import { DEFAULT_VALUES } from "../defaultValues";
+import { DEFAULT_VALUES } from "../../../defaultValues";
 export const aspectRatioAtom = atomWithHash(
   "aspectRatio",
   DEFAULT_VALUES.aspectRatio,

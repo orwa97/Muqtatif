@@ -1,5 +1,5 @@
 import { atomWithHash } from "jotai/utils";
-import { DEFAULT_VALUES } from "../defaultValues";
+import { DEFAULT_VALUES } from "../../../defaultValues";
 export const fontFamilyAtom = atomWithHash(
   "fontFamily",
   DEFAULT_VALUES.fontFamily,
