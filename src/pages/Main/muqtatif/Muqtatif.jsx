@@ -6,13 +6,16 @@ import MuqHeader from "./muqHeader/MuqHeader";
 import { useAtomValue } from "jotai/utils";
 import { aspectRatioAtom } from "./muqHeader/settings/window/WindowAtoms";
 import { useMemo } from "react";
-import { selectedVerseAtom } from "./MuqtatifAtoms";
+import { isSelectedAtom, selectedVerseAtom } from "./MuqtatifAtoms";
 import { useAtom } from "jotai";
+import { atomWithHash } from "jotai/utils";
+
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
-  const [selectedOption, setSelectedOption] = useAtom(selectedVerseAtom);
+  const [incomingVerse, setIncomingVerse] = useState("");
+  const [isSelected, setIsSelected] = useAtom(isSelectedAtom);
+  const [selectedVerse, setSelectedVerse] = useAtom(selectedVerseAtom);
   const [selectedQouteBGcolor, setSelectedQouteBGcolor] = useState("#393939");
-  const [selectedVerse, setSelectedVerse] = useState("");
   const verseKey = useMemo(() => {
     return props.verseKey.split(":");
   }, [props.verseKey]);
@@ -27,19 +30,22 @@ const Muqtatif = (props) => {
           return { value: item.verse_key, label: item.text_indopak };
         });
         setVerses(options);
-        setSelectedVerse(options[verseKey[1] - 1].label);
+        setIncomingVerse(options[verseKey[1] - 1].label);
       });
   }, []);
   const selectedOptionHandler = (e) => {
-    setSelectedOption(e.value);
-    setSelectedVerse(e.label);
+    // setIncomingVerse("");
+    setIsSelected(true);
+    setSelectedVerse(e);
   };
 
   const qouteBGColorHandler = (color) => {
     setSelectedQouteBGcolor(color.hex);
   };
 
-  console.log(selectedVerse);
+  const quote = useMemo(() => {
+    return isSelected ? selectedVerse.label : incomingVerse;
+  }, [selectedVerse, incomingVerse]);
   return (
     <div className={classes.muqtatifContainer}>
       <MuqHeader
@@ -54,7 +60,7 @@ const Muqtatif = (props) => {
           aspectRatio={useAtomValue(aspectRatioAtom)}
           backgroundColor={selectedQouteBGcolor}
         >
-          <QuoteArea quote={selectedVerse} />
+          <QuoteArea quote={quote} />
         </QuoteBackground>
       </div>
     </div>
