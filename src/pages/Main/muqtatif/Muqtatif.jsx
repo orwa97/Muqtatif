@@ -8,14 +8,16 @@ import { aspectRatioAtom } from "./muqHeader/settings/window/WindowAtoms";
 import { useMemo } from "react";
 import { isSelectedAtom, selectedVerseAtom } from "./MuqtatifAtoms";
 import { useAtom } from "jotai";
-import { atomWithHash } from "jotai/utils";
-
+import * as htmlToImage from "html-to-image";
+import download from "downloadjs";
+import { copyImageToClipboard } from "copy-image-clipboard";
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
   const [incomingVerse, setIncomingVerse] = useState("");
   const [isSelected, setIsSelected] = useAtom(isSelectedAtom);
   const [selectedVerse, setSelectedVerse] = useAtom(selectedVerseAtom);
   const [selectedQouteBGcolor, setSelectedQouteBGcolor] = useState("#393939");
+
   const verseKey = useMemo(() => {
     return props.verseKey.split(":");
   }, [props.verseKey]);
@@ -30,11 +32,10 @@ const Muqtatif = (props) => {
           return { value: item.verse_key, label: item.text_indopak };
         });
         setVerses(options);
-        setIncomingVerse(options[verseKey[1] - 1].label);
+        setIncomingVerse(options[verseKey[1] - 1]);
       });
   }, []);
   const selectedOptionHandler = (e) => {
-    // setIncomingVerse("");
     setIsSelected(true);
     setSelectedVerse(e);
   };
@@ -44,8 +45,24 @@ const Muqtatif = (props) => {
   };
 
   const quote = useMemo(() => {
-    return isSelected ? selectedVerse.label : incomingVerse;
-  }, [selectedVerse, incomingVerse]);
+    return isSelected ? selectedVerse.label : incomingVerse.label;
+  }, [isSelected, selectedVerse, incomingVerse]);
+
+  const onExport = () => {
+    const data = document.getElementById("toBeExported");
+    htmlToImage.toPng(data).then((dataUrl) => {
+      // download(dataUrl, "my-node.png");
+      // const img = new Image(dataUrl);
+      // img.src = dataUrl;
+      copyImageToClipboard(dataUrl)
+        .then(() => {
+          console.log("Image Copied");
+        })
+        .catch((e) => {
+          console.log("Error: ", e.message);
+        });
+    });
+  };
   return (
     <div className={classes.muqtatifContainer}>
       <MuqHeader
@@ -54,8 +71,9 @@ const Muqtatif = (props) => {
         onChangeQouteBgColor={qouteBGColorHandler}
         qouteBgColorValue={selectedQouteBGcolor}
         value={selectedVerse}
+        onExport={onExport}
       />
-      <div className={classes["muq--body"]}>
+      <div className={classes["muq--body"]} id="toBeExported">
         <QuoteBackground
           aspectRatio={useAtomValue(aspectRatioAtom)}
           backgroundColor={selectedQouteBGcolor}

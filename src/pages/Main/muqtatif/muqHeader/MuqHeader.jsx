@@ -9,7 +9,44 @@ import Button from "../../../../components/button/Button";
 import classes from "./MuqHeader.module.scss";
 import Settings from "./settings/Settings";
 import Select from "../../../../components/Select/Select";
+import * as htmlToImage from "html-to-image";
+import download from "downloadjs";
+import { copyImageToClipboard } from "copy-image-clipboard";
+import { useCallback } from "react";
 const MuqHeader = (props) => {
+  const getHtmlImage = useCallback(async () => {
+    const data = document.getElementById("toBeExported");
+    return await htmlToImage.toPng(data).then((dataUrl) => dataUrl);
+    // const data = document.getElementById("toBeExported");
+    // htmlToImage.toPng(data).then((dataUrl) => {
+    //   // download(dataUrl, "my-node.png");
+    //   // const img = new Image(dataUrl);
+    //   // img.src = dataUrl;
+    //   copyImageToClipboard(dataUrl)
+    //     .then(() => {
+    //       console.log("Image Copied");
+    //     })
+    //     .catch((e) => {
+    //       console.log("Error: ", e.message);
+    //     });
+    // });
+  }, []);
+  const onExport = useCallback(() => {
+    getHtmlImage().then((img) => {
+      download(img, "my-node.png");
+    });
+  }, []);
+  const onCopy = useCallback(() => {
+    getHtmlImage().then((img) => {
+      copyImageToClipboard(img)
+        .then(() => {
+          console.log("Image Copied");
+        })
+        .catch((e) => {
+          console.log("Error: ", e.message);
+        });
+    });
+  }, []);
   return (
     <div className={classes["muq--header"]}>
       <div className={classes.headerPart}>
@@ -79,11 +116,11 @@ const MuqHeader = (props) => {
         </Tippy>
       </div>
       <div className={classes.headerPart}>
-        <Button type="icon-only" icon={<Copy />} />
+        <Button type="icon-only" icon={<Copy />} onClick={onCopy} />
         <Button type="text-only" postfix={<ArrowDown />}>
           Share
         </Button>
-        <Button type="text-only" postfix={<ArrowDown />}>
+        <Button type="text-only" postfix={<ArrowDown />} onClick={onExport}>
           Export
         </Button>
       </div>
