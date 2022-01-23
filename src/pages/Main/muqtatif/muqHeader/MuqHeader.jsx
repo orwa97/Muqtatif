@@ -1,5 +1,5 @@
 import Tippy from "@tippyjs/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SketchPicker } from "react-color";
 import { ReactComponent as SettingsIcon } from "../../../../images/SVG/cog.svg";
 import { ReactComponent as ColorLens } from "../../../../images/SVG/color_lens.svg";
@@ -13,40 +13,37 @@ import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { copyImageToClipboard } from "copy-image-clipboard";
 import { useCallback } from "react";
+import { useAtomValue } from "jotai/utils";
+import { selectedVerseAtom } from "../MuqtatifAtoms";
 const MuqHeader = (props) => {
+  const vk = useMemo(() => {
+    const arr = props.verseKey.split(":");
+    const cl = arr[0].length;
+    const vl = arr[1].length;
+    const l = cl > vl ? cl : vl;
+    const maxL = l === 1 ? l + 1 : l;
+    return arr.map((ele) => {
+      while (ele.length < maxL) ele = "0" + ele;
+      return ele;
+    });
+  }, [props.verseKey]);
   const getHtmlImage = useCallback(async () => {
     const data = document.getElementById("toBeExported");
     return await htmlToImage.toPng(data).then((dataUrl) => dataUrl);
-    // const data = document.getElementById("toBeExported");
-    // htmlToImage.toPng(data).then((dataUrl) => {
-    //   // download(dataUrl, "my-node.png");
-    //   // const img = new Image(dataUrl);
-    //   // img.src = dataUrl;
-    //   copyImageToClipboard(dataUrl)
-    //     .then(() => {
-    //       console.log("Image Copied");
-    //     })
-    //     .catch((e) => {
-    //       console.log("Error: ", e.message);
-    //     });
-    // });
   }, []);
+
   const onExport = useCallback(() => {
     getHtmlImage().then((img) => {
-      download(img, "my-node.png");
+      download(img, `Muq-${vk[0]}-${vk[1]}`);
     });
-  }, []);
+  }, [vk]);
+
   const onCopy = useCallback(() => {
     getHtmlImage().then((img) => {
-      copyImageToClipboard(img)
-        .then(() => {
-          console.log("Image Copied");
-        })
-        .catch((e) => {
-          console.log("Error: ", e.message);
-        });
+      copyImageToClipboard(img);
     });
   }, []);
+
   return (
     <div className={classes["muq--header"]}>
       <div className={classes.headerPart}>
@@ -54,13 +51,13 @@ const MuqHeader = (props) => {
           prefix="logo"
           options={props.verses}
           onSelect={props.onSelectVerse}
-          defaultValue={props.value}
+          defaultValue
         />
         <Tippy
           content={
             <SketchPicker
-              onChange={props.onChangeQouteBgColor}
-              color={props.qouteBgColorValue}
+              onChange={props.onChangeMuqBgColor}
+              color={props.muqBgColorValue}
               disableAlpha={true}
             />
           }

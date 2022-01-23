@@ -5,7 +5,7 @@ const QuoteBackground = (props) => {
 
   const aspectRatio = props.aspectRatio.split(":").join("/");
   return (
-    <spam
+    <span
       style={{
         aspectRatio: aspectRatio,
         backgroundColor: props.backgroundColor,
@@ -13,7 +13,7 @@ const QuoteBackground = (props) => {
       className={classes.background}
     >
       {props.children}
-    </spam>
+    </span>
   );
 };
 
