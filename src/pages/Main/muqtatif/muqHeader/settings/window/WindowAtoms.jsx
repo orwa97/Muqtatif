@@ -7,6 +7,13 @@ export const aspectRatioAtom = atomWithHash(
     replaceState: true,
   }
 );
+export const textBgAtom = atomWithHash(
+  "textBg",
+  DEFAULT_VALUES.textBgIsChecked,
+  {
+    replaceState: true,
+  }
+);
 export const textBgWidthAtom = atomWithHash(
   "TBGWidth",
   DEFAULT_VALUES.textBgWidth,
@@ -52,14 +59,6 @@ export const dropShadowOffsetYAtom = atomWithHash(
 export const dropShadowBlurAtom = atomWithHash(
   "DSBlur",
   DEFAULT_VALUES.dropShadowBlur,
-  {
-    replaceState: true,
-  }
-);
-
-export const textBgAtom = atomWithHash(
-  "textBg",
-  DEFAULT_VALUES.textBgIsChecked,
   {
     replaceState: true,
   }

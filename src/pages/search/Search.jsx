@@ -2,7 +2,75 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router";
 import classes from "./Search.module.scss";
 import SearchBar from "./searchBar/SearchBar";
+import { useAtomValue, RESET, useUpdateAtom } from "jotai/utils";
+import {
+  muqBgColorAtom,
+  selectedVerseAtom,
+} from "../Main/muqtatif/MuqtatifAtoms";
+import {
+  aspectRatioAtom,
+  dropShadowAtom,
+  dropShadowBlurAtom,
+  dropShadowOffsetYAtom,
+  textBgAtom,
+  textBgColorAtom,
+  textBgHeightAtom,
+  textBgOpacityAtom,
+  textBgWidthAtom,
+} from "../Main/muqtatif/muqHeader/settings/window/WindowAtoms";
+import {
+  fontColorAtom,
+  fontFamilyAtom,
+  fontSizeAtom,
+  lineHeightAtom,
+  textAlignAtom,
+} from "../Main/muqtatif/muqHeader/settings/editor/EditorAtoms";
+
 const Search = (props) => {
+  // --------------------ATOMS UPDATE FUNCTIONS--------------------
+  // MuqAtoms
+  const setSelectedVerse = useUpdateAtom(selectedVerseAtom);
+  const setMuqBgColor = useUpdateAtom(muqBgColorAtom);
+  // WindowAtoms
+  const setAspectRatio = useUpdateAtom(aspectRatioAtom);
+  const setTextBgIsChecked = useUpdateAtom(textBgAtom);
+  const setTextBgWidth = useUpdateAtom(textBgWidthAtom);
+  const setTextBgHeight = useUpdateAtom(textBgHeightAtom);
+  const setTextBgOpacity = useUpdateAtom(textBgOpacityAtom);
+  const setTextBgColor = useUpdateAtom(textBgColorAtom);
+  const setDropShadow = useUpdateAtom(dropShadowAtom);
+  const setDropShadowOffset = useUpdateAtom(dropShadowOffsetYAtom);
+  const setDropShadowBlur = useUpdateAtom(dropShadowBlurAtom);
+  // EditorAtoms
+  const setFontFamily = useUpdateAtom(fontFamilyAtom);
+  const setFontSize = useUpdateAtom(fontSizeAtom);
+  const setFontColor = useUpdateAtom(fontColorAtom);
+  const setTextAlign = useUpdateAtom(textAlignAtom);
+  const setLineHeight = useUpdateAtom(lineHeightAtom);
+  // -----------------------------------------------------------------
+  // resetting Atoms With Hash to thier DEFAULT VALUES
+  useEffect(() => {
+    // reset MuqAtoms
+    setSelectedVerse(RESET);
+    setMuqBgColor(RESET);
+    // reset WindowAtoms
+    setAspectRatio(RESET);
+    setTextBgIsChecked(RESET);
+    setTextBgWidth(RESET);
+    setTextBgHeight(RESET);
+    setTextBgOpacity(RESET);
+    setTextBgColor(RESET);
+    setDropShadow(RESET);
+    setDropShadowOffset(RESET);
+    setDropShadowBlur(RESET);
+    // reset EditorAtoms
+    setFontFamily(RESET);
+    setFontSize(RESET);
+    setFontColor(RESET);
+    setTextAlign(RESET);
+    setLineHeight(RESET);
+  }, []);
+
   const [searchValue, setSearchValue] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
   const [inputSave, setSave] = useState("");

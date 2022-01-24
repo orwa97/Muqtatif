@@ -6,7 +6,7 @@ import MuqHeader from "./muqHeader/MuqHeader";
 import { useAtomValue, RESET } from "jotai/utils";
 import { aspectRatioAtom } from "./muqHeader/settings/window/WindowAtoms";
 import { useMemo } from "react";
-import { muqBGcolorAtom, selectedVerseAtom } from "./MuqtatifAtoms";
+import { muqBgColorAtom, selectedVerseAtom } from "./MuqtatifAtoms";
 import { useAtom } from "jotai";
 
 const Muqtatif = (props) => {
@@ -15,7 +15,7 @@ const Muqtatif = (props) => {
   const [selectedVerseValue, setSelectedVerseValue] =
     useAtom(selectedVerseAtom);
   const [selectedVerseText, setSelectedVerseText] = useState("");
-  const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBGcolorAtom);
+  const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBgColorAtom);
 
   // verseKey (from the url param)
   const verseKey = useMemo(() => {
@@ -76,7 +76,7 @@ const Muqtatif = (props) => {
       <div className={classes["muq--body"]} id="toBeExported">
         <QuoteBackground
           aspectRatio={useAtomValue(aspectRatioAtom)}
-          backgroundColor={useAtomValue(muqBGcolorAtom)}
+          backgroundColor={useAtomValue(muqBgColorAtom)}
         >
           <QuoteArea quote={selectedVerseText} />
         </QuoteBackground>
