@@ -47,9 +47,6 @@ const SearchBar = (props) => {
     menu: (provided, state) => ({
       ...provided,
       backgroundColor: "rgb(15,15,15)",
-      //   fontSize: "2rem",
-      //   margin: "0",
-      //   border: "1px solid #fff",
       padding: "0",
     }),
 
@@ -60,9 +57,8 @@ const SearchBar = (props) => {
     }),
     option: (provided, state) => ({
       ...provided,
+      // height: "4rem",
       border: "1px solid #fff",
-      //   borderBottom: "1px solid #fff",
-      //   margin: "0",
       backgroundColor: state.isFocused
         ? "rgba(255, 255, 255, 0.08)"
         : state.isSelected
@@ -71,16 +67,34 @@ const SearchBar = (props) => {
       color: state.isSelected ? "#000" : undefined,
       fontSize: "1.7rem",
       margin: "0",
+      transition: "all .15s",
+      // whiteSpace: "nowrap",
+      // overflow: "hidden",
+      direction: "rtl",
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
-      cursor: "pointer",
     }),
 
     indicatorSeparator: (provided, state) => ({
       ...provided,
       marginRight: "1.5rem",
       margin: ".5rem 1.5rem .5rem .8rem",
+    }),
+
+    noOptionsMessage: (provided, state) => ({
+      ...provided,
+      fontSize: "1.2rem",
+      backgroundColor: "rgba(255, 255, 255, 0.5)",
+      borderRadius: ".5rem",
+      color: "#fff",
+    }),
+    loadingMessage: (provided, state) => ({
+      ...provided,
+      fontSize: "1.2rem",
+      backgroundColor: "rgba(255, 255, 255, 0.5)",
+      borderRadius: ".5rem",
+      color: "#fff",
     }),
   };
   const DropdownIndicator = () => {
@@ -103,6 +117,8 @@ const SearchBar = (props) => {
         value={props.value}
         isSearchable={true}
         onChange={props.onChange}
+        isLoading={props.isLoading}
+        noOptionsMessage={() => props.noOptionsMessage}
       />
     </div>
   );

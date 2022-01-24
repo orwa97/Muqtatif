@@ -1,4 +1,5 @@
 export const DEFAULT_VALUES = {
+  muqtatifBgColor: "#393939",
   textBgIsChecked: true,
   aspectRatio: "16:9",
   textBgWidth: "45",
