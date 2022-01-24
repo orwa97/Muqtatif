@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import classes from "./Search.module.scss";
 import SearchBar from "./searchBar/SearchBar";
-import { useAtomValue, RESET, useUpdateAtom } from "jotai/utils";
+import { RESET, useUpdateAtom } from "jotai/utils";
 import {
   muqBgColorAtom,
   selectedVerseAtom,
