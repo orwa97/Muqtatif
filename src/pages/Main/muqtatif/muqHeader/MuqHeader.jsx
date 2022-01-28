@@ -2,9 +2,10 @@ import Tippy from "@tippyjs/react";
 import { useMemo, useState } from "react";
 import { SketchPicker } from "react-color";
 import { ReactComponent as SettingsIcon } from "../../../../images/SVG/cog.svg";
-import { ReactComponent as ColorLens } from "../../../../images/SVG/color_lens.svg";
+import { ReactComponent as Brush } from "../../../../images/SVG/brush.svg";
 import { ReactComponent as Copy } from "../../../../images/SVG/copy.svg";
 import { ReactComponent as ArrowDown } from "../../../../images/SVG/arrow_down.svg";
+import { ReactComponent as Themes } from "../../../../images/SVG/themes.svg";
 import Button from "../../../../components/button/Button";
 import classes from "./MuqHeader.module.scss";
 import Settings from "./settings/Settings";
@@ -13,7 +14,11 @@ import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { copyImageToClipboard } from "copy-image-clipboard";
 import { useCallback } from "react";
+import { useAtom } from "jotai";
+import { muqBGcolorAtom } from "../MuqtatifAtoms";
 const MuqHeader = (props) => {
+  const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBGcolorAtom);
+
   const vk = useMemo(() => {
     const arr = props.verseKey.split(":");
     const cl = arr[0].length;
@@ -41,7 +46,9 @@ const MuqHeader = (props) => {
       copyImageToClipboard(img);
     });
   }, []);
-
+  const muqBGColorHandler = (color) => {
+    setSelectedMuqBGcolor(color.hex);
+  };
   return (
     <div className={classes["muq--header"]}>
       <div className={classes.headerPart}>
@@ -54,8 +61,8 @@ const MuqHeader = (props) => {
         <Tippy
           content={
             <SketchPicker
-              onChange={props.onChangeMuqBgColor}
-              color={props.muqBgColorValue}
+              onChange={muqBGColorHandler}
+              color={selectedMuqBGcolor}
               disableAlpha={true}
             />
           }
@@ -67,7 +74,7 @@ const MuqHeader = (props) => {
         >
           <Button
             type="icon-only"
-            icon={<ColorLens />}
+            icon={<Brush style={{ fill: `${selectedMuqBGcolor}` }} />}
             backgroundColor={props.qouteBgColorValue}
           />
         </Tippy>
@@ -109,6 +116,7 @@ const MuqHeader = (props) => {
         >
           <Button type="icon-only" icon={<SettingsIcon />} />
         </Tippy>
+        <Button type="icon-only" icon={<Themes />} onClick />
       </div>
       <div className={classes.headerPart}>
         <Button type="icon-only" icon={<Copy />} onClick={onCopy} />
