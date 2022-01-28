@@ -13,7 +13,6 @@ import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { copyImageToClipboard } from "copy-image-clipboard";
 import { useCallback } from "react";
-import ShareDropDown from "./shareDropDown/ShareDropDown";
 const MuqHeader = (props) => {
   const vk = useMemo(() => {
     const arr = props.verseKey.split(":");
@@ -45,7 +44,6 @@ const MuqHeader = (props) => {
 
   return (
     <div className={classes["muq--header"]}>
-      <div id="hiddenContainer"></div>
       <div className={classes.headerPart}>
         <Select
           prefix="logo"
@@ -114,9 +112,6 @@ const MuqHeader = (props) => {
       </div>
       <div className={classes.headerPart}>
         <Button type="icon-only" icon={<Copy />} onClick={onCopy} />
-        <Button type="text-only" postfix={<ShareDropDown />}>
-          Share
-        </Button>
         <Button type="text-only" postfix={<ArrowDown />} onClick={onExport}>
           Export
         </Button>
