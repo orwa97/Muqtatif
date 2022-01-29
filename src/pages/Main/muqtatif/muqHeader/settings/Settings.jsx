@@ -1,6 +1,5 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import RadioButtonsGroup from "../../../../../components/radioButtonsGroup/RadioButtonsGroup";
-import SettingsContext from "../../../../../context/settings-context";
 import { ReactComponent as ArrowRight } from "../../../../../images/SVG/arrow_right.svg";
 import Editor from "./editor/Editor";
 import classes from "./Settings.module.scss";

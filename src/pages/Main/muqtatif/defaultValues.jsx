@@ -14,4 +14,5 @@ export const DEFAULT_VALUES = {
   fontColor: "#393939",
   textAlign: "right",
   lineHeight: "normal",
+  selectedTheme: "",
 };

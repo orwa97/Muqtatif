@@ -36,16 +36,20 @@ const QuoteArea = (props) => {
     dropShadow: useAtomValue(dropShadowAtom) ? dropShadow : "none",
   };
 
-  return useAtomValue(textBgAtom) ? (
+  return (
     <span
       className={classes.quoteAreaBackground}
-      style={{
-        width: styles.width,
-        height: styles.height,
-        backgroundColor: styles.backgroundColor,
-        opacity: styles.opacity,
-        filter: styles.dropShadow,
-      }}
+      style={
+        useAtomValue(textBgAtom)
+          ? {
+              width: styles.width,
+              height: styles.height,
+              backgroundColor: styles.backgroundColor,
+              opacity: styles.opacity,
+              filter: styles.dropShadow,
+            }
+          : { backgroundColor: "transparent" }
+      }
     >
       <p
         className={classes.quote}
@@ -60,8 +64,6 @@ const QuoteArea = (props) => {
         {props.quote}
       </p>
     </span>
-  ) : (
-    <p className={classes.quote}>{props.quote}</p>
   );
 };
 

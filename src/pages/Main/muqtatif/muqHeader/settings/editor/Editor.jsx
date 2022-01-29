@@ -6,7 +6,6 @@ import { ReactComponent as AlignCenter } from "../../../../../../images/SVG/alig
 import { ReactComponent as AlignRight } from "../../../../../../images/SVG/align-right.svg";
 import Slider from "../../../../../../components/slider/Slider";
 import { useContext, useState } from "react";
-import SettingsContext from "../../../../../../context/settings-context";
 import ColorButton from "../colorButton/ColorButton";
 import { CompactPicker } from "react-color";
 import FontsDropdown from "./fontsDropdown/FontsDropdown";

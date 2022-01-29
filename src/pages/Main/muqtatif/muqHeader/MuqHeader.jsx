@@ -16,6 +16,7 @@ import { copyImageToClipboard } from "copy-image-clipboard";
 import { useCallback } from "react";
 import { useAtom } from "jotai";
 import { muqBGcolorAtom } from "../MuqtatifAtoms";
+import ThemesDropDown from "./themesDropDown/ThemesDropDown";
 const MuqHeader = (props) => {
   const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBGcolorAtom);
 
@@ -75,39 +76,10 @@ const MuqHeader = (props) => {
           <Button
             type="icon-only"
             icon={<Brush style={{ fill: `${selectedMuqBGcolor}` }} />}
-            backgroundColor={props.qouteBgColorValue}
           />
         </Tippy>
         <Tippy
-          content={
-            <Settings
-              onChangePresetSize={props.onChangePresetSize}
-              onChangeTextBg={props.onChangeTextBg}
-              onChangeTextBgWidth={props.onChangeTextBgWidth}
-              widthValue={props.widthValue}
-              heightValue={props.heightValue}
-              onChangeTextBgHeight={props.onChangeTextBgHeight}
-              onChangeTextBgColor={props.onChangeTextBgColor}
-              textBgColor={props.textBgColor}
-              onChangeTextBgOpacity={props.onChangeTextBgOpacity}
-              opacityValue={props.opacityValue}
-              onChangeDropShadow={props.onChangeDropShadow}
-              onChangeDropShadowOffset={props.onChangeDropShadowOffset}
-              offsetYValue={props.offsetYValue}
-              onChangeDropShadowBlur={props.onChangeDropShadowBlur}
-              blurValue={props.blurValue}
-              onChangeFontSize={props.onChangeFontSize}
-              fontSizeValue={props.fontSizeValue}
-              onChangeFontWeight={props.onChangeFontWeight}
-              fontWeightValue={props.fontWeightValue}
-              onChangeTextColor={props.onChangeTextColor}
-              textColorValue={props.textBgColor}
-              onChangeFontFamily={props.onChangeFontFamily}
-              fontFamilyValue={props.fontFamilyValue}
-              onChangeTextAlign={props.onChangeTextAlign}
-              textAlignValue={props.textAlignValue}
-            />
-          }
+          content={<Settings />}
           placement="bottom"
           trigger="click"
           interactive="true"
@@ -116,7 +88,17 @@ const MuqHeader = (props) => {
         >
           <Button type="icon-only" icon={<SettingsIcon />} />
         </Tippy>
-        <Button type="icon-only" icon={<Themes />} onClick />
+
+        <Tippy
+          content={<ThemesDropDown />}
+          placement="bottom"
+          trigger="click"
+          interactive="true"
+          delay={0}
+          duration={100}
+        >
+          <Button type="icon-only" icon={<Themes />} />
+        </Tippy>
       </div>
       <div className={classes.headerPart}>
         <Button type="icon-only" icon={<Copy />} onClick={onCopy} />
