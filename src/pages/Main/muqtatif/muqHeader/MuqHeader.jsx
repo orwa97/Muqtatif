@@ -1,5 +1,5 @@
 import Tippy from "@tippyjs/react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { SketchPicker } from "react-color";
 import { ReactComponent as SettingsIcon } from "../../../../images/SVG/cog.svg";
 import { ReactComponent as Brush } from "../../../../images/SVG/brush.svg";
@@ -47,9 +47,9 @@ const MuqHeader = (props) => {
       copyImageToClipboard(img);
     });
   }, []);
-  const muqBGColorHandler = (color) => {
+  const muqBGColorHandler = useCallback((color) => {
     setSelectedMuqBGcolor(color.hex);
-  };
+  }, []);
   return (
     <div className={classes["muq--header"]}>
       <div className={classes.headerPart}>

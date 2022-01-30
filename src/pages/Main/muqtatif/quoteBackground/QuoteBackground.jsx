@@ -2,9 +2,7 @@ import { useAtomValue } from "jotai/utils";
 import { SelectedThemeAtom } from "../muqHeader/themesDropDown/ThemesAtoms";
 import classes from "./QuoteBackground.module.scss";
 const QuoteBackground = (props) => {
-  const size = { width: "", height: "" };
   const imgNum = useAtomValue(SelectedThemeAtom).split("-")[2];
-  console.log(imgNum);
   const aspectRatio = props.aspectRatio.split(":").join("/");
   return (
     <span
