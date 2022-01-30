@@ -15,10 +15,10 @@ import download from "downloadjs";
 import { copyImageToClipboard } from "copy-image-clipboard";
 import { useCallback } from "react";
 import { useAtom } from "jotai";
-import { muqBGcolorAtom } from "../MuqtatifAtoms";
 import ThemesDropDown from "./themesDropDown/ThemesDropDown";
+import { muqBgColorAtom } from "../MuqtatifAtoms";
 const MuqHeader = (props) => {
-  const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBGcolorAtom);
+  const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBgColorAtom);
 
   const vk = useMemo(() => {
     const arr = props.verseKey.split(":");
