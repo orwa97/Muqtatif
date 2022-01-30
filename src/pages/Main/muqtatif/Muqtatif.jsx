@@ -15,7 +15,6 @@ const Muqtatif = (props) => {
   const [selectedVerseValue, setSelectedVerseValue] =
     useAtom(selectedVerseAtom);
   const [selectedVerseText, setSelectedVerseText] = useState("");
-  const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBgColorAtom);
 
   // verseKey (from the url param)
   const verseKey = useMemo(() => {
@@ -57,17 +56,11 @@ const Muqtatif = (props) => {
     setSelectedVerseValue(e.value);
   };
 
-  const muqBGColorHandler = (color) => {
-    setSelectedMuqBGcolor(color.hex);
-  };
-
   return (
     <div className={classes.muqtatifContainer}>
       <MuqHeader
         onSelectVerse={selectedOptionHandler}
         verses={verses}
-        onChangeMuqBgColor={muqBGColorHandler}
-        muqBgColorValue={selectedMuqBGcolor}
         value
         verseKey={selectedVerseValue || props.verseKey}
       />

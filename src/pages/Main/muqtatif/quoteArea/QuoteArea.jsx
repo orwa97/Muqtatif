@@ -18,6 +18,7 @@ import {
   lineHeightAtom,
   textAlignAtom,
 } from "../muqHeader/settings/editor/EditorAtoms";
+import { useMemo } from "react";
 const QuoteArea = (props) => {
   const dropShadow = `drop-Shadow(3px ${useAtomValue(
     dropShadowOffsetYAtom
@@ -35,33 +36,37 @@ const QuoteArea = (props) => {
     lineHeight: useAtomValue(lineHeightAtom),
     dropShadow: useAtomValue(dropShadowAtom) ? dropShadow : "none",
   };
-
-  return useAtomValue(textBgAtom) ? (
+  const bgStyles = useMemo(() => {
+    return {
+      width: styles.width,
+      height: styles.height,
+      backgroundColor: styles.backgroundColor,
+      opacity: styles.opacity,
+      filter: styles.dropShadow,
+    };
+  }, [styles]);
+  return (
     <span
       className={classes.quoteAreaBackground}
-      style={{
-        width: styles.width,
-        height: styles.height,
-        backgroundColor: styles.backgroundColor,
-        opacity: styles.opacity,
-        filter: styles.dropShadow,
-      }}
+      style={
+        useAtomValue(textBgAtom) ? bgStyles : { backgroundColor: "transparent" }
+      }
     >
       <p
         className={classes.quote}
-        style={{
-          fontSize: styles.fontSize,
-          color: styles.color,
-          fontFamily: styles.fontFamily,
-          textAlign: styles.textAlign,
-          lineHeight: styles.lineHeight,
-        }}
+        style={useMemo(() => {
+          return {
+            fontSize: styles.fontSize,
+            color: styles.color,
+            fontFamily: styles.fontFamily,
+            textAlign: styles.textAlign,
+            lineHeight: styles.lineHeight,
+          };
+        }, [styles])}
       >
         {props.quote}
       </p>
     </span>
-  ) : (
-    <p className={classes.quote}>{props.quote}</p>
   );
 };
 

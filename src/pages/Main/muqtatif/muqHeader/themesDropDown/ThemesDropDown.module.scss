@@ -1,0 +1,35 @@
+.container {
+  height: auto;
+  width: 35rem;
+  padding: 0.5rem;
+  border: 1px solid #fff;
+  overflow-x: scroll;
+  background-color: #151515;
+  .themeImg {
+    width: 10rem;
+    height: auto;
+  }
+
+  .radioBtns {
+    div {
+      width: auto;
+
+      &:not(:first-of-type) {
+        margin-left: 0.5rem;
+      }
+      input[type="radio"]:checked + label {
+        border: 1px solid #fff;
+      }
+    }
+    label {
+      border: none;
+      width: auto;
+      height: auto;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      &:hover {
+        border: 1px solid #fff;
+      }
+    }
+  }
+}

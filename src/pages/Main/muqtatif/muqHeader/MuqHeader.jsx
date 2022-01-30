@@ -1,10 +1,11 @@
 import Tippy from "@tippyjs/react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { SketchPicker } from "react-color";
 import { ReactComponent as SettingsIcon } from "../../../../images/SVG/cog.svg";
-import { ReactComponent as ColorLens } from "../../../../images/SVG/color_lens.svg";
+import { ReactComponent as Brush } from "../../../../images/SVG/brush.svg";
 import { ReactComponent as Copy } from "../../../../images/SVG/copy.svg";
 import { ReactComponent as ArrowDown } from "../../../../images/SVG/arrow_down.svg";
+import { ReactComponent as Themes } from "../../../../images/SVG/themes.svg";
 import Button from "../../../../components/button/Button";
 import classes from "./MuqHeader.module.scss";
 import Settings from "./settings/Settings";
@@ -13,7 +14,12 @@ import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { copyImageToClipboard } from "copy-image-clipboard";
 import { useCallback } from "react";
+import { useAtom } from "jotai";
+import ThemesDropDown from "./themesDropDown/ThemesDropDown";
+import { muqBgColorAtom } from "../MuqtatifAtoms";
 const MuqHeader = (props) => {
+  const [selectedMuqBGcolor, setSelectedMuqBGcolor] = useAtom(muqBgColorAtom);
+
   const vk = useMemo(() => {
     const arr = props.verseKey.split(":");
     const cl = arr[0].length;
@@ -41,7 +47,9 @@ const MuqHeader = (props) => {
       copyImageToClipboard(img);
     });
   }, []);
-
+  const muqBGColorHandler = useCallback((color) => {
+    setSelectedMuqBGcolor(color.hex);
+  }, []);
   return (
     <div className={classes["muq--header"]}>
       <div className={classes.headerPart}>
@@ -54,8 +62,8 @@ const MuqHeader = (props) => {
         <Tippy
           content={
             <SketchPicker
-              onChange={props.onChangeMuqBgColor}
-              color={props.muqBgColorValue}
+              onChange={muqBGColorHandler}
+              color={selectedMuqBGcolor}
               disableAlpha={true}
             />
           }
@@ -67,40 +75,11 @@ const MuqHeader = (props) => {
         >
           <Button
             type="icon-only"
-            icon={<ColorLens />}
-            backgroundColor={props.qouteBgColorValue}
+            icon={<Brush style={{ fill: `${selectedMuqBGcolor}` }} />}
           />
         </Tippy>
         <Tippy
-          content={
-            <Settings
-              onChangePresetSize={props.onChangePresetSize}
-              onChangeTextBg={props.onChangeTextBg}
-              onChangeTextBgWidth={props.onChangeTextBgWidth}
-              widthValue={props.widthValue}
-              heightValue={props.heightValue}
-              onChangeTextBgHeight={props.onChangeTextBgHeight}
-              onChangeTextBgColor={props.onChangeTextBgColor}
-              textBgColor={props.textBgColor}
-              onChangeTextBgOpacity={props.onChangeTextBgOpacity}
-              opacityValue={props.opacityValue}
-              onChangeDropShadow={props.onChangeDropShadow}
-              onChangeDropShadowOffset={props.onChangeDropShadowOffset}
-              offsetYValue={props.offsetYValue}
-              onChangeDropShadowBlur={props.onChangeDropShadowBlur}
-              blurValue={props.blurValue}
-              onChangeFontSize={props.onChangeFontSize}
-              fontSizeValue={props.fontSizeValue}
-              onChangeFontWeight={props.onChangeFontWeight}
-              fontWeightValue={props.fontWeightValue}
-              onChangeTextColor={props.onChangeTextColor}
-              textColorValue={props.textBgColor}
-              onChangeFontFamily={props.onChangeFontFamily}
-              fontFamilyValue={props.fontFamilyValue}
-              onChangeTextAlign={props.onChangeTextAlign}
-              textAlignValue={props.textAlignValue}
-            />
-          }
+          content={<Settings />}
           placement="bottom"
           trigger="click"
           interactive="true"
@@ -108,6 +87,17 @@ const MuqHeader = (props) => {
           duration={100}
         >
           <Button type="icon-only" icon={<SettingsIcon />} />
+        </Tippy>
+
+        <Tippy
+          content={<ThemesDropDown />}
+          placement="bottom"
+          trigger="click"
+          interactive="true"
+          delay={0}
+          duration={100}
+        >
+          <Button type="icon-only" icon={<Themes />} />
         </Tippy>
       </div>
       <div className={classes.headerPart}>
