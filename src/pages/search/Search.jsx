@@ -25,6 +25,7 @@ import {
   lineHeightAtom,
   textAlignAtom,
 } from "../Main/muqtatif/muqHeader/settings/editor/EditorAtoms";
+import { SelectedThemeAtom } from "../Main/muqtatif/muqHeader/themesDropDown/ThemesAtoms";
 
 const Search = (props) => {
   // --------------------ATOMS UPDATE FUNCTIONS--------------------
@@ -47,6 +48,8 @@ const Search = (props) => {
   const setFontColor = useUpdateAtom(fontColorAtom);
   const setTextAlign = useUpdateAtom(textAlignAtom);
   const setLineHeight = useUpdateAtom(lineHeightAtom);
+  // ThemesAtoms
+  const setSelectedTheme = useUpdateAtom(SelectedThemeAtom);
   // -----------------------------------------------------------------
   // resetting Atoms With Hash to thier DEFAULT VALUES
   useEffect(() => {
@@ -69,6 +72,8 @@ const Search = (props) => {
     setFontColor(RESET);
     setTextAlign(RESET);
     setLineHeight(RESET);
+    // reset ThemesAtoms
+    setSelectedTheme(RESET);
   }, []);
 
   const [searchValue, setSearchValue] = useState("");
