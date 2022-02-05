@@ -2,47 +2,52 @@ import RadioButtonsGroup from "../../../../../components/radioButtonsGroup/Radio
 import classes from "./ThemesDropDown.module.scss";
 import theme_01 from "../../../../../images/themes/theme_01.png";
 import { useAtom } from "jotai";
-import { SelectedThemeAtom } from "./ThemesAtoms";
-import { useMemo, useState } from "react";
-import { useUpdateAtom } from "jotai/utils";
-import { textBgAtom } from "../settings/window/WindowAtoms";
-import {
-  fontColorAtom,
-  fontSizeAtom,
-  textAlignAtom,
-} from "../settings/editor/EditorAtoms";
+import { SelectedThemeAtom, themeAtom } from "./ThemesAtoms";
+import { useMemo } from "react";
 import { useEffect } from "react";
-import { useCallback } from "react";
-const ThemesDropDown = (props) => {
-  const setTextBgIsChecked = useUpdateAtom(textBgAtom);
-  const setFontColor = useUpdateAtom(fontColorAtom);
-  const setTextAlign = useUpdateAtom(textAlignAtom);
-  const setFontSize = useUpdateAtom(fontSizeAtom);
-  const [themeIsSelected, setThemeIsSelected] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useAtom(SelectedThemeAtom);
-  const themesHandler = useCallback((e) => {
-    setSelectedTheme(e.target.id);
-  }, []);
-  const themesAltHandler = useCallback((e) => {
-    setThemeIsSelected(true);
-  }, []);
-  // update Window's & Editor's states based on the selected theme
-  useEffect(() => {
-    const themeNum = !!selectedTheme ? selectedTheme.split("-")[2] : null;
-    if (themeIsSelected) {
-      if (themeNum === "01") {
-        setTextBgIsChecked(false);
-        setFontColor("#c3845b");
-        setTextAlign("center");
-        setFontSize("2.5");
-      }
-    }
-  }, [selectedTheme, themeIsSelected]);
+import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { THEMES, THEMES_NAMES } from "../../../../../constants";
+import { convertHashToObject } from "../../../../../utils";
+import useAtomGroups from "../../../../../hooks/useAtomsGroup";
 
+const ThemesDropDown = (props) => {
+  const [themeIsSelected, setThemeIsSelected] = useAtom(themeAtom);
+  const [selectedTheme, setSelectedTheme] = useAtom(SelectedThemeAtom);
+  const setTheme = useAtomGroups();
+  const history = useHistory();
+  const location = useLocation();
+
+  const themesHandler = (e) => {
+    setSelectedTheme(e.target.id);
+  };
+
+  const themesAltHandler = () => {
+    // setThemeIsSelected(true);
+  };
+
+  /**
+   * respond to theme selection
+   * apply theme and respect current settings
+   */
+  useEffect(() => {
+    if (!selectedTheme) {
+      return;
+    }
+    const themeName = selectedTheme.split("-")[1];
+    const themeHash = THEMES[themeName];
+    const hashesObj = convertHashToObject(themeHash);
+
+    setTheme(hashesObj);
+  }, [selectedTheme]);
+
+  /**
+   *
+   */
   const radioBtnLabels = useMemo(
     () => [
       {
-        id: "theme-01",
+        id: THEMES_NAMES.BROWN,
         value: "theme-01",
         option: <img src={theme_01} className={classes.themeImg} />,
       },
@@ -54,6 +59,7 @@ const ThemesDropDown = (props) => {
     ],
     []
   );
+
   return (
     <div className={classes.container}>
       <RadioButtonsGroup

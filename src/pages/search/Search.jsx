@@ -83,6 +83,7 @@ const Search = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [noOptMessage, setNoOptMessage] = useState(null);
   const history = useHistory();
+
   const searchInputHandler = (e) => {
     setSearchValue(e);
   };

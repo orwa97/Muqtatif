@@ -15,7 +15,7 @@ const RadioButtonsGroup = (props) => {
 
         <label
           className="radio-label"
-          for={`btn-${item.id}`}
+          htmlFor={`btn-${item.id}`}
           onClick={props.onClick}
         >
           {item.option}
