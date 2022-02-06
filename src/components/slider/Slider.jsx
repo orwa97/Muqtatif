@@ -10,7 +10,6 @@ const Slider = (props) => {
         max={props.max}
         step={props.step}
         onChange={props.onChange}
-        // defaultValue={props.defaultValue}
         value={props.value}
         disabled={props.isDisabled}
       ></input>

@@ -1,36 +1,73 @@
-import { Fragment } from "react";
 import classes from "./QuoteArea.module.scss";
-const QuoteArea = (props) => {
-  const backgroundColor = `rgba(${props.backgroundColor.r}, ${props.backgroundColor.g}, ${props.backgroundColor.b})`;
+import { useAtomValue } from "jotai/utils";
 
+import {
+  dropShadowAtom,
+  dropShadowBlurAtom,
+  dropShadowOffsetYAtom,
+  textBgAtom,
+  textBgColorAtom,
+  textBgHeightAtom,
+  textBgOpacityAtom,
+  textBgWidthAtom,
+} from "../muqHeader/settings/window/WindowAtoms";
+import {
+  fontColorAtom,
+  fontFamilyAtom,
+  fontSizeAtom,
+  lineHeightAtom,
+  textAlignAtom,
+} from "../muqHeader/settings/editor/EditorAtoms";
+import { useMemo } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+const QuoteArea = (props) => {
+  const dropShadow = `drop-Shadow(3px ${useAtomValue(
+    dropShadowOffsetYAtom
+  )}px ${useAtomValue(dropShadowBlurAtom)}px rgba(0, 0, 0, 0.45))`;
+
+  const styles = {
+    width: `${useAtomValue(textBgWidthAtom)}%`,
+    height: `${useAtomValue(textBgHeightAtom)}%`,
+    backgroundColor: useAtomValue(textBgColorAtom),
+    opacity: useAtomValue(textBgOpacityAtom),
+    fontSize: `${useAtomValue(fontSizeAtom)}rem`,
+    color: useAtomValue(fontColorAtom),
+    fontFamily: useAtomValue(fontFamilyAtom),
+    textAlign: useAtomValue(textAlignAtom),
+    lineHeight: useAtomValue(lineHeightAtom),
+    dropShadow: useAtomValue(dropShadowAtom) ? dropShadow : "none",
+  };
+  const bgStyles = useMemo(() => {
+    return {
+      width: styles.width,
+      height: styles.height,
+      backgroundColor: styles.backgroundColor,
+      opacity: styles.opacity,
+      filter: styles.dropShadow,
+    };
+  }, [styles]);
   return (
-    // <div className={classes.quoteArea}>
-    !props.backgroundIsDisabled ? (
-      <span
-        className={classes.quoteAreaBackground}
-        style={{
-          width: `${props.width}%`,
-          height: `${props.height}%`,
-          backgroundColor: backgroundColor,
-          opacity: props.opacity,
-          filter: props.dropShadow,
-        }}
+    <span
+      className={classes.quoteAreaBackground}
+      style={
+        useAtomValue(textBgAtom) ? bgStyles : { backgroundColor: "transparent" }
+      }
+    >
+      <p
+        className={classes.quote}
+        style={useMemo(() => {
+          return {
+            fontSize: styles.fontSize,
+            color: styles.color,
+            fontFamily: styles.fontFamily,
+            textAlign: styles.textAlign,
+            lineHeight: styles.lineHeight,
+          };
+        }, [styles])}
       >
-        <p
-          className={classes.quote}
-          style={{
-            fontSize: `${props.fontSize}rem`,
-            color: props.textColor,
-            fontWeight: props.fontWeight,
-            fontFamily: props.fontFamily,
-          }}
-        >
-          {props.quote}
-        </p>
-      </span>
-    ) : (
-      <p className={classes.quote}>{props.quote}</p>
-    )
+        {props.quote}
+      </p>
+    </span>
   );
 };
 

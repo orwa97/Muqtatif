@@ -11,10 +11,6 @@ input[type="search"] {
   &:focus {
     outline: none;
   }
-
-  // datalist {
-  //   -webkit-appearance: none;
-  // }
 }
 .searchInput {
   background: transparent;
@@ -50,5 +46,5 @@ input[type="search"] {
   fill: #fff;
   height: auto;
   width: 3rem;
-  cursor: pointer;
+  // cursor: pointer;
 }

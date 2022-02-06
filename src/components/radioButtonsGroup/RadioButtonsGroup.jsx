@@ -1,15 +1,9 @@
-import { useState } from "react";
 import classNames from "classnames";
 import "./RadioButtonsGroup.scss";
 const RadioButtonsGroup = (props) => {
-  // const [isSelected, setIsSelected] = useState(props.selectedByDefault);
-  // const radioBtnHandler = (e) => {
-  //   setIsSelected(e.target.id);
-  //   // console.log(e);
-  // };
   const labels = props.label.map((item, i) => {
     return (
-      <div className={`radioBtn`}>
+      <div className={`radioBtn`} key={item.id}>
         <input
           type="radio"
           id={`btn-${item.id}`}
@@ -19,7 +13,11 @@ const RadioButtonsGroup = (props) => {
           checked={props.isSelected === `btn-${item.id}`}
         ></input>
 
-        <label className="radio-label" for={`btn-${item.id}`}>
+        <label
+          className="radio-label"
+          htmlFor={`btn-${item.id}`}
+          onClick={props.onClick}
+        >
           {item.option}
           {!!props.icon && <div className="radioIcon">{props.icon}</div>}
         </label>

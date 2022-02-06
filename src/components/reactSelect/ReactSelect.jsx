@@ -38,9 +38,6 @@ const ReactSelect = (props) => {
     menu: (provided, state) => ({
       ...provided,
       backgroundColor: "rgb(15,15,15)",
-      //   fontSize: "2rem",
-      //   margin: "0",
-      //   border: "1px solid #fff",
       padding: "0",
     }),
 
@@ -52,8 +49,6 @@ const ReactSelect = (props) => {
     option: (provided, state) => ({
       ...provided,
       border: "1px solid #fff",
-      //   borderBottom: "1px solid #fff",
-      //   margin: "0",
       backgroundColor: state.isFocused
         ? "rgba(255, 255, 255, 0.08)"
         : state.isSelected
