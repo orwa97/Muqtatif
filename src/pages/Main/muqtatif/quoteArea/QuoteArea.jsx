@@ -19,6 +19,7 @@ import {
   textAlignAtom,
 } from "../muqHeader/settings/editor/EditorAtoms";
 import { useMemo } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 const QuoteArea = (props) => {
   const dropShadow = `drop-Shadow(3px ${useAtomValue(
     dropShadowOffsetYAtom

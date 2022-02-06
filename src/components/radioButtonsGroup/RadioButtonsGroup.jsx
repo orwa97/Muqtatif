@@ -13,7 +13,11 @@ const RadioButtonsGroup = (props) => {
           checked={props.isSelected === `btn-${item.id}`}
         ></input>
 
-        <label className="radio-label" for={`btn-${item.id}`}>
+        <label
+          className="radio-label"
+          htmlFor={`btn-${item.id}`}
+          onClick={props.onClick}
+        >
           {item.option}
           {!!props.icon && <div className="radioIcon">{props.icon}</div>}
         </label>

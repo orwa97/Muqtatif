@@ -2,6 +2,7 @@ export const DEFAULT_VALUES = {
   muqtatifBgColor: "#393939",
   textBgIsChecked: true,
   aspectRatio: "16:9",
+  selectedAR: "btn-b",
   textBgWidth: "45",
   textBgHeight: "45",
   textBgOpacity: "1",

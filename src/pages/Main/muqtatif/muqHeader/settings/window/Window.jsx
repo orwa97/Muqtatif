@@ -1,12 +1,10 @@
 import classes from "./Window.module.scss";
 import Slider from "../../../../../../components/slider/Slider";
-import { useState } from "react";
 import RadioButtonsGroup from "../../../../../../components/radioButtonsGroup/RadioButtonsGroup";
 import { SwatchesPicker } from "react-color";
 import Checkboxx from "../../../../../../components/checkboxx/Checkboxx";
 import ColorButton from "../colorButton/ColorButton";
 import { useAtom } from "jotai";
-import queryString from "query-string";
 import {
   aspectRatioAtom,
   textBgHeightAtom,
@@ -17,19 +15,13 @@ import {
   dropShadowOffsetYAtom,
   dropShadowBlurAtom,
   textBgAtom,
+  presetSizeAtom,
 } from "./WindowAtoms";
-import { useLocation } from "react-router-dom";
 import { useCallback } from "react";
 import { useMemo } from "react";
 
 const Window = (props) => {
-  const location = useLocation();
-  const params = queryString.parse(location.hash);
-  const settingsValues = Object.fromEntries(
-    Object.entries(params).map(([k, v], i) => [k, v.replace(/['"]+/g, "")])
-  );
-
-  const [isSelected, setIsSelected] = useState("btn-b");
+  const [isSelected, setIsSelected] = useAtom(presetSizeAtom);
   const [presetSize, setPresetSize] = useAtom(aspectRatioAtom);
   const [textBgWidth, setTextBgWidth] = useAtom(textBgWidthAtom);
   const [textBgHeight, setTextBgHeight] = useAtom(textBgHeightAtom);
@@ -78,9 +70,9 @@ const Window = (props) => {
     () => [
       { id: "a", value: "1:1", option: "Squar" },
       { id: "b", value: "16:9", option: "Facebook Cover" },
-      { id: "d", value: "9:16", option: "Instagram story" },
-      { id: "e", value: "2:1", option: "Twitter" },
-      { id: "c", value: "9:16", option: "Snapchat" },
+      { id: "c", value: "9:16", option: "Instagram story" },
+      { id: "d", value: "2:1", option: "Twitter" },
+      { id: "e", value: "9:16", option: "Snapchat" },
     ],
     []
   );
