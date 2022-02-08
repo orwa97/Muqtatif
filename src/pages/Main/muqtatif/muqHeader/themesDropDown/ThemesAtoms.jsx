@@ -1,8 +1,8 @@
 import { atomWithHash } from "jotai/utils";
 import { HASHES } from "../../../../../constants";
-import { DEFAULT_VALUES } from "../../defaultValues";
+import { DEFAULT_VALUES } from "../../../../../constants";
 
-export const SelectedThemeAtom = atomWithHash(
+export const selectedThemeAtom = atomWithHash(
   HASHES.SELECTED_THEME,
   DEFAULT_VALUES.selectedTheme,
   {
@@ -10,6 +10,10 @@ export const SelectedThemeAtom = atomWithHash(
     delayInit: false,
   }
 );
-export const themeAtom = atomWithHash("theme", false, {
-  replaceState: true,
-});
+export const themeIsSelectedAtom = atomWithHash(
+  HASHES.THEME_IS_SELECTED,
+  false,
+  {
+    replaceState: true,
+  }
+);

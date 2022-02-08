@@ -10,7 +10,7 @@ const Checkboxx = (props) => {
   return (
     <Fragment>
       <label
-        for={props.id}
+        htmlFor={props.id}
         className={`${classes.checkboxBtn} ${props.className}`}
         onClick={props.onClick}
         style={{ borderBottom: props.borderBottom }}
@@ -26,10 +26,7 @@ const Checkboxx = (props) => {
         />
         {props.label}
         <div className={classes.checkbox}>
-          <Checkbox
-            checked={props.isChecked}
-            onChange={chBxClickHandler}
-          />
+          <Checkbox checked={props.isChecked} onChange={chBxClickHandler} />
         </div>
       </label>
     </Fragment>
