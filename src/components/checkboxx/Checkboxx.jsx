@@ -1,5 +1,5 @@
 import classes from "./Checkboxx.module.scss";
-import Checkbox from "react-checkbox-component";
+import Checkbox from "rc-checkbox";
 import { Fragment } from "react";
 const Checkboxx = (props) => {
   const chBxClickHandler = (e) => {
@@ -27,10 +27,7 @@ const Checkboxx = (props) => {
         {props.label}
         <div className={classes.checkbox}>
           <Checkbox
-            size={props.size}
-            color={props.color}
-            shape={props.shape}
-            isChecked={props.isChecked}
+            checked={props.isChecked}
             onChange={chBxClickHandler}
           />
         </div>
