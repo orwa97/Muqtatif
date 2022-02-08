@@ -1,8 +1,9 @@
 # مقتطف
 مقتطف هو أداة بسيطة لاخذ مقتطفات قرآنية وحديثية ثم مشاركتها أو تحميلها كصورة. حيث يوفر محرر مقتطف واجهة سلسلة وبسيطة لتعديل الالوان والخطوط واضافة بعض المؤثرات للصورة.
 
-![image](https://user-images.githubusercontent.com/15910965/152689565-fdef9b1a-9e22-4c89-aec2-2247d708403c.png)
+### [Live Demo](https://muqtatif.vercel.app/#)
 
+![image](https://user-images.githubusercontent.com/15910965/152689565-fdef9b1a-9e22-4c89-aec2-2247d708403c.png)
 
 
 تحت التطوير...
