@@ -22,6 +22,7 @@ export const HASHES = {
   TEXT_ALIGN: "text-align",
   LINE_HEIGHT: "line-height",
   SELECTED_THEME: "selected-theme",
+  THEME_IS_SELECTED: "theme",
   SELECTED_VERSE: "verse",
   MUQ_BG_COLOR: "muq-bg-color",
 };

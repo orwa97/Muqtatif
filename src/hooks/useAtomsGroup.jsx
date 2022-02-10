@@ -1,4 +1,4 @@
-import { useUpdateAtom } from "jotai/utils";
+import { RESET, useUpdateAtom } from "jotai/utils";
 import { HASHES } from "../constants";
 import {
   fontColorAtom,
@@ -18,13 +18,16 @@ import {
   textBgOpacityAtom,
   textBgWidthAtom,
 } from "../pages/Main/muqtatif/muqHeader/settings/window/WindowAtoms";
-import { SelectedThemeAtom } from "../pages/Main/muqtatif/muqHeader/themesDropDown/ThemesAtoms";
+import {
+  selectedThemeAtom,
+  themeIsSelectedAtom,
+} from "../pages/Main/muqtatif/muqHeader/themesDropDown/ThemesAtoms";
 import {
   muqBgColorAtom,
   selectedVerseAtom,
 } from "../pages/Main/muqtatif/MuqtatifAtoms";
 
-const useAtomGroups = () => {
+const useAtomsGroup = () => {
   // --------------------ATOMS UPDATE FUNCTIONS--------------------
   // MuqAtoms
   const setters = {
@@ -47,7 +50,8 @@ const useAtomGroups = () => {
     [HASHES.TEXT_ALIGN]: useUpdateAtom(textAlignAtom),
     [HASHES.LINE_HEIGHT]: useUpdateAtom(lineHeightAtom),
     // ThemesAtoms
-    [HASHES.SELECTED_THEME]: useUpdateAtom(SelectedThemeAtom),
+    [HASHES.SELECTED_THEME]: useUpdateAtom(selectedThemeAtom),
+    [HASHES.THEME_IS_SELECTED]: useUpdateAtom(themeIsSelectedAtom),
   };
 
   const setAtoms = (stateObj) => {
@@ -56,7 +60,19 @@ const useAtomGroups = () => {
     }
   };
 
-  return setAtoms;
+  const resetAtoms = (stateObj) => {
+    for (const key in stateObj) {
+      setters[key](RESET);
+    }
+  };
+
+  const resetAll = () => {
+    for (const key in setters) {
+      setters[key](RESET);
+    }
+  };
+
+  return { setAtoms, resetAtoms, resetAll };
 };
 
-export default useAtomGroups;
+export default useAtomsGroup;

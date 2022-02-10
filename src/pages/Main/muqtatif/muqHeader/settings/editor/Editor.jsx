@@ -60,7 +60,7 @@ const Editor = (props) => {
             value="fonts"
             onChange={fontBtnHandler}
           />
-          <label for="fontsBtn" className={classes.label}>
+          <label htmlFor="fontsBtn" className={classes.label}>
             <h2>
               {`Fonts: `}
               {<span>{fontFamily}</span>}
