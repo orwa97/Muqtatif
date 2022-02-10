@@ -2,7 +2,7 @@ import classes from "./Window.module.scss";
 import Slider from "../../../../../../components/slider/Slider";
 import RadioButtonsGroup from "../../../../../../components/radioButtonsGroup/RadioButtonsGroup";
 import { SwatchesPicker } from "react-color";
-import Checkboxx from "../../../../../../components/checkboxx/Checkboxx";
+import Checkbox from "../../../../../../components/checkbox/Checkbox";
 import ColorButton from "../colorButton/ColorButton";
 import { useAtom } from "jotai";
 import {
@@ -91,16 +91,15 @@ const Window = (props) => {
         />
       </div>
       <div className={classes.textBackground}>
-        <Checkboxx
+        <Checkbox
           className={classes.textBgCheckbox}
           label={<h1>Text background</h1>}
           id="textBg"
-          size="small"
+          size="medium"
           color="white"
-          shape="circle"
           isChecked={textBgIsChecked}
           onChange={textBgChBxHandler}
-          onChBxClick={setTextBgIsChecked}
+          onChBxbtnChange={setTextBgIsChecked}
         />
         <div
           className={classes.textBgSettings}
@@ -187,7 +186,7 @@ const Window = (props) => {
             />
           </div>
           <div className={classes.dropShadowCointainer}>
-            <Checkboxx
+            <Checkbox
               className={`${classes.dropShadowCheckbox} ${
                 !textBgIsChecked ? classes.dropShDisabled : ""
               }`}
@@ -195,18 +194,21 @@ const Window = (props) => {
               id="dropShadow"
               size="small"
               color="white"
-              shape="circle"
               borderBottom={dropShadowIsChecked && "1px solid #fff"}
               isChecked={dropShadowIsChecked}
               onChange={dropShadowChBxHandler}
-              onChBxClick={setDropShadowIsChecked}
+              onChBxbtnChange={setDropShadowIsChecked}
               isDisabled={!textBgIsChecked}
             />
             {dropShadowIsChecked && (
               <div
                 className={`${classes.dropShadowSettings} ${classes.section}`}
               >
-                <div className={classes.sliderContainer}>
+                <div
+                  className={`${classes.sliderContainer} ${
+                    !textBgIsChecked ? classes.sliderDisabled : ""
+                  }`}
+                >
                   <h2>
                     {`Offset-Y: `}
                     {<span>{`${dropShadowOffset}px`}</span>}
@@ -217,10 +219,15 @@ const Window = (props) => {
                     min="-20"
                     max="20"
                     step="1"
+                    isDisabled={!textBgIsChecked}
                     value={dropShadowOffset}
                   />
                 </div>
-                <div className={classes.sliderContainer}>
+                <div
+                  className={`${classes.sliderContainer} ${
+                    !textBgIsChecked ? classes.sliderDisabled : ""
+                  }`}
+                >
                   <h2>
                     {`Blur-radius: `}
                     {<span>{`${dropShadowBlur}px`}</span>}
@@ -231,6 +238,7 @@ const Window = (props) => {
                     min="0"
                     max="20"
                     step="1"
+                    isDisabled={!textBgIsChecked}
                     value={dropShadowBlur}
                   />
                 </div>

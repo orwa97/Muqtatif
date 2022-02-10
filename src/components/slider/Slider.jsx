@@ -1,10 +1,9 @@
 import classes from "./Slider.module.scss";
-import classNames from "classnames";
 const Slider = (props) => {
   return (
     <div className={`${classes.container} ${props.className}`}>
       <input
-        className={classNames("slider")}
+        className={classes.slider}
         type="range"
         min={props.min}
         max={props.max}
