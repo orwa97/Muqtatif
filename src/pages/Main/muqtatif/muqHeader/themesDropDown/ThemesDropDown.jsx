@@ -3,25 +3,22 @@ import classes from "./ThemesDropDown.module.scss";
 import theme_01 from "../../../../../images/themes/theme_01.png";
 import { useAtom } from "jotai";
 import { selectedThemeAtom, themeIsSelectedAtom } from "./ThemesAtoms";
-import { useCallback, useMemo } from "react";
-import { useEffect } from "react";
 import { THEMES, THEMES_NAMES } from "../../../../../constants";
 import { convertHashToObject } from "../../../../../utils";
 import useAtomsGroup from "../../../../../hooks/useAtomsGroup";
-import { RESET } from "jotai/utils";
 
 const ThemesDropDown = (props) => {
   const [selectedTheme, setSelectedTheme] = useAtom(selectedThemeAtom);
   const [themeIsSelected, setThemeIsSelected] = useAtom(themeIsSelectedAtom);
   const { setAtoms: setTheme } = useAtomsGroup();
 
-  const applyTheme = useCallback((themeId) => {
+  const applyTheme = (themeId) => {
     const themeName = themeId.split("-")[1];
     const themeHash = THEMES[themeName];
     const hashesObj = convertHashToObject(themeHash);
 
     setTheme(hashesObj);
-  }, []);
+  };
 
   const themesHandler = (e) => {
     setSelectedTheme(e.target.id);
