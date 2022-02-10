@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.input {
+  display: none;
+}
+
+.label {
+  &,
+  .outerRing,
+  .innerCircle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.hovered {
+    cursor: pointer;
+  }
+  .outerRing {
+    border: 2px solid #fff;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+
+    .innerCircle {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background-color: #fff;
+      transform: scale(0);
+      transition: all ease-out 0.2s;
+    }
+  }
+}
+
+input[type="checkbox"]:checked + .label .outerRing .innerCircle {
+  transform: scale(1);
+}
