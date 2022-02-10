@@ -6,6 +6,7 @@ import { selectedThemeAtom, themeIsSelectedAtom } from "./ThemesAtoms";
 import { THEMES, THEMES_NAMES } from "../../../../../constants";
 import { convertHashToObject } from "../../../../../utils";
 import useAtomsGroup from "../../../../../hooks/useAtomsGroup";
+import { useMemo } from "react";
 
 const ThemesDropDown = (props) => {
   const [selectedTheme, setSelectedTheme] = useAtom(selectedThemeAtom);
