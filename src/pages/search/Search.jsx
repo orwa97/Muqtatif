@@ -1,3 +1,4 @@
+import React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import classes from "./Search.module.scss";
@@ -13,8 +14,13 @@ const Search = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [noOptMessage, setNoOptMessage] = useState(null);
   const history = useHistory();
+  const searchRef = React.createRef();
 
+  /**
+   * resetting all atoms to thier default values
+   */
   useEffect(() => {
+    searchRef.current.focus();
     resetAll();
   }, []);
 
@@ -29,6 +35,7 @@ const Search = (props) => {
 
   //   getting Quran data regarding to user's input.
   useEffect(() => {
+    console.log(searchValue);
     let isSubscribed = true;
     if (searchValue.trim().length === 0) {
       setNoOptMessage(null);
@@ -51,6 +58,7 @@ const Search = (props) => {
         return res.json();
       })
       .then((res) => {
+        console.log(res);
         return isSubscribed ? setQuranData(res.search.results) : null;
       });
     return () => (isSubscribed = false);
@@ -68,9 +76,14 @@ const Search = (props) => {
   return (
     <div className={classes.searchContainer}>
       <div className={classes.searchIntro}>
-        <span className={classes.muqLogo}>MUQTATIF</span>
+        <div className={classes.muqLogo}>
+          <span>مُقْتَطِف</span>
+          <span>MUQTATIF</span>
+        </div>
         <p className={classes.intro}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Creat beautiful images of any verse from the holey Quran.
+          <br />
+          <span>Start typing in arabic to get started.</span>
         </p>
       </div>
 
@@ -79,7 +92,7 @@ const Search = (props) => {
         onInputChange={searchInputHandler}
         onChange={selectHandeler}
         inputValue={searchValue}
-        placeholder={inputSave || "Search..."}
+        placeholder={inputSave || `"...ابحث عن آية  "قل الحمد لله`}
         onMenuClose={() => setSave(searchValue)}
         onFocus={() => {
           setSearchValue(inputSave);
@@ -88,6 +101,7 @@ const Search = (props) => {
         options={loadOptions}
         isLoading={isLoading}
         noOptionsMessage={noOptMessage}
+        searchRef={searchRef}
       />
     </div>
   );
