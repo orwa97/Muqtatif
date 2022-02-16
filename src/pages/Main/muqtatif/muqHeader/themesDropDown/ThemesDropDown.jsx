@@ -9,8 +9,7 @@ import useAtomsGroup from "../../../../../hooks/useAtomsGroup";
 import { useMemo } from "react";
 
 const ThemesDropDown = (props) => {
-  const [selectedTheme, setSelectedTheme] = useAtom(selectedThemeAtom);
-  const [themeIsSelected, setThemeIsSelected] = useAtom(themeIsSelectedAtom);
+  const [, setSelectedTheme] = useAtom(selectedThemeAtom);
   const { setAtoms: setTheme } = useAtomsGroup();
 
   const applyTheme = (themeId) => {
@@ -34,7 +33,7 @@ const ThemesDropDown = (props) => {
       {
         id: THEMES_NAMES.BROWN,
         value: "theme-01",
-        option: <img src={theme_01} className={classes.themeImg} />,
+        option: <img src={theme_01} alt="theme" className={classes.themeImg} />,
       },
     ],
     []
@@ -48,7 +47,6 @@ const ThemesDropDown = (props) => {
         name="ThemesRadio"
         flexDirection="row"
         onChange={themesHandler}
-        // isSelected={selectedTheme}
       />
     </div>
   );

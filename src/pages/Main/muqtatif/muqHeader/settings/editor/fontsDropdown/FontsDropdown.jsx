@@ -1,6 +1,5 @@
 import "../../../../../../../fonts/fonts.css";
 import RadioButtonsGroup from "../../../../../../../components/radioButtonsGroup/RadioButtonsGroup";
-import { Fragment } from "react";
 import classes from "./FontsDropdown.module.scss";
 const FontsDropdown = (props) => {
   const fonts = [

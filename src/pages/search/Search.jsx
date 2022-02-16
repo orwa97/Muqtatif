@@ -8,7 +8,7 @@ import useAtomsGroup from "../../hooks/useAtomsGroup";
 const Search = (props) => {
   const { resetAll } = useAtomsGroup();
   const [searchValue, setSearchValue] = useState("");
-  const [selectedValue, setSelectedValue] = useState("");
+  const [, setSelectedValue] = useState("");
   const [inputSave, setSave] = useState("");
   const [quranData, setQuranData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +17,8 @@ const Search = (props) => {
   const searchRef = React.createRef();
 
   /**
-   * resetting all atoms to thier default values
+   * focus on the search input field after render
+   * reset all atoms to thier default values
    */
   useEffect(() => {
     searchRef.current.focus();
@@ -35,7 +36,6 @@ const Search = (props) => {
 
   //   getting Quran data regarding to user's input.
   useEffect(() => {
-    console.log(searchValue);
     let isSubscribed = true;
     if (searchValue.trim().length === 0) {
       setNoOptMessage(null);
@@ -48,7 +48,7 @@ const Search = (props) => {
     const quranURL =
       new URL(`https://api.quran.com/api/v4/search?q=${searchValue}&size=20&page=0&language=en
 `);
-    const data = fetch(quranURL)
+    fetch(quranURL)
       .then((res) => {
         if (res.ok === true) {
           setTimeout(() => {
@@ -58,7 +58,6 @@ const Search = (props) => {
         return res.json();
       })
       .then((res) => {
-        console.log(res);
         return isSubscribed ? setQuranData(res.search.results) : null;
       });
     return () => (isSubscribed = false);
@@ -75,17 +74,17 @@ const Search = (props) => {
   );
   return (
     <div className={classes.searchContainer}>
-      <div className={classes.searchIntro}>
+      <header className={classes.header}>
         <div className={classes.muqLogo}>
-          <span>مُقْتَطِف</span>
-          <span>MUQTATIF</span>
+          <h1>مُقْتَطِف</h1>
+          <h6>MUQTATIF</h6>
         </div>
         <p className={classes.intro}>
           Creat beautiful images of any verse from the holey Quran.
           <br />
           <span>Start typing in arabic to get started.</span>
         </p>
-      </div>
+      </header>
 
       <SearchBar
         className={classes.searchBar}

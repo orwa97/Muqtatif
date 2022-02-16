@@ -39,7 +39,7 @@ const Window = (props) => {
       setIsSelected(e.target.id);
       setPresetSize(e.target.value);
     },
-    [isSelected, presetSize]
+    [setIsSelected, setPresetSize]
   );
   const textBgWidthHandler = (e) => {
     setTextBgWidth(e.target.value);

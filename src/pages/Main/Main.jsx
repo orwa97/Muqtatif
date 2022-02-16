@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router";
 import Layout from "../../components/layout/Layout";
 import classes from "./Main.module.scss";
