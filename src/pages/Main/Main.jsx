@@ -3,22 +3,32 @@ import { useParams } from "react-router";
 import Layout from "../../components/layout/Layout";
 import classes from "./Main.module.scss";
 import Muqtatif from "./muqtatif/Muqtatif";
+import { ReactComponent as IconTheme } from "../../images/SVG/themes.svg";
+import { ReactComponent as IconSettings } from "../../images/SVG/cog.svg";
 
 const Main = () => {
   const { verseKey } = useParams();
   return (
-    <Layout>
-      <div className={classes.container}>
-        <div className={classes["muq--intro"]}>
-          <div className={classes.intro__muqtatifLogo}>Muqtatif</div>
-          <p className={classes.intro__mainText}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed
-            rutrum lorem. Pellentesque habitant morbi tristique senectus et
-            netus et malesuada fames ac turpis egestas.
-          </p>
-        </div>
-        <Muqtatif verseKey={verseKey} />
-      </div>
+    <Layout
+      className={classes.layout}
+      headerParagraph={
+        <p className={classes.headerParagraph}>
+          Start styling by clicking on
+          <span className={classes.iconContainer}>
+            <IconSettings className={classes.icon} />
+          </span>
+          or pick a theme
+          <br />
+          from
+          <span className={classes.iconContainer}>
+            <IconTheme className={classes.icon} />
+          </span>
+          to start with some prestyles.
+          <br />
+        </p>
+      }
+    >
+      <Muqtatif verseKey={verseKey} />
     </Layout>
   );
 };
