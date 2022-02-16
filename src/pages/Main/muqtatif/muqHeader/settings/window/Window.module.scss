@@ -64,7 +64,7 @@
       }
 
       &.sliderDisabled {
-        input[type="range"]:hover {
+        & input[type="range"]:hover {
           background-color: transparent;
           &::-webkit-slider-runnable-track,
           &::-webkit-slider-thumb {
@@ -149,6 +149,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .sliderContainer.sliderDisabled {
+          & input[type="range"]:hover {
+            background-color: transparent;
+            &::-webkit-slider-runnable-track,
+            &::-webkit-slider-thumb {
+              cursor: default;
+            }
+          }
+        }
         .dropShadowSlider {
           input[type="range"] {
             width: 11.4rem;
