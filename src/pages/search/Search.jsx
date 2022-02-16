@@ -1,3 +1,4 @@
+import React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import classes from "./Search.module.scss";
@@ -7,14 +8,20 @@ import useAtomsGroup from "../../hooks/useAtomsGroup";
 const Search = (props) => {
   const { resetAll } = useAtomsGroup();
   const [searchValue, setSearchValue] = useState("");
-  const [selectedValue, setSelectedValue] = useState("");
+  const [, setSelectedValue] = useState("");
   const [inputSave, setSave] = useState("");
   const [quranData, setQuranData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [noOptMessage, setNoOptMessage] = useState(null);
   const history = useHistory();
+  const searchRef = React.createRef();
 
+  /**
+   * focus on the search input field after render
+   * reset all atoms to thier default values
+   */
   useEffect(() => {
+    searchRef.current.focus();
     resetAll();
   }, []);
 
@@ -41,7 +48,7 @@ const Search = (props) => {
     const quranURL =
       new URL(`https://api.quran.com/api/v4/search?q=${searchValue}&size=20&page=0&language=en
 `);
-    const data = fetch(quranURL)
+    fetch(quranURL)
       .then((res) => {
         if (res.ok === true) {
           setTimeout(() => {
@@ -67,19 +74,24 @@ const Search = (props) => {
   );
   return (
     <div className={classes.searchContainer}>
-      <div className={classes.searchIntro}>
-        <span className={classes.muqLogo}>MUQTATIF</span>
+      <header className={classes.header}>
+        <div className={classes.muqLogo}>
+          <h1>مُقْتَطِف</h1>
+          <h6>MUQTATIF</h6>
+        </div>
         <p className={classes.intro}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Creat beautiful images of any verse from the holey Quran.
+          <br />
+          <span>Start typing in arabic to get started.</span>
         </p>
-      </div>
+      </header>
 
       <SearchBar
         className={classes.searchBar}
         onInputChange={searchInputHandler}
         onChange={selectHandeler}
         inputValue={searchValue}
-        placeholder={inputSave || "Search..."}
+        placeholder={inputSave || `"...ابحث عن آية  "قل الحمد لله`}
         onMenuClose={() => setSave(searchValue)}
         onFocus={() => {
           setSearchValue(inputSave);
@@ -88,6 +100,7 @@ const Search = (props) => {
         options={loadOptions}
         isLoading={isLoading}
         noOptionsMessage={noOptMessage}
+        searchRef={searchRef}
       />
     </div>
   );

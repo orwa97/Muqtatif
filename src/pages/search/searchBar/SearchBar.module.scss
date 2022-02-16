@@ -42,9 +42,11 @@ input[type="search"] {
   width: auto;
 }
 
-.searchIcon {
-  fill: #fff;
-  height: auto;
-  width: 3rem;
-  // cursor: pointer;
+.iconBox {
+  cursor: pointer;
+  .searchIcon {
+    fill: #fff;
+    height: auto;
+    width: 3rem;
+  }
 }

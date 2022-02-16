@@ -40,16 +40,19 @@ const MuqHeader = (props) => {
     getHtmlImage().then((img) => {
       download(img, `Muq-${vk[0]}-${vk[1]}`);
     });
-  }, [vk]);
+  }, [vk, getHtmlImage]);
 
   const onCopy = useCallback(() => {
     getHtmlImage().then((img) => {
       copyImageToClipboard(img);
     });
-  }, []);
-  const muqBGColorHandler = useCallback((color) => {
-    setSelectedMuqBGcolor(color.hex);
-  }, []);
+  }, [getHtmlImage]);
+  const muqBGColorHandler = useCallback(
+    (color) => {
+      setSelectedMuqBGcolor(color.hex);
+    },
+    [setSelectedMuqBGcolor]
+  );
   return (
     <div className={classes["muq--header"]}>
       <div className={classes.headerPart}>
