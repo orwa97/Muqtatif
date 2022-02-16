@@ -11,7 +11,7 @@ import { useAtom } from "jotai";
 
 const Muqtatif = (props) => {
   const [verses, setVerses] = useState([]);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [, setSelectedOption] = useState("");
   const [selectedVerseValue, setSelectedVerseValue] =
     useAtom(selectedVerseAtom);
   const [selectedVerseText, setSelectedVerseText] = useState("");
@@ -26,7 +26,7 @@ const Muqtatif = (props) => {
     const response = fetch(
       `https://api.quran.com/api/v4/quran/verses/uthmani_simple?chapter_number=${verseKey[0]}`
     );
-    const data = response
+    response
       .then((res) => res.json())
       .then((res) => {
         const options = res.verses.map((item) => {
@@ -42,7 +42,7 @@ const Muqtatif = (props) => {
     const response = fetch(
       `https://api.quran.com/api/v4/quran/verses/uthmani?verse_key=${vk}`
     );
-    const data = response
+    response
       .then((res) => res.json())
       .then((res) => {
         const { verses: verse } = res;
@@ -50,7 +50,7 @@ const Muqtatif = (props) => {
         setSelectedVerseText(label);
         setSelectedOption({ value: vk, label: label });
       });
-  }, [selectedVerseValue]);
+  }, [selectedVerseValue, props.verseKey]);
 
   const selectedOptionHandler = (e) => {
     setSelectedVerseValue(e.value);

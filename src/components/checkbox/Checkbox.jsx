@@ -1,16 +1,17 @@
-import classes from "./Checkboxx.module.scss";
-import Checkbox from "rc-checkbox";
+import classes from "./Checkbox.module.scss";
 import { Fragment } from "react";
-const Checkboxx = (props) => {
-  const chBxClickHandler = (e) => {
-    props.onChBxClick(() => {
-      return !props.isDisabled ? e : false;
+import CheckboxBtn from "./checkboxBtn/CheckboxBtn";
+const Checkbox = (props) => {
+  const chBxBtnHandler = (e) => {
+    console.log(e);
+    props.onChBxbtnChange(() => {
+      return !props.isDisabled ? e.target.checked : false;
     });
   };
   return (
     <Fragment>
       <label
-        for={props.id}
+        htmlFor={props.id}
         className={`${classes.checkboxBtn} ${props.className}`}
         onClick={props.onClick}
         style={{ borderBottom: props.borderBottom }}
@@ -26,9 +27,13 @@ const Checkboxx = (props) => {
         />
         {props.label}
         <div className={classes.checkbox}>
-          <Checkbox
-            checked={props.isChecked}
-            onChange={chBxClickHandler}
+          <CheckboxBtn
+            size={props.size}
+            color={props.color}
+            isChecked={props.isChecked}
+            onChange={chBxBtnHandler}
+            id={props.id}
+            isDisabled={props.isDisabled}
           />
         </div>
       </label>
@@ -36,4 +41,4 @@ const Checkboxx = (props) => {
   );
 };
 
-export default Checkboxx;
+export default Checkbox;

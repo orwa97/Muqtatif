@@ -7,12 +7,14 @@ const SearchBar = (props) => {
       ...provided,
       border: "1px solid #fff",
       borderRadius: ".8rem",
+      fontFamily: "Tajawal",
     }),
     control: (provided, state) => ({
       ...provided,
       backgroundColor: "transparent",
       padding: "2rem 2.5rem",
       width: "auto",
+      height: "8rem",
       minWidth: "65rem",
       maxWidth: "108rem",
       border: "none",
@@ -21,14 +23,20 @@ const SearchBar = (props) => {
 
     placeholder: (provided, state) => ({
       ...provided,
-      fontSize: "3rem",
+      fontSize: "2.5rem",
       color: "rgba(255, 255, 255, 0.5)",
+      textAlign: "right",
+      letterSpacing: ".15rem",
+      fontWeight: "400",
+      marginRight: "1rem",
+      marginTop: "1rem",
     }),
 
     singleValue: (provided, state) => ({
       ...provided,
       fontSize: "1.7rem",
       color: "#fff",
+      textAlign: "right",
     }),
 
     valueContainer: (provided, state) => ({
@@ -42,7 +50,10 @@ const SearchBar = (props) => {
       color: "#fff",
       margin: "0",
       padding: "0",
+      paddingRight: ".3rem",
+      // marginTop: ".8rem",
       cursor: "text",
+      direction: "rtl",
     }),
     menu: (provided, state) => ({
       ...provided,
@@ -65,12 +76,16 @@ const SearchBar = (props) => {
         ? "white"
         : undefined,
       color: state.isSelected ? "#000" : undefined,
-      fontSize: "1.7rem",
+      fontSize: "1.8rem",
+      padding: ".8rem",
+      paddingTop: "1.2rem",
       margin: "0",
       transition: "all .15s",
-      // whiteSpace: "nowrap",
-      // overflow: "hidden",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
       direction: "rtl",
+      cursor: "pointer",
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -96,14 +111,24 @@ const SearchBar = (props) => {
       borderRadius: ".5rem",
       color: "#fff",
     }),
+    loadingIndicator: (provided, state) => ({
+      ...provided,
+      position: "absolute",
+      left: "1.5rem",
+    }),
   };
   const DropdownIndicator = () => {
-    return <SearchIcon className={classes.searchIcon} />;
+    return (
+      <div className={classes.iconBox}>
+        <SearchIcon className={classes.searchIcon} />
+      </div>
+    );
   };
 
   return (
     <div>
       <AsyncSelect
+        ref={props.searchRef}
         styles={customStyles}
         components={{ DropdownIndicator }}
         placeholder={props.placeholder}
