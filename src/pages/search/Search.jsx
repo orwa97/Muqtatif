@@ -4,6 +4,8 @@ import { useHistory } from "react-router";
 import classes from "./Search.module.scss";
 import SearchBar from "./searchBar/SearchBar";
 import useAtomsGroup from "../../hooks/useAtomsGroup";
+import Header from "../../components/layout/header/Header";
+import Layout from "../../components/layout/Layout";
 
 const Search = (props) => {
   const { resetAll } = useAtomsGroup();
@@ -73,19 +75,16 @@ const Search = (props) => {
     [quranData]
   );
   return (
-    <div className={classes.searchContainer}>
-      <header className={classes.header}>
-        <div className={classes.muqLogo}>
-          <h1>مُقْتَطِف</h1>
-          <h6>MUQTATIF</h6>
-        </div>
-        <p className={classes.intro}>
+    <Layout
+      className={classes.layout}
+      headerParagraph={
+        <p className={classes.headerParagraph}>
           Creat beautiful images of any verse from the holey Quran.
           <br />
           <span>Start typing in arabic to get started.</span>
         </p>
-      </header>
-
+      }
+    >
       <SearchBar
         className={classes.searchBar}
         onInputChange={searchInputHandler}
@@ -102,7 +101,7 @@ const Search = (props) => {
         noOptionsMessage={noOptMessage}
         searchRef={searchRef}
       />
-    </div>
+    </Layout>
   );
 };
 

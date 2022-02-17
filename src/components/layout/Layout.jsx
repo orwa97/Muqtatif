@@ -4,8 +4,8 @@ import classes from "./Layout.module.scss";
 
 const Layout = (props) => {
   return (
-    <div className={classes.layoutContainer}>
-      <Header />
+    <div className={`${classes.layoutContainer} ${props.className}`}>
+      <Header paragraph={props.headerParagraph} />
       <Content>{props.children}</Content>
     </div>
   );
