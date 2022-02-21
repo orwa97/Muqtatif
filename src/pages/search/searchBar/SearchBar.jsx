@@ -8,6 +8,7 @@ const SearchBar = (props) => {
       border: "1px solid #fff",
       borderRadius: ".8rem",
       fontFamily: "Tajawal",
+      color: "#fff",
     }),
     control: (provided, state) => ({
       ...provided,
